@@ -1,0 +1,29 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--引入配置文件-->
+    <properties resource="application.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!-- 开始和结束分隔符 -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+        <!--数据库连接参数-->
+        <jdbcConnection driverClass="${mysql.driver}" connectionURL="${mysql.url}" userId="${mysql.username}" password="${mysql.password}">
+        </jdbcConnection>
+        <!--model包路径-->
+        <javaModelGenerator targetProject="src/main/java" targetPackage="snoob.gdd.model"/>
+        <!--mybatis sql文件存放路径-->
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper.impl"/>
+        <!--mapper包路径-->
+        <javaClientGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper" type="XMLMAPPER"/>
+        <!--指定需要反向同步的表-->
+        <table tableName="color"></table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,32 @@
+#开发环境
+
+# 内置tomcatc参数配置
+server:
+  port: 8080
+  servlet:
+    context-path: /gdd
+
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/gdd?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: li1234mysql
+
+# mybatis配置
+mybatis:
+  type-aliases-package: snoob.gdd.model
+  mapper-locations: classpath:snoob/gdd/mapper/impl/*.xml
+  config-location: classpath:mybatis-config.xml
+
+
+
+
+
+
+
+
+
+
+
