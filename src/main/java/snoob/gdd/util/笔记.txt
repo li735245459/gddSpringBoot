@@ -1,0 +1,41 @@
+================================JDK配置、Maven配置
+    http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+    http://maven.apache.org/download.cgi
+    设置环境变量:
+	    JAVA_HOME:  D:\Program Files\Java\jdk1.8.0_171
+	    M2_HOME: D:\Program Files\apache-maven-3.5.3
+    追加PATH环境变量:
+        %JAVA_HOME%\bin
+        %JAVA_HOME%\jre\bin
+        %JAVA_HOME%\lib\dt.jar
+        %M2_HOME%\bin
+    测试:
+	    java -version
+	    javac
+	    mvn -v
+================================修改Maven配置
+	编辑文件D:\WorkSpace\apache-maven-3.5.3\conf\settings.xml
+	<localRepository>D:/WorkSpace/apache-maven-repository/</localRepository>
+	--
+	<mirror>
+        <id>nexus-aliyun</id>
+        <mirrorOf>*</mirrorOf>
+        <name>Nexus aliyun</name>
+        <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+    </mirror>
+================================设置IntelliJ IDEA的Maven参数
+    File-Settings-Maven配置本地maven地址和本地maven库
+    File-OthenSettings-DefaultSettings配置maven地址和本地maven库
+
+
+================================上传本地项目到github
+项目根目录自带.git文件,配置idel中github选项的用户名和密码
+github仓库中新建项目并设置项目下载路劲到idel打开项目的Git-Repository-Remotest中
+
+
+=================================构建Jar包,运行命令Spring Boot程序:
+d: && cd D:\WorkSpace\GitHub\gddSpringBoot && mvn clean install
+cd target && java -jar gdd-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+
+
+
