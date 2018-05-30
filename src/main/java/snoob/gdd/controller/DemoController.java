@@ -23,6 +23,6 @@ public class DemoController {
     public Object demo(){
         System.out.println(currentPage);
         System.out.println(page);
-        return "hello world";
+        return page;
     }
 }
