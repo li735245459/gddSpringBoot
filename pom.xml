@@ -43,14 +43,14 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency><!--Spring Boot jpa依赖-->
+        <!--<dependency>&lt;!&ndash;Spring Boot jpa依赖&ndash;&gt;-->
             <!--做基本的增删改查使用
             在ORM框架(Hibernate、TopLink、JDO)和JPA规范的基础上封装的一套操作数据的应用框架
             不用写一句SQL的hibernate（传统企业大都喜欢使用hibernate）
             -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+        <!--</dependency>-->
         <dependency><!--mysql连接驱动-->
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -79,6 +79,12 @@
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>2.0.0</version>
         </dependency>
+        <!--分页插件-->
+        <!--<dependency>-->
+            <!--<groupId>com.github.pagehelper</groupId>-->
+            <!--<artifactId>pagehelper</artifactId>-->
+            <!--<version>4.2.1</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
