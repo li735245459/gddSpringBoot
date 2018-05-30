@@ -8,8 +8,6 @@ import snoob.gdd.util.Message;
 import snoob.gdd.util.RandomString;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,19 +25,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object register(User user) {
         if(userDao.select(new User(user.getEmail())).isEmpty()) {
-            String id = RandomString.getUuidStr();
-            user.setId(id);
+            user.setId(RandomString.getUuidStr());
             Integer result = userDao.insertSelective(user);
             if(result.equals(1)){
+                message.setMessage("注册成功");
                 message.setCode(1);
-                message.setContent("注册成功");
             }else{
+                message.setMessage("注册失败");
                 message.setCode(0);
-                message.setContent("注册失败");
             }
         }else{
-            message.setCode(-1);
-            message.setContent("该邮箱已被注册");
+            message.setMessage("该邮箱已被注册");
+            message.setCode(2);
         }
         return message;
     }
@@ -52,12 +49,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object login(User user) {
         if(userDao.select(user).isEmpty()){
-            message.setCode(1);
-            message.setContent("登录成功");
+            message.setCode(2);
+            message.setMessage("邮箱或者密码错误");
         }else{
-            message.setCode(0);
-            message.setContent("邮箱或者密码错误");
+            message.setCode(1);
+            message.setMessage("登录成功");
         }
         return message;
+    }
+
+    @Override
+    public Object sendEmail(String email, String codeType) {
+        return null;
     }
 }

@@ -19,6 +19,10 @@ mybatis:
   type-aliases-package: snoob.gdd.model
   mapper-locations: classpath:snoob/gdd/mapper/impl/*.xml
   config-location: classpath:mybatis-config.xml
+# 日志
+logging:
+  level:
+    snoob.gdd.mapper: debug
 
 
 

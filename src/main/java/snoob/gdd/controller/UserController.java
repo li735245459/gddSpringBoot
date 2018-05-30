@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 添加用户信息
+     * 用户注册
      * @param user
      * @return
      */
@@ -28,8 +28,20 @@ public class UserController {
         return userService.register(user);
     }
 
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
     @PostMapping("/login")
     public Object login(@RequestBody User user){
         return userService.login(user);
+    }
+
+    @GetMapping("/sendEmail/{email}/{codeType}")
+    public Object sendEmail(
+            @PathVariable(value = "email", required = true) String email,
+            @PathVariable(value = "codeType", required = true) String codeType){
+        return userService.sendEmail(email, codeType);
     }
 }
