@@ -2,6 +2,7 @@ package snoob.gdd.controller;
 
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
+import snoob.gdd.service.EmailService;
 import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
@@ -17,6 +18,8 @@ public class UserController {
 
     @Resource
     private UserService userService;
+    @Resource
+    private EmailService emailService;
 
     /**
      * 用户注册
@@ -38,10 +41,15 @@ public class UserController {
         return userService.login(user);
     }
 
-    @GetMapping("/sendEmail/{email}/{codeType}")
-    public Object sendEmail(
-            @PathVariable(value = "email", required = true) String email,
-            @PathVariable(value = "codeType", required = true) String codeType){
-        return userService.sendEmail(email, codeType);
+    /**
+     * 通过邮箱找回密码
+     * @param receiver
+     * @param type
+     * @return
+     */
+    @GetMapping("/sendEmail/{receiver}/{type}")
+    public Object sendEmail(@PathVariable(value = "receiver") String receiver, @PathVariable(value = "type") String type){
+//        return emailService.sendSimpleEmail(receiver, type);
+        return emailService.sendHtmlEmail(receiver, type);
     }
 }

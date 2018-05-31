@@ -1,11 +1,9 @@
 #开发环境
 
-# 内置tomcatc参数配置
-server:
-  port: 8080
-  servlet:
-    context-path: /gdd
-
+# 日志
+logging:
+  level:
+    snoob.gdd.mapper: debug
 spring:
   # 数据源配置
   datasource:
@@ -13,18 +11,12 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/gdd?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: li1234mysql
-
-# mybatis配置
-mybatis:
-  type-aliases-package: snoob.gdd.model
-  mapper-locations: classpath:snoob/gdd/mapper/impl/*.xml
-  config-location: classpath:mybatis-config.xml
-# 日志
-logging:
-  level:
-    snoob.gdd.mapper: debug
-
-
+  # 发送邮箱配置
+  mail:
+    host: smtp.sina.com
+    username: lixing_java@sina.com
+    password: li1234sina
+    default-encoding: utf-8
 
 
 

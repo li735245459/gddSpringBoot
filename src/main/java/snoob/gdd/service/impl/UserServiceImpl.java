@@ -1,5 +1,6 @@
 package snoob.gdd.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
@@ -15,7 +16,8 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userDao;
 
-    private Message message = new Message();
+    @Autowired
+    private Message message;
 
     /**
      * 用户注册
@@ -56,10 +58,5 @@ public class UserServiceImpl implements UserService {
             message.setMessage("登录成功");
         }
         return message;
-    }
-
-    @Override
-    public Object sendEmail(String email, String codeType) {
-        return null;
     }
 }

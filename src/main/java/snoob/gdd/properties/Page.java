@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 /**
  * 分页对象
  */
-@ConfigurationProperties(prefix = "page")
 @Component
+@ConfigurationProperties(prefix="page")
 public class Page {
     private Integer currentPage;
     private Integer currentPageSize;

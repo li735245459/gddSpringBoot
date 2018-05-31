@@ -1,8 +1,11 @@
 package snoob.gdd.util;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 操作记录
  */
+@Component
 public class Message {
     /**
      * 状态码

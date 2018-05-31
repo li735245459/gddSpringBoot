@@ -1,4 +1,4 @@
 package snoob.gdd.util;
 
-public class sendEmail {
+public class SendEmail {
 }
