@@ -1,11 +1,14 @@
 package snoob.gdd.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
 import snoob.gdd.service.EmailService;
 import snoob.gdd.service.UserService;
+import snoob.gdd.util.RandomString;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 
 
 /**
@@ -15,6 +18,9 @@ import javax.annotation.Resource;
 @RequestMapping("/user")
 @RestController
 public class UserController {
+
+    @Value("${spring.mail.username}")
+    private String sender;
 
     @Resource
     private UserService userService;
@@ -47,9 +53,9 @@ public class UserController {
      * @param type
      * @return
      */
-    @GetMapping("/sendEmail/{receiver}/{type}")
-    public Object sendEmail(@PathVariable(value = "receiver") String receiver, @PathVariable(value = "type") String type){
-//        return emailService.sendSimpleEmail(receiver, type);
-        return emailService.sendHtmlEmail(receiver, type);
+    @GetMapping("/sendEmail/{type}/{receiver}")
+    public Object sendEmail(@PathVariable(value = "type") String type, @PathVariable(value = "receiver") String receiver){
+        return emailService.sendSimpleEmail(type,sender,receiver,"通过邮箱找回密码功能",
+                MessageFormat.format("验证码: {0}",RandomString.getCodeStr()));
     }
 }
