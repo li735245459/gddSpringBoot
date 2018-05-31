@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import snoob.gdd.model.Page;
+import snoob.gdd.util.PageUtil;
 
 import javax.annotation.Resource;
 
@@ -17,12 +17,12 @@ public class DemoController {
     private Integer currentPage;
 
     @Resource
-    private Page page;
+    private PageUtil pageUtil;
 
     @GetMapping("/demo1")
     public Object demo(){
         System.out.println(currentPage);
-        System.out.println(page);
-        return page;
+        System.out.println(pageUtil);
+        return pageUtil;
     }
 }

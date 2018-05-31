@@ -176,7 +176,7 @@ public class EmailCode {
     /**
      * 获取验证码
      *
-     * @return code - 验证码
+     * @return ResultEnum - 验证码
      */
     public String getCode() {
         return code;

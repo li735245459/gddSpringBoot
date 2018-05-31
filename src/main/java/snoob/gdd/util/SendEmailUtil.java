@@ -37,7 +37,6 @@ public class SendEmailUtil {
             mailSender.send(simpleMailMessage);
             return true;
         } catch (Exception e) {
-            // 打印日志 查看发送失败原因
             return false;
         }
     }
@@ -56,7 +55,7 @@ public class SendEmailUtil {
             mimeMessageHelper.setTo(emailCode.getReceiver());
             mimeMessageHelper.setSentDate(new Date());
             mimeMessageHelper.setSubject(emailCode.getSubject());
-            //MessageFormat.format("验证码: {0}",RandomStringUtil.getCodeStr())
+            //MessageFormat.format("验证码: {0}",RandomStrUtil.getCodeStr())
             mimeMessageHelper.setText(emailCode.getContent(), true);
             mailSender.send(mimeMessage);
             return 1;

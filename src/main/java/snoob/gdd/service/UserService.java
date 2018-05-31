@@ -4,6 +4,6 @@ import snoob.gdd.model.User;
 
 
 public interface UserService {
-    Object register(User user);
-    Object login(User user);
+    Object register(User user) throws Exception;
+    Object login(User user) throws Exception;
 }

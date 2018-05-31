@@ -1,12 +1,13 @@
 package snoob.gdd.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import snoob.gdd.enums.ResultEnum;
+import snoob.gdd.exception.GddException;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
-import snoob.gdd.model.Message;
-import snoob.gdd.util.RandomStringUtil;
+import snoob.gdd.util.RandomStrUtil;
+import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
 
@@ -16,47 +17,38 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userDao;
 
-    @Autowired
-    private Message message;
-
     /**
      * 用户注册
+     *
      * @param user
      * @return
      */
     @Override
-    public Object register(User user) {
-        if(userDao.select(new User(user.getEmail())).isEmpty()) {
-            user.setId(RandomStringUtil.getUuidStr());
-            Integer result = userDao.insertSelective(user);
-            if(result.equals(1)){
-                message.setMessage("注册成功");
-                message.setCode(1);
-            }else{
-                message.setMessage("注册失败");
-                message.setCode(0);
+    public Object register(User user) throws Exception{
+        if (userDao.select(new User(user.getEmail())).isEmpty()) {
+            user.setId(RandomStrUtil.getUuidStr());
+            if (userDao.insertSelective(user) > 0) {
+                return ResultUtil.success();
+            } else {
+                throw new GddException(ResultEnum.REGISTER_FAILED);
             }
-        }else{
-            message.setMessage("该邮箱已被注册");
-            message.setCode(2);
+        } else {
+            throw new GddException(ResultEnum.EMAIL_REFISTERED);
         }
-        return message;
     }
 
     /**
      * 用户登录
+     *
      * @param user
      * @return
      */
     @Override
-    public Object login(User user) {
-        if(userDao.select(user).isEmpty()){
-            message.setCode(2);
-            message.setMessage("邮箱或者密码错误");
-        }else{
-            message.setCode(1);
-            message.setMessage("登录成功");
+    public Object login(User user) throws Exception{
+        if (userDao.select(user).isEmpty()) {
+            throw new GddException(ResultEnum.LOFIN_FAILED);
+        } else {
+            return ResultUtil.success();
         }
-        return message;
     }
 }
