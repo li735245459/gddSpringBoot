@@ -16,10 +16,9 @@ import java.util.Date;
  */
 @Component
 public class SendEmailUtil {
+
     @Autowired
     private JavaMailSender mailSender;
-    private SimpleMailMessage simpleMailMessage;
-    private MimeMessageHelper mimeMessageHelper;
 
     /**
      * 文本格式
@@ -27,7 +26,7 @@ public class SendEmailUtil {
      * @return true表示发送成功,false表示发送失败
      */
     public Boolean sendSimpleEmail(EmailCode emailCode){
-        simpleMailMessage = new SimpleMailMessage();
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(emailCode.getSender());
         simpleMailMessage.setTo(emailCode.getReceiver());
         simpleMailMessage.setSentDate(new Date());
@@ -50,7 +49,7 @@ public class SendEmailUtil {
         try{
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             //true表示需要创建一个multipart message
-            mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
             mimeMessageHelper.setFrom(emailCode.getSender());
             mimeMessageHelper.setTo(emailCode.getReceiver());
             mimeMessageHelper.setSentDate(new Date());
