@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
-import snoob.gdd.util.Message;
-import snoob.gdd.util.RandomString;
+import snoob.gdd.model.Message;
+import snoob.gdd.util.RandomStringUtil;
 
 import javax.annotation.Resource;
 
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object register(User user) {
         if(userDao.select(new User(user.getEmail())).isEmpty()) {
-            user.setId(RandomString.getUuidStr());
+            user.setId(RandomStringUtil.getUuidStr());
             Integer result = userDao.insertSelective(user);
             if(result.equals(1)){
                 message.setMessage("注册成功");

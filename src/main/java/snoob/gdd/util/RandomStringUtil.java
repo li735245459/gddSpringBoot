@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * 生成随机字符串
  */
-public class RandomString {
+public class RandomStringUtil {
     private static final String str = "A1a2B3b4C5c6D7d8E9e9F9f7G6g5H4h3J2j1KkLlMmNnPpQqRrSsTtUuVvWwXxYyZz";
 
     /**

@@ -24,6 +24,6 @@
         <!--mapper包路径-->
         <javaClientGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper" type="XMLMAPPER"/>
         <!--指定需要反向同步的表-->
-        <table tableName="user"></table>
+        <table tableName="email_code"></table>
     </context>
 </generatorConfiguration>

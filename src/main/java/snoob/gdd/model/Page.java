@@ -1,4 +1,4 @@
-package snoob.gdd.properties;
+package snoob.gdd.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

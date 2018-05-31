@@ -1,9 +1,9 @@
-package snoob.gdd.util;
+package snoob.gdd.model;
 
 import org.springframework.stereotype.Component;
 
 /**
- * 操作记录
+ * 服务器统一响应格式
  */
 @Component
 public class Message {
@@ -20,9 +20,9 @@ public class Message {
      */
     private String message;
     /**
-     * 需要返回的数据
+     * 返回的数据
      */
-    private Object obj;
+    private Object data;
 
     public Integer getCode() {
         return code;
@@ -48,11 +48,11 @@ public class Message {
         this.message = message;
     }
 
-    public Object getObj() {
-        return obj;
+    public Object getData() {
+        return data;
     }
 
-    public void setObj(Object obj) {
-        this.obj = obj;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
