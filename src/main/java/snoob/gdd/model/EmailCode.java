@@ -18,7 +18,7 @@ public class EmailCode {
     private Date createTime;
 
     /**
-     * 验证类型（1:忘记密码）
+     * 验证类型（1:忘记密码模块）
      */
     private String type;
 
@@ -84,18 +84,18 @@ public class EmailCode {
     }
 
     /**
-     * 获取验证类型（1:忘记密码）
+     * 获取验证类型（1:忘记密码模块）
      *
-     * @return type - 验证类型（1:忘记密码）
+     * @return type - 验证类型（1:忘记密码模块）
      */
     public String getType() {
         return type;
     }
 
     /**
-     * 设置验证类型（1:忘记密码）
+     * 设置验证类型（1:忘记密码模块）
      *
-     * @param type 验证类型（1:忘记密码）
+     * @param type 验证类型（1:忘记密码模块）
      */
     public void setType(String type) {
         this.type = type;
@@ -189,19 +189,5 @@ public class EmailCode {
      */
     public void setCode(String code) {
         this.code = code;
-    }
-
-    @Override
-    public String toString() {
-        return "EmailCode{" +
-                "id='" + id + '\'' +
-                ", createTime=" + createTime +
-                ", type='" + type + '\'' +
-                ", sender='" + sender + '\'' +
-                ", receiver='" + receiver + '\'' +
-                ", subject='" + subject + '\'' +
-                ", content='" + content + '\'' +
-                ", code='" + code + '\'' +
-                '}';
     }
 }

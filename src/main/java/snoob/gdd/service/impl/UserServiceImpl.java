@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Object register(User user) throws Exception{
+    public Object register(User user) throws Exception {
         if (userDao.select(new User(user.getEmail())).isEmpty()) {
             user.setId(RandomStrUtil.getUuidStr());
             userDao.insertSelective(user);
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Object login(User user) throws Exception{
+    public Object login(User user) throws Exception {
         if (userDao.select(user).isEmpty()) {
             // 用户名或者密码错误
             throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
@@ -51,5 +51,19 @@ public class UserServiceImpl implements UserService {
             // 登陆成功
             return ResultUtil.success();
         }
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object modifyPassword(User user) throws Exception {
+        userDao.updateByPrimaryKeySelective(user);
+        // 修改成功
+        return ResultUtil.success();
     }
 }

@@ -3,7 +3,7 @@
 # 日志
 logging:
   level:
-    snoob.gdd.mapper: debug
+    snoob.gdd.*: debug
 spring:
   # 数据源配置
   datasource:

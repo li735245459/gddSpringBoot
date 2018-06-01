@@ -14,6 +14,7 @@ import snoob.gdd.model.EmailCode;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.text.MessageFormat;
 import java.util.Date;
 
 /**
@@ -42,7 +43,7 @@ public class SendEmailUtil {
         try {
             mailSender.send(simpleMailMessage);
         } catch (Exception e) {
-            logger.debug("【发送邮件错误】", e);
+            logger.debug(MessageFormat.format("【发送邮件错误】--{0}",e.getMessage()));
             throw new GddException(ResultEnum.ERROR_EMAIL_SENDER);
         }
     }

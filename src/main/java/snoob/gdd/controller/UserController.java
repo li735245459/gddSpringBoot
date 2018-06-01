@@ -2,7 +2,6 @@ package snoob.gdd.controller;
 
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
-import snoob.gdd.service.EmailService;
 import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
@@ -15,10 +14,9 @@ import javax.annotation.Resource;
 @RequestMapping("/user")
 @RestController
 public class UserController {
+
     @Resource
     private UserService userService;
-    @Resource
-    private EmailService emailService;
 
     /**
      * 用户注册
@@ -40,6 +38,11 @@ public class UserController {
     @PostMapping("/login")
     public Object login(@RequestBody User user) throws Exception {
         return userService.login(user);
+    }
+
+    @PutMapping("/modifyPassword")
+    public Object modifyPassword(@RequestBody User user) throws Exception {
+        return userService.modifyPassword(user);
     }
 
 }

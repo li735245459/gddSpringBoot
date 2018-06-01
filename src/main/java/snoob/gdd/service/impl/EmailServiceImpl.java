@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.exception.GddException;
 import snoob.gdd.mapper.EmailCodeMapper;
+import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;
+import snoob.gdd.model.User;
 import snoob.gdd.service.EmailService;
 import snoob.gdd.util.RandomStrUtil;
 import snoob.gdd.util.ResultUtil;
@@ -14,6 +16,7 @@ import snoob.gdd.util.SendEmailUtil;
 
 import javax.annotation.Resource;
 import java.text.MessageFormat;
+import java.util.List;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -23,6 +26,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Resource
     private EmailCodeMapper emailCodeDao;
+
+    @Resource
+    private UserMapper userMapper;
 
     @Value("${spring.mail.username}")
     private String sender;
@@ -83,10 +89,11 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setType(type);
         emailCode.setReceiver(email);
         emailCode.setCode(code);
-        if (emailCodeDao.select(emailCode).isEmpty()) {
+        if ( emailCodeDao.select(emailCode).isEmpty()) {
             throw new GddException(ResultEnum.ERROR_EMAIL_CODE);
         } else {
-            return ResultUtil.success();
+            emailCodeDao.delete(emailCode);
+            return ResultUtil.success(userMapper.select(new User(email)).get(0));
         }
     }
 }
