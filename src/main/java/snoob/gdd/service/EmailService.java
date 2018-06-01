@@ -1,7 +1,6 @@
 package snoob.gdd.service;
 
-import snoob.gdd.model.EmailCode;
-
 public interface EmailService {
-    Object forgetPassword(EmailCode emailCode);
+    Object sendEmail(String type, String receiver) throws Exception;
+    Object sendHtmlEmail(String type, String receiver) throws Exception;
 }

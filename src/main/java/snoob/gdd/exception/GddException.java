@@ -4,7 +4,7 @@ import snoob.gdd.enums.ResultEnum;
 
 /**
  * 自定义异常
- * 抛出的RuntimeException spring会进行事务回滚
+ * 抛出RuntimeException异常时spring会进行事务回滚
  */
 public class GddException extends RuntimeException{
     private Integer code;

@@ -12,13 +12,13 @@ public class EmailCode {
     private String id;
 
     /**
-     * 数据生成时间
+     * 发送时间
      */
     @Column(name = "create_time")
     private Date createTime;
 
     /**
-     * 验证类型,(1:忘记密码验证)
+     * 验证类型（1:忘记密码）
      */
     private String type;
 
@@ -33,7 +33,7 @@ public class EmailCode {
     private String receiver;
 
     /**
-     * 邮件标题
+     * 邮件主题
      */
     private String subject;
 
@@ -66,36 +66,36 @@ public class EmailCode {
     }
 
     /**
-     * 获取数据生成时间
+     * 获取发送时间
      *
-     * @return create_time - 数据生成时间
+     * @return create_time - 发送时间
      */
     public Date getCreateTime() {
         return createTime;
     }
 
     /**
-     * 设置数据生成时间
+     * 设置发送时间
      *
-     * @param createTime 数据生成时间
+     * @param createTime 发送时间
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     /**
-     * 获取验证类型,(1:忘记密码验证)
+     * 获取验证类型（1:忘记密码）
      *
-     * @return type - 验证类型,(1:忘记密码验证)
+     * @return type - 验证类型（1:忘记密码）
      */
     public String getType() {
         return type;
     }
 
     /**
-     * 设置验证类型,(1:忘记密码验证)
+     * 设置验证类型（1:忘记密码）
      *
-     * @param type 验证类型,(1:忘记密码验证)
+     * @param type 验证类型（1:忘记密码）
      */
     public void setType(String type) {
         this.type = type;
@@ -138,18 +138,18 @@ public class EmailCode {
     }
 
     /**
-     * 获取邮件标题
+     * 获取邮件主题
      *
-     * @return subject - 邮件标题
+     * @return subject - 邮件主题
      */
     public String getSubject() {
         return subject;
     }
 
     /**
-     * 设置邮件标题
+     * 设置邮件主题
      *
-     * @param subject 邮件标题
+     * @param subject 邮件主题
      */
     public void setSubject(String subject) {
         this.subject = subject;
@@ -176,7 +176,7 @@ public class EmailCode {
     /**
      * 获取验证码
      *
-     * @return ResultEnum - 验证码
+     * @return code - 验证码
      */
     public String getCode() {
         return code;
@@ -189,5 +189,19 @@ public class EmailCode {
      */
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "EmailCode{" +
+                "id='" + id + '\'' +
+                ", createTime=" + createTime +
+                ", type='" + type + '\'' +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", subject='" + subject + '\'' +
+                ", content='" + content + '\'' +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

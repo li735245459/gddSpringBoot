@@ -27,13 +27,12 @@ public class UserServiceImpl implements UserService {
     public Object register(User user) throws Exception{
         if (userDao.select(new User(user.getEmail())).isEmpty()) {
             user.setId(RandomStrUtil.getUuidStr());
-            if (userDao.insertSelective(user) > 0) {
-                return ResultUtil.success();
-            } else {
-                throw new GddException(ResultEnum.REGISTER_FAILED);
-            }
+            userDao.insertSelective(user);
+            // 注册成功
+            return ResultUtil.success();
         } else {
-            throw new GddException(ResultEnum.EMAIL_REFISTERED);
+            // 邮箱已被注册
+            throw new GddException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
         }
     }
 
@@ -46,8 +45,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object login(User user) throws Exception{
         if (userDao.select(user).isEmpty()) {
-            throw new GddException(ResultEnum.LOFIN_FAILED);
+            // 用户名或者密码错误
+            throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
         } else {
+            // 登陆成功
             return ResultUtil.success();
         }
     }

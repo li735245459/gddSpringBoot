@@ -1,10 +1,15 @@
 package snoob.gdd.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import snoob.gdd.enums.ResultEnum;
+import snoob.gdd.exception.GddException;
+import snoob.gdd.exception.ExceptionHandle;
 import snoob.gdd.model.EmailCode;
 
 import javax.mail.MessagingException;
@@ -17,6 +22,8 @@ import java.util.Date;
 @Component
 public class SendEmailUtil {
 
+    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
+
     @Autowired
     private JavaMailSender mailSender;
 
@@ -25,7 +32,7 @@ public class SendEmailUtil {
      * @param emailCode
      * @return true表示发送成功,false表示发送失败
      */
-    public Boolean sendSimpleEmail(EmailCode emailCode){
+    public void sendSimpleEmail(EmailCode emailCode){
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(emailCode.getSender());
         simpleMailMessage.setTo(emailCode.getReceiver());
@@ -34,9 +41,9 @@ public class SendEmailUtil {
         simpleMailMessage.setText(emailCode.getContent());
         try {
             mailSender.send(simpleMailMessage);
-            return true;
         } catch (Exception e) {
-            return false;
+            logger.debug("【发送邮件错误】", e);
+            throw new GddException(ResultEnum.ERROR_EMAIL_SENDER);
         }
     }
 
