@@ -3,6 +3,8 @@ package snoob.gdd.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import snoob.gdd.enums.ResultEnum;
+import snoob.gdd.exception.GddException;
 import snoob.gdd.mapper.EmailCodeMapper;
 import snoob.gdd.model.EmailCode;
 import snoob.gdd.service.EmailService;
@@ -54,7 +56,6 @@ public class EmailServiceImpl implements EmailService {
     }
 
     /**
-     *
      * 发送邮件: html格式
      *
      * @param type
@@ -65,5 +66,27 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public Object sendHtmlEmail(String type, String receiver) throws Exception {
         return null;
+    }
+
+    /**
+     * 校验邮箱和验证码
+     *
+     * @param type
+     * @param email
+     * @param code
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object checkEmailCode(String type, String email, String code) throws Exception {
+        EmailCode emailCode = new EmailCode();
+        emailCode.setType(type);
+        emailCode.setReceiver(email);
+        emailCode.setCode(code);
+        if (emailCodeDao.select(emailCode).isEmpty()) {
+            throw new GddException(ResultEnum.ERROR_EMAIL_CODE);
+        } else {
+            return ResultUtil.success();
+        }
     }
 }
