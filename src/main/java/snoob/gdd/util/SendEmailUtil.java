@@ -53,7 +53,7 @@ public class SendEmailUtil {
      * @param emailCode
      * @return
      */
-    public Object sendHtmlEmail(EmailCode emailCode) {
+    public void sendHtmlEmail(EmailCode emailCode) {
         try{
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             //true表示需要创建一个multipart message
@@ -65,9 +65,9 @@ public class SendEmailUtil {
             //MessageFormat.format("验证码: {0}",RandomStrUtil.getCodeStr())
             mimeMessageHelper.setText(emailCode.getContent(), true);
             mailSender.send(mimeMessage);
-            return 1;
         }catch (MessagingException e){
-            return 0;
+            logger.debug(MessageFormat.format("【发送邮件错误】--{0}",e.getMessage()));
+            throw new GddException(ResultEnum.ERROR_EMAIL_SENDER);
         }
     }
 }

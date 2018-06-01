@@ -1,2 +1,16 @@
 #生产环境
 
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/gdd?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: li1234mysql
+  # 发送邮箱配置
+  mail:
+    host: smtp.sina.com
+    username: lixing_java@sina.com
+    password: li1234sina
+    default-encoding: utf-8
+

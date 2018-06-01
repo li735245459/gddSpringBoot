@@ -25,7 +25,8 @@ public class EmailCodeController {
     public Object send(
             @PathVariable(value = "type") String type,
             @PathVariable(value = "receiver") String receiver) throws Exception {
-        return emailService.sendEmail(type, receiver);
+//        return emailService.sendEmail(type, receiver);
+        return emailService.sendHtmlEmail(type, receiver);
     }
 
     /**
