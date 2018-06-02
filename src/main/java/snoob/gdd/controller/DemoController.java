@@ -11,7 +11,7 @@ import snoob.gdd.util.PageUtil;
 
 import javax.annotation.Resource;
 
-@CrossOrigin(origins = "http://127.0.0.1:4200")
+//@CrossOrigin(origins = "http://127.0.0.1:4200")
 @RequestMapping("/demo")
 @RestController
 public class DemoController {

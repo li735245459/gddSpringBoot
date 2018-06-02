@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 /**
  * 邮箱验证码模块
  */
-@CrossOrigin(origins = "http://127.0.0.1:4200")
 @RequestMapping("/email")
 @RestController
 public class EmailCodeController {
@@ -38,7 +37,7 @@ public class EmailCodeController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/checkEmailCode/{type}/{email}/{code}")
+    @GetMapping("/checkEmailCode/{type}/{email}/{code}")
     public Object checkEmailCode(
             @PathVariable(value = "type") String type,
             @PathVariable(value = "email") String email,

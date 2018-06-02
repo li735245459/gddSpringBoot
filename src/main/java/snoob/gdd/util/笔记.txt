@@ -32,10 +32,19 @@
 项目根目录自带.git文件,配置idel中github选项的用户名和密码
 github仓库中新建项目并设置项目下载路劲到idel打开项目的Git-Repository-Remotest中
 
+================================CORS实现跨域访问
+方式1：返回新的CorsFilter（全局跨域）
+方式2：手工设置响应头（HttpServletResponse）（局部跨域 ）
+方式3：重写WebMvcConfigurer（全局跨域）
+    在任意配置类,返回一个新的WebMvcConfigurer Bean,并重写其提供的跨域请求处理的接口
+方式4：使用注解（@CrossOrigin）（局部跨域）
+    在控制器上（@Controller）、方法上（@RequestMapping）使用注解 @CrossOrigin:
+        @CrossOrigin(origins = "http://127.0.0.1:4200")
 
 =================================构建Jar包,运行命令Spring Boot程序:
 d: && cd D:\WorkSpace\GitHub\gddSpringBoot && mvn clean install
 cd target && java -jar gdd-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+
 
 
 

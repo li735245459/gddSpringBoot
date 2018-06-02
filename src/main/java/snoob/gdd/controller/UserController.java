@@ -6,11 +6,9 @@ import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
 
-
 /**
  * 用户模块
  */
-@CrossOrigin(origins = "http://127.0.0.1:4200")
 @RequestMapping("/user")
 @RestController
 public class UserController {
