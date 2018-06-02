@@ -38,6 +38,13 @@ public class UserController {
         return userService.login(user);
     }
 
+    /**
+     * 修改密码
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @PutMapping("/modifyPassword")
     public Object modifyPassword(@RequestBody User user) throws Exception {
         return userService.modifyPassword(user);
