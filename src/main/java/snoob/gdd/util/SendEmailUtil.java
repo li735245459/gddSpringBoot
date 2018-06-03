@@ -62,7 +62,7 @@ public class SendEmailUtil {
             mimeMessageHelper.setTo(emailCode.getReceiver());
             mimeMessageHelper.setSentDate(new Date());
             mimeMessageHelper.setSubject(emailCode.getSubject());
-            //MessageFormat.format("验证码: {0}",RandomStrUtil.getCodeStr())
+            //MessageFormat.format("验证码: {0}",StrUtil.getCodeStr())
             mimeMessageHelper.setText(emailCode.getContent(), true);
             mailSender.send(mimeMessage);
         }catch (MessagingException e){

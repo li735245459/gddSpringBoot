@@ -7,11 +7,14 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
-import snoob.gdd.util.RandomStrUtil;
+import snoob.gdd.util.StrUtil;
 import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,7 +31,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object register(User user) throws Exception {
         if (userDao.select(new User(user.getEmail())).isEmpty()) {
-            user.setId(RandomStrUtil.getUuidStr());
+            user.setId(StrUtil.getUuidStr());
+            user.setSecret(StrUtil.getMd5Str(user.getEmail()));
             userDao.insertSelective(user);
             // 注册成功
             return ResultUtil.success();
@@ -53,9 +57,13 @@ public class UserServiceImpl implements UserService {
         } else {
             // 登陆成功
             User loginUser = users.get(0);
-            String token = JwtUtil.createJWT(loginUser.getId(), "issuer", "gddLogin", 60);
-            JwtUtil.parseJWT(token);
-            return ResultUtil.success();
+            // 创建JWT
+            Map<String,Object> claims = new HashMap<String,Object>();
+            claims.put("secret", loginUser.getSecret());
+            claims.put("iat", new Date(System.currentTimeMillis()));
+            claims.put("exp", new Date(System.currentTimeMillis() + 1000*60));
+            String jwt = JwtUtil.encodeJWT(claims);
+            return ResultUtil.success(jwt);
         }
     }
 

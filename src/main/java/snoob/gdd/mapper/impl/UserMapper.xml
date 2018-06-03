@@ -19,5 +19,6 @@
     <result column="city" jdbcType="VARCHAR" property="city" />
     <result column="area" jdbcType="VARCHAR" property="area" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="secret" jdbcType="VARCHAR" property="secret" />
   </resultMap>
 </mapper>

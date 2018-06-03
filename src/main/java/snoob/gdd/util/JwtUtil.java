@@ -4,10 +4,11 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
+
 import javax.xml.bind.DatatypeConverter;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
-import java.util.Date;
+import java.util.Map;
 
 /**
  * jwt工具类,生成、解析token
@@ -18,41 +19,31 @@ public class JwtUtil {
     /**
      * 创建token
      *
-     * @param id
-     * @param issuer
-     * @param subject
-     * @param ttlMillis
+     * @param claims Map<String, Object> claims = new HashMap<>();
+     *               claims.put("secret", "lixing");
+     *               claims.put("jti", "lixing"); //JWT ID (jti): getId() and setId(String)
+     *               claims.put("iat", new Date(System.currentTimeMillis())); // Issued At (iat): getIssuedAt() and setIssuedAt(Date)
+     *               claims.put("exp", new Date(System.currentTimeMillis() + 60)); // Expiration (exp): getExpiration() and setExpiration(Date)
+     *               claims.put("sub", "lixing"); // Subject (sub): getSubject() and setSubject(String)
+     *               claims.put("iss", "lixing"); // Issuer (iss): getIssuer() and setIssuer(String)
+     *               claims.put("aud", "lixing"); // Audience (aud): getAudience() and setAudience(String)
+     *               //map.put("nbf", "lixing"); // Not Before (nbf): getNotBefore() and setNotBefore(Date)
      * @return
      */
-    public static String createJWT(String id, String issuer, String subject, long ttlMillis) {
+    public static String encodeJWT(Map<String, Object> claims) {
 
-        // 签名算法
+        //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(JWT_SECRET);
+
+        //We will sign our JWT with our ApiKey secret
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(claims.get("secret").toString());
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
-        // 当前时间戳
-        long nowMillis = System.currentTimeMillis();
-        Date now = new Date(nowMillis);
+        //Let's set the JWT Claims
+        JwtBuilder builder = Jwts.builder().signWith(signatureAlgorithm, signingKey).setClaims(claims);
 
-        //
-        JwtBuilder builder = Jwts.builder()
-                .setId(id)
-                .setIssuedAt(now)
-                .setSubject(subject)
-                .setIssuer(issuer)
-                .signWith(signatureAlgorithm, signingKey);
-
-        // 添加token过期时间
-        if (ttlMillis >= 0) {
-            long expMillis = nowMillis + ttlMillis;
-            Date exp = new Date(expMillis);
-            builder.setExpiration(exp);
-        }
-
-        //构建JWT序列化到一个紧凑,URL-safe字符串
+        //Builds the JWT and serializes it to a compact, URL-safe string
         return builder.compact();
-
     }
 
     /**
@@ -60,16 +51,27 @@ public class JwtUtil {
      *
      * @param jwt
      */
-    public static Claims parseJWT(String jwt) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(JWT_SECRET))
-                .parseClaimsJws(jwt)
-                .getBody();
-        System.out.println("ID: " + claims.getId());
-        System.out.println("Subject: " + claims.getSubject());
-        System.out.println("Issuer: " + claims.getIssuer());
-        System.out.println("Expiration: " + claims.getExpiration());
-        return claims;
+    public static Claims decodeJWT(String jwt, String secret) {
+//        System.out.println(Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody().getSubject().equals("Joe"));
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody();
+    }
+
+    public static void main(String[] args) {
+//        Map<String, Object> claims = new HashMap<>();
+//        claims.put("secret", "lixing");
+//        claims.put("jti", "lixing"); //JWT ID (jti): getId() and setId(String)
+//        claims.put("iat", new Date(System.currentTimeMillis())); // Issued At (iat): getIssuedAt() and setIssuedAt(Date)
+//        claims.put("exp", new Date(System.currentTimeMillis() + 1000*60)); // Expiration (exp): getExpiration() and setExpiration(Date)
+//        claims.put("sub", "lixing"); // Subject (sub): getSubject() and setSubject(String)
+//        claims.put("iss", "lixing"); // Issuer (iss): getIssuer() and setIssuer(String)
+//        claims.put("aud", "lixing"); // Audience (aud): getAudience() and setAudience(String)
+//        //map.put("nbf", "lixing"); // Not Before (nbf): getNotBefore() and setNotBefore(Date)
+//        String jwt = encodeJWT(claims);
+//        System.out.println(jwt);
+//        System.out.println(decodeJWT(jwt, "lixing"));
+//        System.out.println(decodeJWT(jwt, "lixing").getIssuedAt().getTime());
+//        System.out.println(decodeJWT(jwt, "lixing").getExpiration().getTime());
+//        System.out.println(System.currentTimeMillis());
     }
 }
 

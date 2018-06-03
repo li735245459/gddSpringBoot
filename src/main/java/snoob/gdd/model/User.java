@@ -82,6 +82,11 @@ public class User {
     private String address;
 
     /**
+     * 创建jwt的密钥,注册时自动生成
+     */
+    private String secret;
+
+    /**
      * 获取编号,UUID字符串
      *
      * @return id - 编号,UUID字符串
@@ -331,5 +336,23 @@ public class User {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * 获取创建jwt的密钥,注册时自动生成
+     *
+     * @return secret - 创建jwt的密钥,注册时自动生成
+     */
+    public String getSecret() {
+        return secret;
+    }
+
+    /**
+     * 设置创建jwt的密钥,注册时自动生成
+     *
+     * @param secret 创建jwt的密钥,注册时自动生成
+     */
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 }

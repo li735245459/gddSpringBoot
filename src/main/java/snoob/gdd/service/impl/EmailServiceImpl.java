@@ -10,7 +10,7 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;
 import snoob.gdd.model.User;
 import snoob.gdd.service.EmailService;
-import snoob.gdd.util.RandomStrUtil;
+import snoob.gdd.util.StrUtil;
 import snoob.gdd.util.ResultUtil;
 import snoob.gdd.util.SendEmailUtil;
 
@@ -43,13 +43,13 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public Object sendEmail(String type, String receiver) throws Exception {
         EmailCode emailCode = new EmailCode();
-        emailCode.setId(RandomStrUtil.getUuidStr());
+        emailCode.setId(StrUtil.getUuidStr());
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
         if ("1".equals(type)) { // 忘记密码模块发送验证码功能
             emailCode.setSubject("忘记密码模块发送验证码功能");
-            String code = RandomStrUtil.getCodeStr();
+            String code = StrUtil.getCodeStr();
             emailCode.setCode(code);
             emailCode.setContent(MessageFormat.format("验证码:{0}", code));
         }
@@ -71,13 +71,13 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public Object sendHtmlEmail(String type, String receiver) throws Exception {
         EmailCode emailCode = new EmailCode();
-        emailCode.setId(RandomStrUtil.getUuidStr());
+        emailCode.setId(StrUtil.getUuidStr());
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
         if ("1".equals(type)) { // 忘记密码模块发送验证码功能
             emailCode.setSubject("忘记密码模块发送验证码功能");
-            String code = RandomStrUtil.getCodeStr();
+            String code = StrUtil.getCodeStr();
             emailCode.setCode(code);
             StringBuffer sb = new StringBuffer();
             sb.append("<h1>验证码:</h1>")
