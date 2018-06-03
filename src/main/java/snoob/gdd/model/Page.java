@@ -1,4 +1,4 @@
-package snoob.gdd.util;
+package snoob.gdd.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix="page")
-public class PageUtil {
+public class Page {
     private Integer currentPage;
     private Integer currentPageSize;
     private Integer start;

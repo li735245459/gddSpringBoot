@@ -1,4 +1,4 @@
-package snoob.gdd.util;
+package snoob.gdd.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;

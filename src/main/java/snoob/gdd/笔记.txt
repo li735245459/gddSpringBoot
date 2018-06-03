@@ -41,6 +41,16 @@ github仓库中新建项目并设置项目下载路劲到idel打开项目的Git-
     在控制器上（@Controller）、方法上（@RequestMapping）使用注解 @CrossOrigin:
         @CrossOrigin(origins = "http://127.0.0.1:4200")
 
+================================JWT的工作流程
+下面是一个JWT的工作流程图。模拟一下实际的流程是这样的（假设受保护的API在/protected中）
+用户导航到登录页，输入用户名、密码，进行登录
+服务器验证登录鉴权，如果用户合法，根据用户的信息和服务器的规则生成JWT Token
+服务器将该token以json形式返回（不一定要json形式，这里说的是一种常见的做法）
+用户得到token，存在localStorage、cookie或其它数据存储形式中
+以后用户请求/protected中的API时，在请求的header中加入 Authorization: Bearer xxxx(token)。此处注意token之前有一个7字符长度的 Bearer
+服务器端对此token进行检验，如果合法就解析其中内容，根据其拥有的权限和自己的业务逻辑给出对应的响应结果。
+用户取得结果
+
 =================================构建Jar包,运行命令Spring Boot程序:
 d: && cd D:\WorkSpace\GitHub\gddSpringBoot && mvn clean install
 cd target && java -jar gdd-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
