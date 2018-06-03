@@ -48,6 +48,7 @@ public class JwtUtil {
 
     /**
      * 解析token
+     * 当前端传入的jwt无效时解析会报异常,具体异常请看文档
      *
      * @param jwt
      */
