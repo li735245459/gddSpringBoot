@@ -6,10 +6,12 @@ import snoob.gdd.exception.GddException;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
+import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.RandomStrUtil;
 import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,11 +46,15 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object login(User user) throws Exception {
-        if (userDao.select(user).isEmpty()) {
+        List<User> users = userDao.select(user);
+        if (users.isEmpty()) {
             // 用户名或者密码错误
             throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
         } else {
             // 登陆成功
+            User loginUser = users.get(0);
+            String token = JwtUtil.createJWT(loginUser.getId(), "issuer", "gddLogin", 60);
+            JwtUtil.parseJWT(token);
             return ResultUtil.success();
         }
     }

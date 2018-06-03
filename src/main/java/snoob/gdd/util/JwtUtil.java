@@ -1,59 +1,76 @@
 package snoob.gdd.util;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
-import javax.crypto.spec.SecretKeySpec;
+import io.jsonwebtoken.Claims;
 import javax.xml.bind.DatatypeConverter;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Date;
 
 /**
- * jwt工具类
+ * jwt工具类,生成、解析token
  */
 public class JwtUtil {
+    public static final String JWT_SECRET = "hong1mu2zhi3ruan4jian5";
+
     /**
-     * 解析jwt
+     * 创建token
+     *
+     * @param id
+     * @param issuer
+     * @param subject
+     * @param ttlMillis
+     * @return
      */
-    public static Claims parseJWT(String jsonWebToken, String base64Security) {
-        try {
-            Claims claims = Jwts.parser()
-                    .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
-                    .parseClaimsJws(jsonWebToken).getBody();
-            return claims;
-        } catch (Exception ex) {
-            return null;
+    public static String createJWT(String id, String issuer, String subject, long ttlMillis) {
+
+        // 签名算法
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(JWT_SECRET);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+        // 当前时间戳
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
+        //
+        JwtBuilder builder = Jwts.builder()
+                .setId(id)
+                .setIssuedAt(now)
+                .setSubject(subject)
+                .setIssuer(issuer)
+                .signWith(signatureAlgorithm, signingKey);
+
+        // 添加token过期时间
+        if (ttlMillis >= 0) {
+            long expMillis = nowMillis + ttlMillis;
+            Date exp = new Date(expMillis);
+            builder.setExpiration(exp);
         }
+
+        //构建JWT序列化到一个紧凑,URL-safe字符串
+        return builder.compact();
+
     }
 
     /**
-     * 构建jwt
+     * 解析token
+     *
+     * @param jwt
      */
-    public static String createJWT(String name, String userId, String role,
-                                   String audience, String issuer, long TTLMillis, String base64Security) {
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMillis = System.currentTimeMillis();
-        Date now = new Date(nowMillis);
-        //生成签名密钥
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(base64Security);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-        //添加构成JWT的参数
-        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
-                .claim("role", role)
-                .claim("unique_name", name)
-                .claim("userid", userId)
-                .setIssuer(issuer)
-                .setAudience(audience)
-                .signWith(signatureAlgorithm, signingKey);
-        //添加Token过期时间
-        if (TTLMillis >= 0) {
-            long expMillis = nowMillis + TTLMillis;
-            Date exp = new Date(expMillis);
-            builder.setExpiration(exp).setNotBefore(now);
-        }
-        //生成JWT
-        return builder.compact();
+    public static Claims parseJWT(String jwt) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(DatatypeConverter.parseBase64Binary(JWT_SECRET))
+                .parseClaimsJws(jwt)
+                .getBody();
+        System.out.println("ID: " + claims.getId());
+        System.out.println("Subject: " + claims.getSubject());
+        System.out.println("Issuer: " + claims.getIssuer());
+        System.out.println("Expiration: " + claims.getExpiration());
+        return claims;
     }
 }
+
+

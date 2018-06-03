@@ -9,9 +9,7 @@ import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.exception.GddException;
 import snoob.gdd.model.Audience;
 import snoob.gdd.util.JwtUtil;
-import javax.security.auth.login.LoginException;
 
-import javax.security.auth.login.LoginException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -19,7 +17,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * JWT拦截器
@@ -46,6 +43,9 @@ public class JwtFilter extends GenericFilterBean {
             throws IOException, ServletException {
         final HttpServletRequest request = (HttpServletRequest) req;
         final HttpServletResponse response = (HttpServletResponse) res;
+
+        chain.doFilter(req, res);
+
         final String requestURI = request.getRequestURI();
         if (doNotFilterUrl.contains(requestURI) || "OPTIONS".equals(request.getMethod())) {
             /**
@@ -57,30 +57,30 @@ public class JwtFilter extends GenericFilterBean {
             /**
              * 拦截
              */
-            final String authHeader = request.getHeader("authorization"); //获取请求头中authorization信息
-            if (authHeader == null || !authHeader.startsWith("bearer;")) {
-//                throw new LoginException();
-//                throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
-            } else {
-                final String token = authHeader.substring(7);
-                try {
-                    if(audience == null){
-                        BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
-                        audience = (Audience) factory.getBean("audience");
-                    }
-                    final Claims claims = JwtUtil.parseJWT(token,audience.getBase64Secret());
-                    if(claims == null){
-//                        throw new LoginException(ResultEnum.LOGIN_ERROR);
-                        throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
-                    }
-//                    request.setAttribute(Constants.CLAIMS, claims);
-                    request.setAttribute("CLAIMS", claims);
-                } catch (final Exception e) {
-//                    throw new LoginException(ResultEnum.LOGIN_ERROR);
-                    throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
-                }
+//            final String authHeader = request.getHeader("authorization"); //获取请求头中authorization信息
+//            if (authHeader == null || !authHeader.startsWith("bearer;")) {
+////                throw new LoginException();
+////                throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+//            } else {
+//                final String token = authHeader.substring(7);
+//                try {
+//                    if(audience == null){
+//                        BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
+//                        audience = (Audience) factory.getBean("audience");
+//                    }
+//                    final Claims claims = JwtUtil.parseJWT(token);
+//                    if(claims == null){
+////                        throw new LoginException(ResultEnum.LOGIN_ERROR);
+//                        throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+//                    }
+////                    request.setAttribute(Constants.CLAIMS, claims);
+//                    request.setAttribute("CLAIMS", claims);
+//                } catch (final Exception e) {
+////                    throw new LoginException(ResultEnum.LOGIN_ERROR);
+//                    throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+//                }
                 chain.doFilter(req, res);
-            }
+//            }
         }
     }
 }

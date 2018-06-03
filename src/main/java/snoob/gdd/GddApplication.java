@@ -47,15 +47,15 @@ public class GddApplication {
      *
      * @return
      */
-    @Bean
-    public FilterRegistrationBean jwtFilter() {
-        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(new JwtFilter());
-//        List<String> urlPatterns = new ArrayList(); //添加需要拦截的url
-//        urlPatterns.add("/**");
-//        registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
-        return registrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean jwtFilter() {
+//        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//        registrationBean.setFilter(new JwtFilter());
+////        List<String> urlPatterns = new ArrayList(); //添加需要拦截的url
+////        urlPatterns.add("/**");
+////        registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
+//        return registrationBean;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(GddApplication.class, args);
