@@ -5,6 +5,10 @@ import snoob.gdd.model.User;
 
 public interface UserService {
     Object register(User user) throws Exception;
+
     Object login(User user) throws Exception;
+
     Object modifyPassword(User user) throws Exception;
+
+    boolean checkJwt(String jwt, String email) throws Exception;
 }

@@ -4,6 +4,8 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
+import snoob.gdd.enums.ResultEnum;
+import snoob.gdd.exception.GddException;
 
 import javax.xml.bind.DatatypeConverter;
 import javax.crypto.spec.SecretKeySpec;
@@ -14,8 +16,6 @@ import java.util.Map;
  * jwt工具类,生成、解析token
  */
 public class JwtUtil {
-    public static final String JWT_SECRET = "hong1mu2zhi3ruan4jian5";
-
     /**
      * 创建token
      *
@@ -54,7 +54,29 @@ public class JwtUtil {
      */
     public static Claims decodeJWT(String jwt, String secret) {
 //        System.out.println(Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody().getSubject().equals("Joe"));
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody();
+        try {
+            return Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody();
+        } catch (Exception e) {
+            throw new GddException(ResultEnum.ERROR_JWT_PARSER);
+        }
+    }
+
+    /**
+     * 检查jwt是否有效: true有效,false过期
+     *
+     * @return
+     */
+    public static boolean checkJwt(String jwt, String secret) {
+        try {
+            Long expMillis = decodeJWT(jwt,secret).getExpiration().getTime();
+            if(System.currentTimeMillis() > expMillis){
+                return false;
+            }else{
+                return true;
+            }
+        } catch (Exception e) {
+            throw new GddException(ResultEnum.ERROR_JWT_PARSER);
+        }
     }
 
     public static void main(String[] args) {

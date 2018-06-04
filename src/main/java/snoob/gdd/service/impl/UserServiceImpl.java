@@ -58,12 +58,14 @@ public class UserServiceImpl implements UserService {
             // 登陆成功
             User loginUser = users.get(0);
             // 创建JWT
-            Map<String,Object> claims = new HashMap<String,Object>();
+            Map<String, Object> claims = new HashMap<>();
             claims.put("secret", loginUser.getSecret());
             claims.put("iat", new Date(System.currentTimeMillis()));
-            claims.put("exp", new Date(System.currentTimeMillis() + 1000*60));
-            String jwt = JwtUtil.encodeJWT(claims);
-            return ResultUtil.success(jwt);
+            claims.put("exp", new Date(System.currentTimeMillis() + 1000 * 60));
+            Map<String, String> data = new HashMap<>();
+            data.put("jwt", JwtUtil.encodeJWT(claims));
+            data.put("email", loginUser.getEmail());
+            return ResultUtil.success(data);
         }
     }
 
@@ -79,5 +81,17 @@ public class UserServiceImpl implements UserService {
         userDao.updateByPrimaryKeySelective(user);
         // 修改成功
         return ResultUtil.success();
+    }
+
+    /**
+     * 检查jwt的有效性
+     *
+     * @param jwt
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean checkJwt(String jwt, String email) throws Exception {
+        return JwtUtil.checkJwt(jwt, userDao.select(new User(email)).get(0).getSecret());
     }
 }

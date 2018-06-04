@@ -43,9 +43,6 @@ public class JwtFilter extends GenericFilterBean {
             throws IOException, ServletException {
         final HttpServletRequest request = (HttpServletRequest) req;
         final HttpServletResponse response = (HttpServletResponse) res;
-
-        chain.doFilter(req, res);
-
         final String requestURI = request.getRequestURI();
         if (doNotFilterUrl.contains(requestURI) || "OPTIONS".equals(request.getMethod())) {
             /**

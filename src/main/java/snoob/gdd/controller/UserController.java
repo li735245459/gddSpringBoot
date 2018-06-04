@@ -50,4 +50,18 @@ public class UserController {
         return userService.modifyPassword(user);
     }
 
+    /**
+     * 检查jwt是否有效
+     *
+     * @param jwt
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/checkJwt/{jwt}/{email}")
+    public Object checkJwt(
+            @PathVariable(value = "jwt") String jwt,
+            @PathVariable(value = "email") String email) throws Exception {
+        return userService.checkJwt(jwt, email);
+    }
+
 }
