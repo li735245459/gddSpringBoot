@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
             claims.put("exp", new Date(System.currentTimeMillis() + 1000 * 60));
             Map<String, String> data = new HashMap<>();
             data.put("jwt", JwtUtil.encodeJWT(claims));
-            data.put("email", loginUser.getEmail());
+            data.put("id", loginUser.getId());
             return ResultUtil.success(data);
         }
     }
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
      * @throws Exception
      */
     @Override
-    public Object checkJwt(String jwt, String email) throws Exception {
-        return JwtUtil.checkJwt(jwt, userDao.select(new User(email)).get(0).getSecret());
+    public Object checkJwt(String jwt, String id) throws Exception {
+        return JwtUtil.checkJwt(jwt, userDao.select(new User(id)).get(0).getSecret());
     }
 }
