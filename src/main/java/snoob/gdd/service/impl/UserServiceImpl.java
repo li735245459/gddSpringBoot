@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
      * @throws Exception
      */
     @Override
-    public boolean checkJwt(String jwt, String email) throws Exception {
+    public Object checkJwt(String jwt, String email) throws Exception {
         return JwtUtil.checkJwt(jwt, userDao.select(new User(email)).get(0).getSecret());
     }
 }

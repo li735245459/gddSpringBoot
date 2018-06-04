@@ -10,5 +10,5 @@ public interface UserService {
 
     Object modifyPassword(User user) throws Exception;
 
-    boolean checkJwt(String jwt, String email) throws Exception;
+    Object checkJwt(String jwt, String email) throws Exception;
 }

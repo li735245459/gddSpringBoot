@@ -66,13 +66,13 @@ public class JwtUtil {
      *
      * @return
      */
-    public static boolean checkJwt(String jwt, String secret) {
+    public static Object checkJwt(String jwt, String secret) {
         try {
-            Long expMillis = decodeJWT(jwt,secret).getExpiration().getTime();
-            if(System.currentTimeMillis() > expMillis){
-                return false;
-            }else{
-                return true;
+            Long expMillis = decodeJWT(jwt, secret).getExpiration().getTime();
+            if (System.currentTimeMillis() > expMillis) {
+                throw new GddException(ResultEnum.ERROR_JWT_VALID);
+            } else {
+                return ResultUtil.success();
             }
         } catch (Exception e) {
             throw new GddException(ResultEnum.ERROR_JWT_PARSER);
