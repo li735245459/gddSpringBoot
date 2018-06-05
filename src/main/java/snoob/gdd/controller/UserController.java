@@ -59,9 +59,8 @@ public class UserController {
      */
     @GetMapping("/checkJwt/{jwt}/{id}")
     public Object checkJwt(
-            @PathVariable(value = "jwt") String jwt,
-            @PathVariable(value = "id") String id) throws Exception {
-        return userService.checkJwt(jwt, id);
+            @PathVariable(value = "jwt") String jwt) throws Exception {
+        return userService.checkJWT(jwt);
     }
 
 }

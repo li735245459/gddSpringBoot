@@ -11,7 +11,6 @@ import snoob.gdd.util.StrUtil;
 import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,6 @@ public class UserServiceImpl implements UserService {
     public Object register(User user) throws Exception {
         if (userDao.select(new User(user.getEmail())).isEmpty()) {
             user.setId(StrUtil.getUuidStr());
-            user.setSecret(StrUtil.getMd5Str(user.getEmail()));
             userDao.insertSelective(user);
             // 注册成功
             return ResultUtil.success();
@@ -60,11 +58,10 @@ public class UserServiceImpl implements UserService {
             // 创建JWT
             Map<String, Object> claims = new HashMap<>();
             claims.put("secret", loginUser.getSecret());
-            claims.put("iat", new Date(System.currentTimeMillis()));
-            claims.put("exp", new Date(System.currentTimeMillis() + 1000 * 60));
-            Map<String, String> data = new HashMap<>();
-            data.put("jwt", JwtUtil.encodeJWT(claims));
-            data.put("id", loginUser.getId());
+            claims.put("roles", "add;delete;update;select;");
+            claims.put("aud", loginUser.getId());
+            Map<String, Object> data = new HashMap<>();
+            data.put("jwt",JwtUtil.encodeJWT(claims));
             return ResultUtil.success(data);
         }
     }
@@ -84,14 +81,14 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 检查jwt的有效性
+     * 检查jwt
      *
      * @param jwt
      * @return
      * @throws Exception
      */
     @Override
-    public Object checkJwt(String jwt, String id) throws Exception {
-        return JwtUtil.checkJwt(jwt, userDao.select(new User(id)).get(0).getSecret());
+    public Boolean checkJWT(String jwt) throws Exception {
+        return JwtUtil.checkJWT(jwt);
     }
 }

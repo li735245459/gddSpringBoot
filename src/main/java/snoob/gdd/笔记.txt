@@ -51,6 +51,11 @@ github仓库中新建项目并设置项目下载路劲到idel打开项目的Git-
 服务器端对此token进行检验，如果合法就解析其中内容，根据其拥有的权限和自己的业务逻辑给出对应的响应结果。
 用户取得结果
 
+【session】实际上是基于cookie来传输的,最重要的session信息是存储在服务器的,所以服务器每次可以通过cookie中的sessionId获取到当前会话的用户,
+对于单台服务器这样做没问题,但是对于多台就涉及到共享session的问题了,而且认证用户的增多,session会占用大量的服务器内存
+【jwt】是存储在客户端的,服务器不需要存储jwt,jwt里面有用户id,服务器拿到jwt验证后可以获得用户信息也就实现了session的功能,但是相比session,
+jwt是无状态的,其不与任何机器绑定,只要签名秘钥足够的安全就能保证jwt的可靠性
+
 =================================构建Jar包,运行命令Spring Boot程序:
 d: && cd D:\WorkSpace\GitHub\gddSpringBoot && mvn clean install
 cd target && java -jar gdd-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev

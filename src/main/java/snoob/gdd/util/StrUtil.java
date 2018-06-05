@@ -62,7 +62,7 @@ public class StrUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(getMd5Str("li"));
+        System.out.println(getUuidStr());
     }
 
 
