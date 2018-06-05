@@ -12,8 +12,6 @@ public enum ResultEnum {
     ERROR_LOGIN_VALIDATE(12,"邮箱或者密码错误"),
     ERROR_EMAIL_ONLY_VALIDATE(13,"邮箱已被注册"),
     ERROR_EMAIL_CODE(14,"验证码错误"),
-    ERROR_JWT_PARSER(15,"JWT解析错误"),
-    ERROR_JWT_VALID(16,"JWT校验错误"),
     ;
 
     private Integer code;
