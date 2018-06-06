@@ -4,7 +4,7 @@ package snoob.gdd.enums;
  *
  */
 public enum ResultEnum {
-    //SYSTEM_ERROR(-1, "系统错误"),
+    SYSTEM_ERROR(-1, "系统错误"),
     //SUCCESS(0, "请求成功"),
     //ERROR(1, "请求失败"),
     //
