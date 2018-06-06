@@ -6,7 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import snoob.gdd.exception.GlobalExceptionHandle;
+import snoob.gdd.GlobalExceptionHandle;
 
 import javax.xml.bind.DatatypeConverter;
 import javax.crypto.spec.SecretKeySpec;

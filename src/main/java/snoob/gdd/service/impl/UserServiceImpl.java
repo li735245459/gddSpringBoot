@@ -2,7 +2,7 @@ package snoob.gdd.service.impl;
 
 import org.springframework.stereotype.Service;
 import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.exception.GlobalException;
+import snoob.gdd.GlobalException;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;

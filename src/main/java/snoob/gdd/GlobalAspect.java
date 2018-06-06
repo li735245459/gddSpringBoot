@@ -1,11 +1,10 @@
-package snoob.gdd.aspect;
+package snoob.gdd;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import snoob.gdd.exception.GlobalExceptionHandle;
 import snoob.gdd.util.LoggerUtil;
 
 import javax.annotation.Resource;

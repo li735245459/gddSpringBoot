@@ -1,4 +1,4 @@
-package snoob.gdd.exception;
+package snoob.gdd;
 
 import snoob.gdd.enums.ResultEnum;
 

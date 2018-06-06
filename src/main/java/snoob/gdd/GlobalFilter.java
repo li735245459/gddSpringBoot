@@ -3,7 +3,7 @@
 //import io.jsonwebtoken.Claims;
 //import org.springframework.web.filter.GenericFilterBean;
 //import snoob.gdd.enums.ResultEnum;
-//import snoob.gdd.exception.GlobalException;
+//import snoob.gdd.GlobalException;
 //import snoob.gdd.util.JwtUtil;
 //
 //import javax.servlet.FilterChain;

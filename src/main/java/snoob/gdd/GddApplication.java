@@ -1,5 +1,6 @@
 package snoob.gdd;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -23,6 +24,9 @@ import java.util.List;
 @MapperScan(basePackages = "snoob.gdd.mapper")
 public class GddApplication {
 
+    @Value("${crossOrigin}")
+    private String crossOrigin;
+
     /**
      * 注册全局跨域
      */
@@ -37,7 +41,7 @@ public class GddApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 匹配所有URL
-                        .allowedOrigins("http://127.0.0.1:4200") // 允许http://127.0.0.1:4200发起跨域请求
+                        .allowedOrigins(crossOrigin) // 允许http://127.0.0.1:4200发起跨域请求
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // 允许跨域请求的方法
                         .allowedHeaders("*"); // 允许跨域请求包含content-type
             }

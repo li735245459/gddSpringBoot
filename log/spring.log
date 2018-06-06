@@ -1960,3 +1960,187 @@ java.lang.IllegalArgumentException: Invalid character found in method name. HTTP
 2018-06-06 19:27:16.057  INFO 4328 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
 2018-06-06 19:27:16.057  INFO 4328 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
 2018-06-06 19:27:16.057  WARN 4328 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:30:35.674  INFO 5144 --- [restartedMain] snoob.gdd.GddApplication                 : Starting GddApplication on PC-20170322QCMQ with PID 5144 (E:\360Downloads\Software\hotfix\workspace\gddSpringBoot\target\classes started by Administrator in E:\360Downloads\Software\hotfix\workspace\gddSpringBoot)
+2018-06-06 19:30:35.674 DEBUG 5144 --- [restartedMain] snoob.gdd.GddApplication                 : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-06-06 19:30:35.674  INFO 5144 --- [restartedMain] snoob.gdd.GddApplication                 : The following profiles are active: dev
+2018-06-06 19:30:35.757  INFO 5144 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1c558dc: startup date [Wed Jun 06 19:30:35 CST 2018]; root of context hierarchy
+2018-06-06 19:30:36.413  WARN 5144 --- [restartedMain] t.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-06 19:30:36.413  WARN 5144 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-06 19:30:37.294  INFO 5144 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-06-06 19:30:37.310  INFO 5144 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-06-06 19:30:37.310  INFO 5144 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2018-06-06 19:30:37.310  INFO 5144 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_171\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\JetBrains\IntelliJ IDEA 2018.1.1\plugins\maven\lib\maven3\bin;%TALINA_HOME%\lib;%TALINA_HOME%\lib\servlet- api.jar;%TALINA_HOME%\lib\jsp-api.jar;C:\Program Files\nodejs\;E:\360Downloads\Software\hotfix\apache-maven-3.5.3\bin;C:\Program Files\Git\cmd;;C:\Users\Administrator\AppData\Roaming\npm;.]
+2018-06-06 19:30:37.419  INFO 5144 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-06-06 19:30:37.419  INFO 5144 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1662 ms
+2018-06-06 19:30:37.653  INFO 5144 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/gdd/*]
+2018-06-06 19:30:37.653  INFO 5144 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-06-06 19:30:37.653  INFO 5144 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-06-06 19:30:37.653  INFO 5144 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-06-06 19:30:37.653  INFO 5144 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-06-06 19:30:38.343  INFO 5144 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:30:38.624  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1c558dc: startup date [Wed Jun 06 19:30:35 CST 2018]; root of context hierarchy
+2018-06-06 19:30:38.687  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/demo/demo1],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.DemoController.demo1() throws java.lang.Exception
+2018-06-06 19:30:38.704  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/send/{type}/{receiver}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.send(java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-06 19:30:38.704  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/checkEmailCode/{type}/{email}/{code}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.checkEmailCode(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/register],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.register(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/login],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.login(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/checkJwt/{jwt}/{id}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.checkJwt(java.lang.String) throws java.lang.Exception
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/home],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.home(javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/modifyPassword],methods=[PUT]}" onto public java.lang.Object snoob.gdd.controller.UserController.modifyPassword(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-06-06 19:30:38.706  INFO 5144 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-06-06 19:30:38.737  INFO 5144 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:30:38.737  INFO 5144 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:30:38.769  INFO 5144 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandle
+2018-06-06 19:30:39.159  INFO 5144 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-06-06 19:30:39.190  INFO 5144 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-06-06 19:30:39.205  INFO 5144 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-06-06 19:30:39.205  INFO 5144 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-06-06 19:30:39.237  INFO 5144 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-06-06 19:30:39.237  INFO 5144 --- [restartedMain] snoob.gdd.GddApplication                 : Started GddApplication in 4.109 seconds (JVM running for 5.041)
+2018-06-06 19:30:45.117  INFO 5144 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-06-06 19:30:45.117  INFO 5144 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-06-06 19:30:45.135  INFO 5144 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:30:45.170  INFO 5144 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:30:45.219  WARN 5144 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:30:45.823  INFO 5144 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:30:45.838  WARN 5144 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:30:46.001  INFO 5144 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:30:46.001  WARN 5144 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:30:46.168  INFO 5144 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:30:46.168  WARN 5144 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:30:46.335  INFO 5144 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:30:46.335  WARN 5144 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:30:46.484  INFO 5144 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:30:46.484  WARN 5144 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:31:16.616  INFO 5144 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:31:16.632  WARN 5144 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:31:36.628  INFO 5524 --- [restartedMain] snoob.gdd.GddApplication                 : Starting GddApplication on PC-20170322QCMQ with PID 5524 (E:\360Downloads\Software\hotfix\workspace\gddSpringBoot\target\classes started by Administrator in E:\360Downloads\Software\hotfix\workspace\gddSpringBoot)
+2018-06-06 19:31:36.628 DEBUG 5524 --- [restartedMain] snoob.gdd.GddApplication                 : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-06-06 19:31:36.628  INFO 5524 --- [restartedMain] snoob.gdd.GddApplication                 : The following profiles are active: dev
+2018-06-06 19:31:36.691  INFO 5524 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3a7d2: startup date [Wed Jun 06 19:31:36 CST 2018]; root of context hierarchy
+2018-06-06 19:31:37.381  WARN 5524 --- [restartedMain] t.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-06 19:31:37.397  WARN 5524 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-06 19:31:38.321  INFO 5524 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-06-06 19:31:38.337  INFO 5524 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-06-06 19:31:38.337  INFO 5524 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2018-06-06 19:31:38.337  INFO 5524 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_171\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\JetBrains\IntelliJ IDEA 2018.1.1\plugins\maven\lib\maven3\bin;%TALINA_HOME%\lib;%TALINA_HOME%\lib\servlet- api.jar;%TALINA_HOME%\lib\jsp-api.jar;C:\Program Files\nodejs\;E:\360Downloads\Software\hotfix\apache-maven-3.5.3\bin;C:\Program Files\Git\cmd;;C:\Users\Administrator\AppData\Roaming\npm;.]
+2018-06-06 19:31:38.446  INFO 5524 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-06-06 19:31:38.446  INFO 5524 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1755 ms
+2018-06-06 19:31:38.664  INFO 5524 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/gdd/*]
+2018-06-06 19:31:38.664  INFO 5524 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-06-06 19:31:38.664  INFO 5524 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-06-06 19:31:38.664  INFO 5524 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-06-06 19:31:38.664  INFO 5524 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-06-06 19:31:39.308  INFO 5524 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:31:39.577  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3a7d2: startup date [Wed Jun 06 19:31:36 CST 2018]; root of context hierarchy
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/demo/demo1],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.DemoController.demo1() throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/send/{type}/{receiver}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.send(java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/checkEmailCode/{type}/{email}/{code}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.checkEmailCode(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/register],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.register(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/login],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.login(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/checkJwt/{jwt}/{id}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.checkJwt(java.lang.String) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/home],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.home(javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/modifyPassword],methods=[PUT]}" onto public java.lang.Object snoob.gdd.controller.UserController.modifyPassword(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-06-06 19:31:39.655  INFO 5524 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-06-06 19:31:39.686  INFO 5524 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:31:39.686  INFO 5524 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:31:39.702  INFO 5524 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandle
+2018-06-06 19:31:40.123  INFO 5524 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-06-06 19:31:40.154  INFO 5524 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-06-06 19:31:40.154  INFO 5524 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-06-06 19:31:40.154  INFO 5524 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-06-06 19:31:40.186  INFO 5524 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-06-06 19:31:40.204  INFO 5524 --- [restartedMain] snoob.gdd.GddApplication                 : Started GddApplication in 4.14 seconds (JVM running for 5.105)
+2018-06-06 19:31:43.305  INFO 5524 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-06-06 19:31:43.305  INFO 5524 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-06-06 19:31:43.331  INFO 5524 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 26 ms
+2018-06-06 19:31:43.352  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-06 19:31:43.352  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 错误信息:/ by zero
+2018-06-06 19:31:43.352  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-06 19:31:43.352  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求链接-->http://127.0.0.1:8080/gdd/demo/demo1
+2018-06-06 19:31:43.352  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求参数-->{0}
+2018-06-06 19:31:43.352  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 请求类型-->GET
+2018-06-06 19:31:43.367  INFO 5524 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.DemoController.demo1
+2018-06-06 19:31:43.415  WARN 5524 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: java.lang.ArithmeticException: / by zero
+2018-06-06 19:42:55.947  INFO 5188 --- [restartedMain] snoob.gdd.GddApplication                 : Starting GddApplication on PC-20170322QCMQ with PID 5188 (E:\360Downloads\Software\hotfix\workspace\gddSpringBoot\target\classes started by Administrator in E:\360Downloads\Software\hotfix\workspace\gddSpringBoot)
+2018-06-06 19:42:55.947 DEBUG 5188 --- [restartedMain] snoob.gdd.GddApplication                 : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-06-06 19:42:55.947  INFO 5188 --- [restartedMain] snoob.gdd.GddApplication                 : The following profiles are active: dev
+2018-06-06 19:42:56.024  INFO 5188 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e9065a: startup date [Wed Jun 06 19:42:56 CST 2018]; root of context hierarchy
+2018-06-06 19:42:56.725  WARN 5188 --- [restartedMain] t.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-06 19:42:56.741  WARN 5188 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-06 19:42:57.608  INFO 5188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-06-06 19:42:57.637  INFO 5188 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-06-06 19:42:57.637  INFO 5188 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2018-06-06 19:42:57.637  INFO 5188 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_171\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\JetBrains\IntelliJ IDEA 2018.1.1\plugins\maven\lib\maven3\bin;%TALINA_HOME%\lib;%TALINA_HOME%\lib\servlet- api.jar;%TALINA_HOME%\lib\jsp-api.jar;C:\Program Files\nodejs\;E:\360Downloads\Software\hotfix\apache-maven-3.5.3\bin;C:\Program Files\Git\cmd;;C:\Users\Administrator\AppData\Roaming\npm;.]
+2018-06-06 19:42:57.752  INFO 5188 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-06-06 19:42:57.752  INFO 5188 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1728 ms
+2018-06-06 19:42:57.937  INFO 5188 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/gdd/*]
+2018-06-06 19:42:57.940  INFO 5188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-06-06 19:42:57.940  INFO 5188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-06-06 19:42:57.940  INFO 5188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-06-06 19:42:57.940  INFO 5188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-06-06 19:42:58.626  INFO 5188 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:42:58.916  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e9065a: startup date [Wed Jun 06 19:42:56 CST 2018]; root of context hierarchy
+2018-06-06 19:42:58.971  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/demo/demo1],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.DemoController.demo1() throws java.lang.Exception
+2018-06-06 19:42:58.971  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/send/{type}/{receiver}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.send(java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-06 19:42:58.971  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/checkEmailCode/{type}/{email}/{code}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.checkEmailCode(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/register],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.register(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/home],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.home(javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/login],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.login(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/checkJwt/{jwt}/{id}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.checkJwt(java.lang.String) throws java.lang.Exception
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/modifyPassword],methods=[PUT]}" onto public java.lang.Object snoob.gdd.controller.UserController.modifyPassword(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-06-06 19:42:58.987  INFO 5188 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-06-06 19:42:59.016  INFO 5188 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:42:59.016  INFO 5188 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-06 19:42:59.038  INFO 5188 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandle
+2018-06-06 19:42:59.456  INFO 5188 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-06-06 19:42:59.487  INFO 5188 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-06-06 19:42:59.488  INFO 5188 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-06-06 19:42:59.494  INFO 5188 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-06-06 19:42:59.540  INFO 5188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-06-06 19:42:59.544  INFO 5188 --- [restartedMain] snoob.gdd.GddApplication                 : Started GddApplication in 4.18 seconds (JVM running for 4.881)

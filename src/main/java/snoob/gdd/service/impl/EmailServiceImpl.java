@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.exception.GlobalException;
+import snoob.gdd.GlobalException;
 import snoob.gdd.mapper.EmailCodeMapper;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;

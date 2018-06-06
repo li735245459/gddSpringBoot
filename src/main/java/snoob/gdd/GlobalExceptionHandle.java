@@ -1,7 +1,8 @@
-package snoob.gdd.exception;
+package snoob.gdd;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import snoob.gdd.GlobalException;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.model.Result;
 import snoob.gdd.util.ResultUtil;
