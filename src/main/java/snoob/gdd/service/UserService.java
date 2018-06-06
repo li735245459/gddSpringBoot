@@ -10,5 +10,7 @@ public interface UserService {
 
     Object modifyPassword(User user) throws Exception;
 
-    Boolean checkJWT(String jwt) throws Exception;
+    Object checkJWT(String jwt) throws Exception;
+
+    Object home() throws Exception;
 }

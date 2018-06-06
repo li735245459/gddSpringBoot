@@ -24,8 +24,18 @@ public class JwtUtil {
     private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
     private final static String iss = "gdd";
     private final static String sub = "gdd";
-    private final static Integer exp = 1000 * 60;
+    private final static Integer exp = 1000 * 60 * 10; // 默认10分钟
     private final static String secret = "25385a3d-2394-413d-a920-03e0bf25b81b";
+
+    private static SignatureAlgorithm signatureAlgorithm;
+    private static byte[] apiKeySecretBytes;
+    private static Key signingKey;
+
+    static {
+        signatureAlgorithm = SignatureAlgorithm.HS256;
+        apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
+        signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+    }
 
     /**
      * 创建token
@@ -38,23 +48,26 @@ public class JwtUtil {
      * @return
      */
     public static String encodeJWT(Map<String, Object> claims) {
-        //The JWT signature algorithm we will be using to sign the token
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-
-        //We will sign our JWT with our ApiKey secret
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
-        //Let's set the JWT Claims
         claims.put("sub", sub); // 面向的用户: getSubject() and setSubject(String)
         claims.put("iss", iss); // 签发者: getIssuer() and setIssuer(String)
-        Calendar nowTime = Calendar.getInstance();
-        claims.put("iat", nowTime.getTime()); // 签发时间: getIssuedAt() and setIssuedAt(Date)
-        nowTime.add(Calendar.MINUTE, 1);
-        claims.put("exp", nowTime.getTime()); // Unix时间戳(过期时间): getExpiration() and setExpiration(Date)
+        Long nowTimeMillis = System.currentTimeMillis();
+        claims.put("iat", new Date(nowTimeMillis)); // (签发时间): getIssuedAt() and setIssuedAt(Date)
+        claims.put("exp", new Date(nowTimeMillis + exp)); // (过期时间): getExpiration() and setExpiration(Date)
         JwtBuilder builder = Jwts.builder().signWith(signatureAlgorithm, signingKey).setClaims(claims);
+        return builder.compact();
+    }
 
-        //Builds the JWT and serializes it to a compact, URL-safe string
+    /**
+     * 刷新jwt
+     *
+     * @param claims
+     * @return
+     */
+    public static String refreshJWT(Claims claims) {
+        Long nowTimeMillis = System.currentTimeMillis();
+        claims.put("iat", new Date(nowTimeMillis)); // (签发时间): getIssuedAt() and setIssuedAt(Date)
+        claims.put("exp", new Date(nowTimeMillis + exp)); // (过期时间): getExpiration() and setExpiration(Date)
+        JwtBuilder builder = Jwts.builder().signWith(signatureAlgorithm, signingKey).setClaims(claims);
         return builder.compact();
     }
 
@@ -74,28 +87,32 @@ public class JwtUtil {
         }
     }
 
+
     /**
-     * 检查jwt
-     * false：错误的jwt,解析失败,过期
-     * true：有效
+     * 检查jwt:
+     *  失败返回null
+     *  成功返回jwt,当过期时间剩余1分钟是重新生成jwt
      *
      * @return
      */
-    public static Boolean checkJWT(String jwt) {
+    public static String checkJWT(String jwt) {
         Claims claims = decodeJWT(jwt);
         if (claims == null || !claims.getIssuer().equals(iss)) {
             // 错误的jwt,解析失败
-            return false;
+            return null;
         } else {
-            Date expDate = claims.getExpiration();
-            System.out.println(expDate.getTime());
-            System.out.println(expDate);
+            Long expTimeMillis = claims.getExpiration().getTime() / 1000;
+            Date expDate = new Date(expTimeMillis);
             if (expDate.after(new Date())) {
+                if (expTimeMillis - System.currentTimeMillis() < (1000 * 60)) {
+                    // 重新生jwt
+                    jwt = refreshJWT(claims);
+                }
                 // 有效
-                return true;
+                return jwt;
             } else {
                 // 过期
-                return false;
+                return null;
             }
         }
     }
@@ -107,9 +124,9 @@ public class JwtUtil {
 //        claims.put("aud", "1234567");
 //        String jwt = encodeJWT(claims);
 //        System.out.println(jwt);
-//        System.out.println("----");
-        String jwt = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjM0NTY3Iiwic3ViIjoiZ2RkIiwicm9sZXMiOiJhZGQ7ZGVsZXRlO3VwZGF0ZTtzZWxlY3Q7IiwiaXNzIjoiZ2RkIiwic2VjcmV0Ijoic2VjcmV0IiwiZXhwIjoxNTI4MTg2NDg0NzY3LCJpYXQiOjE1MjgxODY0MjQ3Njd9.7oX49PRmEA-pw8ZwwzV-9zD2ZjTIfFLliD7dmoK0zsM";
-        System.out.println(checkJWT(jwt));
+
+//        String jwt = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjM0NTY3Iiwic3ViIjoiZ2RkIiwicm9sZXMiOiJhZGQ7ZGVsZXRlO3VwZGF0ZTtzZWxlY3Q7IiwiaXNzIjoiZ2RkIiwic2VjcmV0Ijoic2VjcmV0IiwiZXhwIjoxNTI4MjA0Mjc0MDkzLCJpYXQiOjE1MjgyMDM2NzQwOTN9.YH90C4lBdXcmzNVITO0UJGIALQz-esJSR2Jq_WUxxoI";
+//        System.out.print(checkJWT(jwt));
     }
 }
 

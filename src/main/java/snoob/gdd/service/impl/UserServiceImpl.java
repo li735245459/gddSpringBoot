@@ -88,7 +88,12 @@ public class UserServiceImpl implements UserService {
      * @throws Exception
      */
     @Override
-    public Boolean checkJWT(String jwt) throws Exception {
+    public Object checkJWT(String jwt) throws Exception {
         return JwtUtil.checkJWT(jwt);
+    }
+
+    @Override
+    public Object home() throws Exception {
+        return ResultUtil.success();
     }
 }

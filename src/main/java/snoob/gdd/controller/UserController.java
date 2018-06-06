@@ -1,10 +1,12 @@
 package snoob.gdd.controller;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户模块
@@ -61,6 +63,18 @@ public class UserController {
     public Object checkJwt(
             @PathVariable(value = "jwt") String jwt) throws Exception {
         return userService.checkJWT(jwt);
+    }
+
+    /**
+     * 首页
+     *
+     * @return
+     */
+    @GetMapping("home")
+    public Object home(HttpServletRequest request) throws Exception{
+        Claims claims = (Claims)request.getAttribute("claims");
+        System.out.println(claims.getAudience());
+        return userService.home();
     }
 
 }

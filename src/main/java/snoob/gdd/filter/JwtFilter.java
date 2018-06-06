@@ -1,13 +1,9 @@
 package snoob.gdd.filter;
 
 import io.jsonwebtoken.Claims;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.GenericFilterBean;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.exception.GddException;
-import snoob.gdd.model.Audience;
 import snoob.gdd.util.JwtUtil;
 
 import javax.servlet.FilterChain;
@@ -24,10 +20,8 @@ import java.io.IOException;
  */
 public class JwtFilter extends GenericFilterBean {
 
-    @Autowired
-    private Audience audience;
-
-    private String doNotFilterUrl = "/gdd/user/login;/gdd/user/register;";
+    private String doNotFilterUrl = "user/login;user/register;user/forgetPassword;user/modifyPassword;" +
+            "email/send;email/checkEmailCode";
 
     /**
      * 自定义拦截器
@@ -54,30 +48,18 @@ public class JwtFilter extends GenericFilterBean {
             /**
              * 拦截
              */
-//            final String authHeader = request.getHeader("authorization"); //获取请求头中authorization信息
-//            if (authHeader == null || !authHeader.startsWith("bearer;")) {
-////                throw new LoginException();
-////                throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
-//            } else {
-//                final String token = authHeader.substring(7);
-//                try {
-//                    if(audience == null){
-//                        BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
-//                        audience = (Audience) factory.getBean("audience");
-//                    }
-//                    final Claims claims = JwtUtil.parseJWT(token);
-//                    if(claims == null){
-////                        throw new LoginException(ResultEnum.LOGIN_ERROR);
-//                        throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
-//                    }
-////                    request.setAttribute(Constants.CLAIMS, claims);
-//                    request.setAttribute("CLAIMS", claims);
-//                } catch (final Exception e) {
-////                    throw new LoginException(ResultEnum.LOGIN_ERROR);
-//                    throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
-//                }
+            final String authHeader = request.getHeader("authorization"); //获取请求头中authorization信息
+            if (authHeader == null || !authHeader.startsWith("bearer")) {
+                throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+            } else {
+                final String token = authHeader.substring(5);
+                final Claims claims = JwtUtil.decodeJWT(token);
+                if (claims == null) {
+                    throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+                }
+                request.setAttribute("claims", claims);
                 chain.doFilter(req, res);
-//            }
+            }
         }
     }
 }
