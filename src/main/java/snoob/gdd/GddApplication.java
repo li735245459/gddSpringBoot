@@ -3,14 +3,10 @@ package snoob.gdd;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tk.mybatis.spring.annotation.MapperScan;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 创建并初始化Spring应用上下文,启动Spring应用
@@ -47,21 +43,6 @@ public class GddApplication {
             }
         };
     }
-
-//    /**
-//     * 注册自定义JWT拦截器
-//     *
-//     * @return
-//     */
-//    @Bean
-//    public FilterRegistrationBean jwtFilter() {
-//        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-//        registrationBean.setFilter(new JwtFilter());
-//        List<String> urlPatterns = new ArrayList(); //添加需要拦截的url
-//        urlPatterns.add("/**");
-//        registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
-//        return registrationBean;
-//    }
 
     public static void main(String[] args) {
         SpringApplication.run(GddApplication.class, args);

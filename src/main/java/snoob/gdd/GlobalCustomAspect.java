@@ -1,11 +1,15 @@
 package snoob.gdd;
 
+import io.jsonwebtoken.Claims;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import snoob.gdd.enums.ResultEnum;
+import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.LoggerUtil;
+import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +21,10 @@ import java.text.MessageFormat;
  */
 @Aspect
 @Component
-public class GlobalAspect {
+public class GlobalCustomAspect {
 
     @Resource
-    private GlobalExceptionHandle globalExceptionHandle;
+    private GlobalCustomExceptionHandle globalCustomExceptionHandle;
 
     /**
      * 定义一个切点pointCut
@@ -30,22 +34,35 @@ public class GlobalAspect {
     public void pointCut() {
     }
 
-//    /**
-//     * 前置通知。在某连接点之前执行的通知，但这个通知不能阻止连接点之前的执行流程（除非它抛出一个异常）
-//     *
-//     * @param joinPoint
-//     */
-//    @Before("pointCut()")
-//    public void doBefore(JoinPoint joinPoint) {
-//        LoggerUtil.info("===============HttpAspect before===============");
-//        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        HttpServletRequest request = attributes.getRequest();
-//        LoggerUtil.info(MessageFormat.format("url={0}", request.getRequestURL()));
-//        LoggerUtil.info(MessageFormat.format("method={0}", request.getMethod()));
-//        LoggerUtil.info(MessageFormat.format("ip={0}", request.getRemoteAddr()));
-//        LoggerUtil.info(MessageFormat.format("class_method={0}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName()));
-//        LoggerUtil.info(MessageFormat.format("args={0}", joinPoint.getArgs()));
-//    }
+    /**
+     * 前置通知。在某连接点之前执行的通知，但这个通知不能阻止连接点之前的执行流程（除非它抛出一个异常）
+     *
+     * @param joinPoint
+     */
+    @Before("pointCut()")
+    public void doBefore(JoinPoint joinPoint) {
+        LoggerUtil.info("===============HttpAspect before===============");
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        final String requestURI = request.getRequestURI();
+        String doNotFilterUrl = "user/login;user/register;user/forgetPassword;user/modifyPassword;" +
+                "email/send;email/checkEmailCode";
+        if (!doNotFilterUrl.contains(requestURI)) {
+            String anthorization = request.getHeader("anthorization");
+            if (anthorization == null || !anthorization.startsWith("bearer")) {
+                throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
+            } else {
+                String jwt = anthorization.substring(5);
+                Claims claims = JwtUtil.decodeJWT(jwt);
+                if (claims == null) {
+                    throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
+                } else {
+                    request.setAttribute("jwt", claims);
+                }
+            }
+
+        }
+    }
 
 //    /**
 //     * 后置通知。在某连接点正常完成后执行的通知，通常在一个匹配的方法返回的时候执行

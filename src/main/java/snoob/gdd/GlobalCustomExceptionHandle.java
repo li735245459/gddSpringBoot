@@ -2,7 +2,6 @@ package snoob.gdd;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import snoob.gdd.GlobalException;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.model.Result;
 import snoob.gdd.util.ResultUtil;
@@ -12,14 +11,14 @@ import snoob.gdd.util.ResultUtil;
  */
 //@ControllerAdvice
 @RestControllerAdvice
-public class GlobalExceptionHandle {
+public class GlobalCustomExceptionHandle {
 
     //@ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Result handle(Exception e) {
-        if (e instanceof GlobalException) {
-            GlobalException globalException = (GlobalException) e;
-            return ResultUtil.error(globalException.getCode(), globalException.getMessage());
+        if (e instanceof GlobalCustomException) {
+            GlobalCustomException globalCustomException = (GlobalCustomException) e;
+            return ResultUtil.error(globalCustomException.getCode(), globalCustomException.getMessage());
         } else {
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR.getCode(), ResultEnum.SYSTEM_ERROR.getMsg());
         }

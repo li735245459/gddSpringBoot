@@ -6,7 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import snoob.gdd.GlobalExceptionHandle;
+import snoob.gdd.GlobalCustomExceptionHandle;
 
 import javax.xml.bind.DatatypeConverter;
 import javax.crypto.spec.SecretKeySpec;
@@ -18,7 +18,7 @@ import java.util.Map;
  * jwt工具类,生成、解析token
  */
 public class JwtUtil {
-    private final static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandle.class);
+    private final static Logger logger = LoggerFactory.getLogger(GlobalCustomExceptionHandle.class);
     private final static String iss = "gdd";
     private final static String sub = "gdd";
     private final static Integer exp = 1000 * 60 * 10; // 默认10分钟

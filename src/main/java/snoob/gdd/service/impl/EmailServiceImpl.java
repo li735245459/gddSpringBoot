@@ -3,8 +3,8 @@ package snoob.gdd.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.GlobalException;
 import snoob.gdd.mapper.EmailCodeMapper;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;
@@ -114,7 +114,7 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setReceiver(email);
         emailCode.setCode(code);
         if (emailCodeDao.select(emailCode).isEmpty()) {
-            throw new GlobalException(ResultEnum.ERROR_EMAIL_CODE);
+            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_CODE);
         } else {
 //            emailCodeDao.delete(emailCode); // 自动删除1个小时之前的邮件数据
             return ResultUtil.success(userMapper.select(new User(email)).get(0));

@@ -1,8 +1,8 @@
 package snoob.gdd.service.impl;
 
 import org.springframework.stereotype.Service;
+import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.GlobalException;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
             return ResultUtil.success();
         } else {
             // 邮箱已被注册
-            throw new GlobalException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
+            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
         }
     }
 
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userDao.select(user);
         if (users.isEmpty()) {
             // 用户名或者密码错误
-            throw new GlobalException(ResultEnum.ERROR_LOGIN_VALIDATE);
+            throw new GlobalCustomException(ResultEnum.ERROR_LOGIN_VALIDATE);
         } else {
             // 登陆成功
             User loginUser = users.get(0);

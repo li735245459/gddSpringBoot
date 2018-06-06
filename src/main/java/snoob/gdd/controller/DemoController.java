@@ -21,7 +21,6 @@ public class DemoController {
 
     @GetMapping("/demo1")
     public Object demo1() throws Exception{
-        System.out.println(0/0);
         System.out.println(currentPage);
         System.out.println(page);
         return page;
