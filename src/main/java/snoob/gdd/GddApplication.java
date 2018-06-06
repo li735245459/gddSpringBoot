@@ -6,7 +6,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import snoob.gdd.filter.JwtFilter;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import java.util.ArrayList;
@@ -45,20 +44,20 @@ public class GddApplication {
         };
     }
 
-    /**
-     * 注册自定义JWT拦截器
-     *
-     * @return
-     */
-    @Bean
-    public FilterRegistrationBean jwtFilter() {
-        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(new JwtFilter());
-        List<String> urlPatterns = new ArrayList(); //添加需要拦截的url
-        urlPatterns.add("/**");
-        registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
-        return registrationBean;
-    }
+//    /**
+//     * 注册自定义JWT拦截器
+//     *
+//     * @return
+//     */
+//    @Bean
+//    public FilterRegistrationBean jwtFilter() {
+//        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//        registrationBean.setFilter(new JwtFilter());
+//        List<String> urlPatterns = new ArrayList(); //添加需要拦截的url
+//        urlPatterns.add("/**");
+//        registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
+//        return registrationBean;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(GddApplication.class, args);

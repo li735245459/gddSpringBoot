@@ -11,7 +11,6 @@ import snoob.gdd.exception.GlobalExceptionHandle;
 import javax.xml.bind.DatatypeConverter;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
-import java.text.MessageFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -75,21 +74,15 @@ public class JwtUtil {
      * @param jwt
      */
     public static Claims decodeJWT(String jwt) {
-        try {
-            // 解析成功
-            return Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody();
-        } catch (Exception e) {
-            // 解析失败
-            logger.debug(MessageFormat.format("【token解析失败:】{0}", e.getMessage()));
-            return null;
-        }
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody();
+
     }
 
 
     /**
      * 检查jwt:
-     *  失败返回null
-     *  成功返回jwt,当过期时间剩余1分钟是重新生成jwt
+     * 失败返回null
+     * 成功返回jwt,当过期时间剩余1分钟是重新生成jwt
      *
      * @return
      */

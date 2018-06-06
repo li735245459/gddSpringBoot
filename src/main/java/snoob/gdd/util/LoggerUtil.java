@@ -11,10 +11,10 @@ public class LoggerUtil {
 
     /**
      * 打印错误信息
+     *
      * @param errorMsg
      */
-    public static void info(String errorMsg){
+    public static void info(String errorMsg) {
         logger.info(errorMsg);
-        // 入库未完成
     }
 }
