@@ -23,7 +23,7 @@ public class DemoController {
     private Page page;
 
     @GetMapping("/demo1")
-    public Object demo(){
+    public Object demo1(){
         System.out.println(currentPage);
         System.out.println(page);
         logger.info(currentPage.toString());

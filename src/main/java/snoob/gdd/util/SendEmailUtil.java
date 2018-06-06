@@ -1,20 +1,13 @@
 package snoob.gdd.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.exception.GddException;
-import snoob.gdd.exception.ExceptionHandle;
 import snoob.gdd.model.EmailCode;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.text.MessageFormat;
 import java.util.Date;
 
 /**
@@ -23,51 +16,40 @@ import java.util.Date;
 @Component
 public class SendEmailUtil {
 
-    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
-
     @Autowired
     private JavaMailSender mailSender;
 
+
     /**
      * 文本格式
+     *
      * @param emailCode
-     * @return true表示发送成功,false表示发送失败
+     * @return true表示发送成功, false表示发送失败
      */
-    public void sendSimpleEmail(EmailCode emailCode){
+    public void sendSimpleEmail(EmailCode emailCode) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(emailCode.getSender());
         simpleMailMessage.setTo(emailCode.getReceiver());
         simpleMailMessage.setSentDate(new Date());
         simpleMailMessage.setSubject(emailCode.getSubject());
         simpleMailMessage.setText(emailCode.getContent());
-        try {
-            mailSender.send(simpleMailMessage);
-        } catch (Exception e) {
-            logger.debug(MessageFormat.format("【发送邮件错误】--{0}",e.getMessage()));
-            throw new GddException(ResultEnum.ERROR_EMAIL_SENDER);
-        }
+        mailSender.send(simpleMailMessage);
     }
 
     /**
      * html格式
+     *
      * @param emailCode
      * @return
      */
-    public void sendHtmlEmail(EmailCode emailCode) {
-        try{
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
-            //true表示需要创建一个multipart message
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
-            mimeMessageHelper.setFrom(emailCode.getSender());
-            mimeMessageHelper.setTo(emailCode.getReceiver());
-            mimeMessageHelper.setSentDate(new Date());
-            mimeMessageHelper.setSubject(emailCode.getSubject());
-            //MessageFormat.format("验证码: {0}",StrUtil.getCodeStr())
-            mimeMessageHelper.setText(emailCode.getContent(), true);
-            mailSender.send(mimeMessage);
-        }catch (MessagingException e){
-            logger.debug(MessageFormat.format("【发送邮件错误】--{0}",e.getMessage()));
-            throw new GddException(ResultEnum.ERROR_EMAIL_SENDER);
-        }
+    public void sendHtmlEmail(EmailCode emailCode) throws Exception {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true); //true表示需要创建一个multipart message
+        mimeMessageHelper.setFrom(emailCode.getSender());
+        mimeMessageHelper.setTo(emailCode.getReceiver());
+        mimeMessageHelper.setSentDate(new Date());
+        mimeMessageHelper.setSubject(emailCode.getSubject());
+        mimeMessageHelper.setText(emailCode.getContent(), true);
+        mailSender.send(mimeMessage);
     }
 }

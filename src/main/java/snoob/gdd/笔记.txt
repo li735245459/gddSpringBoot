@@ -56,6 +56,10 @@ github仓库中新建项目并设置项目下载路劲到idel打开项目的Git-
 【jwt】是存储在客户端的,服务器不需要存储jwt,jwt里面有用户id,服务器拿到jwt验证后可以获得用户信息也就实现了session的功能,但是相比session,
 jwt是无状态的,其不与任何机器绑定,只要签名秘钥足够的安全就能保证jwt的可靠性
 
+
+=================================IOC和AOP
+AOP将共有的逻辑从业务逻辑中抽离出来
+
 =================================构建Jar包,运行命令Spring Boot程序:
 d: && cd D:\WorkSpace\GitHub\gddSpringBoot && mvn clean install
 cd target && java -jar gdd-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev

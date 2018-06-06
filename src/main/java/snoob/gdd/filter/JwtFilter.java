@@ -3,7 +3,7 @@ package snoob.gdd.filter;
 import io.jsonwebtoken.Claims;
 import org.springframework.web.filter.GenericFilterBean;
 import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.exception.GddException;
+import snoob.gdd.exception.GlobalException;
 import snoob.gdd.util.JwtUtil;
 
 import javax.servlet.FilterChain;
@@ -50,12 +50,12 @@ public class JwtFilter extends GenericFilterBean {
              */
             final String authHeader = request.getHeader("authorization"); //获取请求头中authorization信息
             if (authHeader == null || !authHeader.startsWith("bearer")) {
-                throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+                throw new GlobalException(ResultEnum.ERROR_LOGIN_VALIDATE);
             } else {
                 final String token = authHeader.substring(5);
                 final Claims claims = JwtUtil.decodeJWT(token);
                 if (claims == null) {
-                    throw new GddException(ResultEnum.ERROR_LOGIN_VALIDATE);
+                    throw new GlobalException(ResultEnum.ERROR_LOGIN_VALIDATE);
                 }
                 request.setAttribute("claims", claims);
                 chain.doFilter(req, res);

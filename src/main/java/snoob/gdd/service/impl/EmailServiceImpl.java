@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import snoob.gdd.enums.ResultEnum;
-import snoob.gdd.exception.GddException;
+import snoob.gdd.exception.GlobalException;
 import snoob.gdd.mapper.EmailCodeMapper;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;
@@ -47,7 +47,10 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
-        if ("1".equals(type)) { // 忘记密码模块发送验证码功能
+        /**
+         * 忘记密码模块发送验证码功能
+         */
+        if ("1".equals(type)) {
             emailCode.setSubject("忘记密码模块发送验证码功能");
             String code = StrUtil.getCodeStr();
             emailCode.setCode(code);
@@ -75,13 +78,16 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
-        if ("1".equals(type)) { // 忘记密码模块发送验证码功能
+        /**
+         * 忘记密码模块发送验证码功能
+         */
+        if ("1".equals(type)) {
             emailCode.setSubject("忘记密码模块发送验证码功能");
             String code = StrUtil.getCodeStr();
             emailCode.setCode(code);
             StringBuffer sb = new StringBuffer();
-            sb.append("<h1>验证码:</h1>")
-                    .append(MessageFormat.format("<a href='http://127.0.0.1:4200/forgetPassword' style='color:#F00'>{0}</a>", code));
+            sb.append("<h1>验证码:</h1>").append(
+                    MessageFormat.format("<a href='http://127.0.0.1:4200/forgetPassword' style='color:#F00'>{0}</a>", code));
             String content = sb.toString();
             emailCode.setContent(content);
         }
@@ -108,9 +114,9 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setReceiver(email);
         emailCode.setCode(code);
         if (emailCodeDao.select(emailCode).isEmpty()) {
-            throw new GddException(ResultEnum.ERROR_EMAIL_CODE);
+            throw new GlobalException(ResultEnum.ERROR_EMAIL_CODE);
         } else {
-            emailCodeDao.delete(emailCode);
+//            emailCodeDao.delete(emailCode); // 自动删除1个小时之前的邮件数据
             return ResultUtil.success(userMapper.select(new User(email)).get(0));
         }
     }

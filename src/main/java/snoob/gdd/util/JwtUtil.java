@@ -6,22 +6,20 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import snoob.gdd.exception.ExceptionHandle;
+import snoob.gdd.exception.GlobalExceptionHandle;
 
 import javax.xml.bind.DatatypeConverter;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.text.MessageFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * jwt工具类,生成、解析token
  */
 public class JwtUtil {
-    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
+    private final static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandle.class);
     private final static String iss = "gdd";
     private final static String sub = "gdd";
     private final static Integer exp = 1000 * 60 * 10; // 默认10分钟
