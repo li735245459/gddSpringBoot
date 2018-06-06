@@ -1,5 +1,6 @@
 package snoob.gdd;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.jsonwebtoken.Claims;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -9,7 +10,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.LoggerUtil;
-import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +45,12 @@ public class GlobalCustomAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         final String requestURI = request.getRequestURI();
-        String doNotFilterUrl = "user/login;user/register;user/forgetPassword;user/modifyPassword;" +
-                "email/send;email/checkEmailCode";
-        if (!doNotFilterUrl.contains(requestURI)) {
+
+//        String doNotFilterUrl = "/gdd/user/login;/gdd/user/register;/gdd/user/forgetPassword;/gdd/user/modifyPassword;" +
+//                "/gdd/email/send;/gdd/email/checkEmailCode";
+        if (!requestURI.contains("/gdd/user/login") && !requestURI.contains("/gdd/user/register")
+                && !requestURI.contains("/gdd/user/forgetPassword") && !requestURI.contains("/gdd/user/modifyPassword")
+                && !requestURI.contains("/gdd/email/send") && !requestURI.contains("/gdd/email/checkEmailCode")) {
             String anthorization = request.getHeader("anthorization");
             if (anthorization == null || !anthorization.startsWith("bearer")) {
                 throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
