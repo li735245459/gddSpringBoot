@@ -7,8 +7,8 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
-import snoob.gdd.util.StrUtil;
 import snoob.gdd.util.ResultUtil;
+import snoob.gdd.util.StrUtil;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -28,11 +28,12 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Object register(User user) throws Exception {
-        if (userDao.select(new User(user.getEmail())).isEmpty()) {
+    public Object register(User user) {
+        User userByEmail = new User();
+        userByEmail.setEmail(user.getEmail());
+        if (userDao.select(userByEmail).isEmpty()) {
             user.setId(StrUtil.getUuidStr());
             userDao.insertSelective(user);
-            // 注册成功
             return ResultUtil.success();
         } else {
             // 邮箱已被注册
@@ -47,21 +48,20 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Object login(User user) throws Exception {
+    public Object login(User user) {
         List<User> users = userDao.select(user);
         if (users.isEmpty()) {
             // 用户名或者密码错误
             throw new GlobalCustomException(ResultEnum.ERROR_LOGIN_VALIDATE);
         } else {
-            // 登陆成功
             User loginUser = users.get(0);
             // 创建JWT
             Map<String, Object> claims = new HashMap<>();
+            claims.put("aud", loginUser.getId());
             claims.put("secret", loginUser.getSecret());
             claims.put("roles", "add;delete;update;select;");
-            claims.put("aud", loginUser.getId());
             Map<String, Object> data = new HashMap<>();
-            data.put("jwt",JwtUtil.encodeJWT(claims));
+            data.put("jwt", JwtUtil.encodeJWT(claims));
             return ResultUtil.success(data);
         }
     }
@@ -74,9 +74,8 @@ public class UserServiceImpl implements UserService {
      * @throws Exception
      */
     @Override
-    public Object modifyPassword(User user) throws Exception {
+    public Object modifyPassword(User user) {
         userDao.updateByPrimaryKeySelective(user);
-        // 修改成功
         return ResultUtil.success();
     }
 
@@ -88,12 +87,21 @@ public class UserServiceImpl implements UserService {
      * @throws Exception
      */
     @Override
-    public Object checkJWT(String jwt) throws Exception {
+    public Object checkJWT(String jwt) {
         return JwtUtil.checkJWT(jwt);
     }
 
+    /**
+     * 首页
+     *
+     * @param userId
+     * @return
+     */
     @Override
-    public Object home() throws Exception {
-        return ResultUtil.success();
+    public Object home(String userId) {
+        List<User> users = userDao.select(new User());//selectByExample
+        return ResultUtil.success(users.get(0));
     }
+
+
 }

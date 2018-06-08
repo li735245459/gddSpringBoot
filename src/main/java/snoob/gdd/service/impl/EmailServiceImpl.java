@@ -41,7 +41,7 @@ public class EmailServiceImpl implements EmailService {
      * @throws Exception
      */
     @Override
-    public Object sendEmail(String type, String receiver) throws Exception {
+    public Object sendEmail(String type, String receiver) {
         EmailCode emailCode = new EmailCode();
         emailCode.setId(StrUtil.getUuidStr());
         emailCode.setType(type);
@@ -108,7 +108,7 @@ public class EmailServiceImpl implements EmailService {
      * @throws Exception
      */
     @Override
-    public Object checkEmailCode(String type, String email, String code) throws Exception {
+    public Object checkEmailCode(String type, String email, String code) {
         EmailCode emailCode = new EmailCode();
         emailCode.setType(type);
         emailCode.setReceiver(email);
@@ -117,7 +117,7 @@ public class EmailServiceImpl implements EmailService {
             throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_CODE);
         } else {
 //            emailCodeDao.delete(emailCode); // 自动删除1个小时之前的邮件数据
-            return ResultUtil.success(userMapper.select(new User(email)).get(0));
+            return ResultUtil.success(userMapper.select(new User()).get(0));//email
         }
     }
 }

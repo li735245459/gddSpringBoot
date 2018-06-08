@@ -12,5 +12,5 @@ public interface UserService {
 
     Object checkJWT(String jwt) throws Exception;
 
-    Object home() throws Exception;
+    Object home(String userId) throws Exception;
 }

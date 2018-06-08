@@ -5,11 +5,6 @@ import javax.persistence.*;
 
 @Table(name = "user")
 public class User {
-    public User(){}
-    public User(String email) {
-        this.email = email;
-    }
-
     /**
      * 编号,UUID字符串
      */

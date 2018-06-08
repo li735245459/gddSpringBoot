@@ -1,6 +1,5 @@
 package snoob.gdd.controller;
 
-import io.jsonwebtoken.Claims;
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
@@ -70,11 +69,9 @@ public class UserController {
      *
      * @return
      */
-    @GetMapping("home")
+    @GetMapping("/home")
     public Object home(HttpServletRequest request) throws Exception{
-        Claims claims = (Claims)request.getAttribute("claims");
-        System.out.println(claims.getAudience());
-        return userService.home();
+        return userService.home(request.getAttribute("userId").toString());
     }
 
 }

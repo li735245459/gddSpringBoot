@@ -94,8 +94,10 @@ public class JwtUtil {
         } else {
             Long expTimeMillis = claims.getExpiration().getTime() / 1000;
             Date expDate = new Date(expTimeMillis);
+            System.out.println("jwt过期时间---------------" + expDate);
             if (expDate.after(new Date())) {
                 if (expTimeMillis - System.currentTimeMillis() < (1000 * 60)) {
+                    System.out.println("jwt刷新---------------");
                     // 重新生jwt
                     jwt = refreshJWT(claims);
                 }

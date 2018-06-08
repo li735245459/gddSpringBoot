@@ -1,6 +1,5 @@
 package snoob.gdd;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.jsonwebtoken.Claims;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -11,7 +10,6 @@ import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.LoggerUtil;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
 
@@ -22,10 +20,6 @@ import java.text.MessageFormat;
 @Aspect
 @Component
 public class GlobalCustomAspect {
-
-    @Resource
-    private GlobalCustomExceptionHandle globalCustomExceptionHandle;
-
     /**
      * 定义一个切点pointCut
      * 切入的位置: 所有controller模块下的所有的方法
@@ -44,23 +38,26 @@ public class GlobalCustomAspect {
         LoggerUtil.info("===============HttpAspect before===============");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        final String requestURI = request.getRequestURI();
-
-//        String doNotFilterUrl = "/gdd/user/login;/gdd/user/register;/gdd/user/forgetPassword;/gdd/user/modifyPassword;" +
-//                "/gdd/email/send;/gdd/email/checkEmailCode";
-        if (!requestURI.contains("/gdd/user/login") && !requestURI.contains("/gdd/user/register")
-                && !requestURI.contains("/gdd/user/forgetPassword") && !requestURI.contains("/gdd/user/modifyPassword")
-                && !requestURI.contains("/gdd/email/send") && !requestURI.contains("/gdd/email/checkEmailCode")) {
-            String anthorization = request.getHeader("anthorization");
-            if (anthorization == null || !anthorization.startsWith("bearer")) {
+        String requestURI = request.getRequestURI();
+        if (requestURI.contains("/gdd/user/login") ||
+                requestURI.contains("/gdd/user/register") ||
+                requestURI.contains("/gdd/user/forgetPassword") ||
+                requestURI.contains("/gdd/user/modifyPassword") ||
+                requestURI.contains("/gdd/email/send") ||
+                requestURI.contains("/gdd/email/checkEmailCode")) {
+            // 不需要校验jwt
+        } else {
+            // 校验jwt
+            String authorization = request.getHeader("Authorization");
+            if (authorization == null || !authorization.startsWith("Bearer")) {
                 throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
             } else {
-                String jwt = anthorization.substring(5);
+                String jwt = authorization.substring(6);
                 Claims claims = JwtUtil.decodeJWT(jwt);
                 if (claims == null) {
                     throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
                 } else {
-                    request.setAttribute("jwt", claims);
+                    request.setAttribute("userId", claims.getAudience());
                 }
             }
 
