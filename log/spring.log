@@ -1,0 +1,90 @@
+2018-06-15 22:34:22.790  INFO 14100 --- [restartedMain] snoob.gdd.GddApplication                 : Starting GddApplication on LAPTOP-GBOHFTKU with PID 14100 (D:\WorkSpace\GitHub\gddSpringBoot\target\classes started by PC in D:\WorkSpace\GitHub\gddSpringBoot)
+2018-06-15 22:34:22.790 DEBUG 14100 --- [restartedMain] snoob.gdd.GddApplication                 : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-06-15 22:34:22.790  INFO 14100 --- [restartedMain] snoob.gdd.GddApplication                 : The following profiles are active: dev
+2018-06-15 22:34:22.837  INFO 14100 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@22c1db7e: startup date [Fri Jun 15 22:34:22 CST 2018]; root of context hierarchy
+2018-06-15 22:34:23.487  WARN 14100 --- [restartedMain] t.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-15 22:34:23.503  WARN 14100 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[snoob.gdd]' package. Please check your configuration.
+2018-06-15 22:34:24.347  INFO 14100 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-06-15 22:34:24.362  INFO 14100 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-06-15 22:34:24.362  INFO 14100 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2018-06-15 22:34:24.362  INFO 14100 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Program Files\Java\jdk1.8.0_171\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\Program Files\Python36\Scripts\;D:\Program Files\Python36\;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Utilities 1.6\;d:\Program Files (x86)\Git\cmd;D:\Program Files\apache-maven-3.5.3\bin;D:\Program Files\Java\jdk1.8.0_171\bin;D:\Program Files\Java\jdk1.8.0_171\jre\bin;D:\Program Files\Java\jdk1.8.0_171\lib\dt.jar;C:\Users\PC\AppData\Local\Microsoft\WindowsApps;C:\Users\PC\AppData\Roaming\npm;.]
+2018-06-15 22:34:24.456  INFO 14100 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-06-15 22:34:24.456  INFO 14100 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1619 ms
+2018-06-15 22:34:24.678  INFO 14100 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/gdd/*]
+2018-06-15 22:34:24.678  INFO 14100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-06-15 22:34:24.678  INFO 14100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-06-15 22:34:24.678  INFO 14100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-06-15 22:34:24.678  INFO 14100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-06-15 22:34:25.381  INFO 14100 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-15 22:34:25.631  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@22c1db7e: startup date [Fri Jun 15 22:34:22 CST 2018]; root of context hierarchy
+2018-06-15 22:34:25.694  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/demo/demo1],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.DemoController.demo1() throws java.lang.Exception
+2018-06-15 22:34:25.694  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/send/{type}/{receiver}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.send(java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-15 22:34:25.694  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/email/checkEmailCode/{type}/{email}/{code}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.EmailCodeController.checkEmailCode(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/register],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.register(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/home],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.home(javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/checkJwt/{jwt}/{id}],methods=[GET]}" onto public java.lang.Object snoob.gdd.controller.UserController.checkJwt(java.lang.String) throws java.lang.Exception
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/login],methods=[POST]}" onto public java.lang.Object snoob.gdd.controller.UserController.login(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/modifyPassword],methods=[PUT]}" onto public java.lang.Object snoob.gdd.controller.UserController.modifyPassword(snoob.gdd.model.User) throws java.lang.Exception
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-06-15 22:34:25.709  INFO 14100 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-06-15 22:34:25.741  INFO 14100 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-15 22:34:25.741  INFO 14100 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-15 22:34:25.756  INFO 14100 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalCustomExceptionHandle
+2018-06-15 22:34:26.247  INFO 14100 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-06-15 22:34:26.263  INFO 14100 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-06-15 22:34:26.263  INFO 14100 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-06-15 22:34:26.279  INFO 14100 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-06-15 22:34:26.310  INFO 14100 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-06-15 22:34:26.310  INFO 14100 --- [restartedMain] snoob.gdd.GddApplication                 : Started GddApplication in 3.926 seconds (JVM running for 6.101)
+2018-06-15 22:34:48.457  INFO 14100 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-06-15 22:34:48.457  INFO 14100 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-06-15 22:34:48.487  INFO 14100 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 30 ms
+2018-06-15 22:34:48.521  INFO 14100 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:35:01.589  INFO 14100 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-06-15 22:35:01.808  INFO 14100 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-06-15 22:35:01.823 DEBUG 14100 --- [http-nio-8080-exec-1] s.g.m.EmailCodeMapper.insertSelective    : ==>  Preparing: INSERT INTO email_code ( id,type,sender,receiver,subject,content,code ) VALUES( ?,?,?,?,?,?,? ) 
+2018-06-15 22:35:01.823 DEBUG 14100 --- [http-nio-8080-exec-1] s.g.m.EmailCodeMapper.insertSelective    : ==> Parameters: 0367c211-810a-4abb-b830-b4200f530c4f(String), 1(String), lixing_java@sina.com(String), lixing_java@163.com(String), 忘记密码模块发送验证码功能(String), <h1>验证码:</h1><a href=http://127.0.0.1:4200/forgetPassword style=color:#F00>vVbN</a>(String), vVbN(String)
+2018-06-15 22:35:01.854 DEBUG 14100 --- [http-nio-8080-exec-1] s.g.m.EmailCodeMapper.insertSelective    : <==    Updates: 1
+2018-06-15 22:35:20.149  INFO 14100 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:35:20.157 DEBUG 14100 --- [http-nio-8080-exec-2] snoob.gdd.mapper.EmailCodeMapper.select  : ==>  Preparing: SELECT id,create_time,type,sender,receiver,subject,content,code FROM email_code WHERE type = ? AND receiver = ? AND code = ? 
+2018-06-15 22:35:20.158 DEBUG 14100 --- [http-nio-8080-exec-2] snoob.gdd.mapper.EmailCodeMapper.select  : ==> Parameters: 1(String), lixing_java@163.com(String), vVbN(String)
+2018-06-15 22:35:20.178 DEBUG 14100 --- [http-nio-8080-exec-2] snoob.gdd.mapper.EmailCodeMapper.select  : <==      Total: 1
+2018-06-15 22:35:20.183 DEBUG 14100 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.select       : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,sex,hobby,introduce,province,city,area,address,secret FROM user 
+2018-06-15 22:35:20.184 DEBUG 14100 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.select       : ==> Parameters: 
+2018-06-15 22:35:20.188 DEBUG 14100 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.select       : <==      Total: 1
+2018-06-15 22:40:02.451  INFO 14100 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:40:02.458 DEBUG 14100 --- [http-nio-8080-exec-4] s.g.m.U.updateByPrimaryKeySelective      : ==>  Preparing: UPDATE user SET id = id,password = ? WHERE id = ? 
+2018-06-15 22:40:02.460 DEBUG 14100 --- [http-nio-8080-exec-4] s.g.m.U.updateByPrimaryKeySelective      : ==> Parameters: 9148b1f6987253d3f16eeebff68ddca8(String), 1893ae29-28d0-44e6-ab47-08ad42b7592d(String)
+2018-06-15 22:40:02.474 DEBUG 14100 --- [http-nio-8080-exec-4] s.g.m.U.updateByPrimaryKeySelective      : <==    Updates: 1
+2018-06-15 22:40:05.016  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:40:05.017 DEBUG 14100 --- [http-nio-8080-exec-3] snoob.gdd.mapper.UserMapper.select       : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,sex,hobby,introduce,province,city,area,address,secret FROM user WHERE email = ? AND password = ? 
+2018-06-15 22:40:05.018 DEBUG 14100 --- [http-nio-8080-exec-3] snoob.gdd.mapper.UserMapper.select       : ==> Parameters: lixing_java@163.com(String), afb4f702e90e70060d09f4d28a848914(String)
+2018-06-15 22:40:05.023 DEBUG 14100 --- [http-nio-8080-exec-3] snoob.gdd.mapper.UserMapper.select       : <==      Total: 0
+2018-06-15 22:40:05.025  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-15 22:40:05.025  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 错误信息:邮箱或者密码错误
+2018-06-15 22:40:05.025  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-15 22:40:05.026  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 请求链接-->http://localhost:8080/gdd/user/login
+2018-06-15 22:40:05.026  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 请求参数-->snoob.gdd.model.User@5c777363
+2018-06-15 22:40:05.026  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 请求类型-->POST
+2018-06-15 22:40:05.028  INFO 14100 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.UserController.login
+2018-06-15 22:40:05.030  WARN 14100 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: snoob.gdd.GlobalCustomException: 邮箱或者密码错误
+2018-06-15 22:40:09.342  INFO 14100 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:40:09.343 DEBUG 14100 --- [http-nio-8080-exec-5] snoob.gdd.mapper.UserMapper.select       : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,sex,hobby,introduce,province,city,area,address,secret FROM user WHERE email = ? AND password = ? 
+2018-06-15 22:40:09.343 DEBUG 14100 --- [http-nio-8080-exec-5] snoob.gdd.mapper.UserMapper.select       : ==> Parameters: lixing_java@163.com(String), 9148b1f6987253d3f16eeebff68ddca8(String)
+2018-06-15 22:40:09.345 DEBUG 14100 --- [http-nio-8080-exec-5] snoob.gdd.mapper.UserMapper.select       : <==      Total: 1
+2018-06-15 22:41:06.887  INFO 14100 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:41:06.888 DEBUG 14100 --- [http-nio-8080-exec-6] s.g.m.U.updateByPrimaryKeySelective      : ==>  Preparing: UPDATE user SET id = id,password = ? WHERE id = ? 
+2018-06-15 22:41:06.889 DEBUG 14100 --- [http-nio-8080-exec-6] s.g.m.U.updateByPrimaryKeySelective      : ==> Parameters: afb4f702e90e70060d09f4d28a848914(String), 1(String)
+2018-06-15 22:41:06.890 DEBUG 14100 --- [http-nio-8080-exec-6] s.g.m.U.updateByPrimaryKeySelective      : <==    Updates: 0
+2018-06-15 22:41:10.487  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-06-15 22:41:10.489 DEBUG 14100 --- [http-nio-8080-exec-7] snoob.gdd.mapper.UserMapper.select       : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,sex,hobby,introduce,province,city,area,address,secret FROM user WHERE email = ? AND password = ? 
+2018-06-15 22:41:10.490 DEBUG 14100 --- [http-nio-8080-exec-7] snoob.gdd.mapper.UserMapper.select       : ==> Parameters: lixing_java@163.com(String), afb4f702e90e70060d09f4d28a848914(String)
+2018-06-15 22:41:10.491 DEBUG 14100 --- [http-nio-8080-exec-7] snoob.gdd.mapper.UserMapper.select       : <==      Total: 0
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============【系统错误】===============
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : 错误信息:邮箱或者密码错误
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ip地址-->127.0.0.1
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : 请求链接-->http://localhost:8080/gdd/user/login
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : 请求参数-->snoob.gdd.model.User@34cd443f
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : 请求类型-->POST
+2018-06-15 22:41:10.491  INFO 14100 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : 执行方法-->snoob.gdd.controller.UserController.login
+2018-06-15 22:41:10.493  WARN 14100 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved exception caused by Handler execution: snoob.gdd.GlobalCustomException: 邮箱或者密码错误
