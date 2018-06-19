@@ -38,6 +38,7 @@ public class GlobalCustomAspect {
         LoggerUtil.info("===============HttpAspect before===============");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+        request.setAttribute("ip", request.getRemoteAddr()); // 保存登陆ip到request对象中
         String requestURI = request.getRequestURI();
         if (requestURI.contains("/gdd/user/login") ||
                 requestURI.contains("/gdd/user/register") ||

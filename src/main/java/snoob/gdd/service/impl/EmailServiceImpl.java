@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.EmailCodeMapper;
-import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;
-import snoob.gdd.model.User;
 import snoob.gdd.service.EmailService;
 import snoob.gdd.util.StrUtil;
 import snoob.gdd.util.ResultUtil;
@@ -25,9 +23,6 @@ public class EmailServiceImpl implements EmailService {
 
     @Resource
     private EmailCodeMapper emailCodeDao;
-
-    @Resource
-    private UserMapper userMapper;
 
     @Value("${spring.mail.username}")
     private String sender;
@@ -116,8 +111,8 @@ public class EmailServiceImpl implements EmailService {
         if (emailCodeDao.select(emailCode).isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_CODE);
         } else {
-//            emailCodeDao.delete(emailCode); // 自动删除1个小时之前的邮件数据
-            return ResultUtil.success(userMapper.select(new User()).get(0));//email
+            return ResultUtil.success();
         }
     }
+
 }

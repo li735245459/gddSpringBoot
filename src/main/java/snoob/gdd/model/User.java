@@ -78,9 +78,22 @@ public class User {
     private String address;
 
     /**
-     * 创建jwt的密钥,注册时自动生成
+     * 登陆时间
      */
-    private String secret;
+    @Column(name = "login_time")
+    private Date loginTime;
+
+    /**
+     * 登陆ip
+     */
+    @Column(name = "login_ip")
+    private String loginIp;
+
+    /**
+     * 登出时间
+     */
+    @Column(name = "logout_time")
+    private Date logoutTime;
 
     /**
      * 获取编号,UUID字符串
@@ -335,20 +348,56 @@ public class User {
     }
 
     /**
-     * 获取创建jwt的密钥,注册时自动生成
+     * 获取登陆时间
      *
-     * @return secret - 创建jwt的密钥,注册时自动生成
+     * @return login_time - 登陆时间
      */
-    public String getSecret() {
-        return secret;
+    public Date getLoginTime() {
+        return loginTime;
     }
 
     /**
-     * 设置创建jwt的密钥,注册时自动生成
+     * 设置登陆时间
      *
-     * @param secret 创建jwt的密钥,注册时自动生成
+     * @param loginTime 登陆时间
      */
-    public void setSecret(String secret) {
-        this.secret = secret;
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    /**
+     * 获取登陆ip
+     *
+     * @return login_ip - 登陆ip
+     */
+    public String getLoginIp() {
+        return loginIp;
+    }
+
+    /**
+     * 设置登陆ip
+     *
+     * @param loginIp 登陆ip
+     */
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp;
+    }
+
+    /**
+     * 获取登出时间
+     *
+     * @return logout_time - 登出时间
+     */
+    public Date getLogoutTime() {
+        return logoutTime;
+    }
+
+    /**
+     * 设置登出时间
+     *
+     * @param logoutTime 登出时间
+     */
+    public void setLogoutTime(Date logoutTime) {
+        this.logoutTime = logoutTime;
     }
 }

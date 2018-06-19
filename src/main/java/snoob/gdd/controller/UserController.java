@@ -35,7 +35,8 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public Object login(@RequestBody User user) throws Exception {
+    public Object login(@RequestBody User user, HttpServletRequest request) throws Exception {
+        user.setLoginIp(request.getAttribute("ip").toString());
         return userService.login(user);
     }
 
@@ -46,7 +47,7 @@ public class UserController {
      * @return
      * @throws Exception
      */
-    @PutMapping("/modifyPassword")
+    @PostMapping("/modifyPassword")
     public Object modifyPassword(@RequestBody User user) throws Exception {
         return userService.modifyPassword(user);
     }
@@ -58,7 +59,7 @@ public class UserController {
      * @return
      * @throws Exception
      */
-    @GetMapping("/checkJwt/{jwt}/{id}")
+    @GetMapping("/checkJwt/{jwt}")
     public Object checkJwt(
             @PathVariable(value = "jwt") String jwt) throws Exception {
         return userService.checkJWT(jwt);
@@ -70,7 +71,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/home")
-    public Object home(HttpServletRequest request) throws Exception{
+    public Object home(HttpServletRequest request) throws Exception {
         return userService.home(request.getAttribute("userId").toString());
     }
 

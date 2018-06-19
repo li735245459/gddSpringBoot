@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
+import snoob.gdd.model.EmailCode;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
@@ -11,6 +12,7 @@ import snoob.gdd.util.ResultUtil;
 import snoob.gdd.util.StrUtil;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,11 +31,13 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object register(User user) {
-        User userByEmail = new User();
-        userByEmail.setEmail(user.getEmail());
-        if (userDao.select(userByEmail).isEmpty()) {
+        User selectEmail = new User();
+        selectEmail.setEmail(user.getEmail());
+        List<User> checkEmailResult = userDao.select(selectEmail);
+        if (checkEmailResult.isEmpty()) { // size=0为true,size>0为false
             user.setId(StrUtil.getUuidStr());
-            userDao.insertSelective(user);
+            userDao.insertSelective(user); //选择性的插入存在值的字段
+            //userDao.insert(user); // 全部插入,存在非空字段会报错
             return ResultUtil.success();
         } else {
             // 邮箱已被注册
@@ -49,16 +53,20 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object login(User user) {
-        List<User> users = userDao.select(user);
-        if (users.isEmpty()) {
+        String ip = user.getLoginIp();
+        user.setLoginIp(null);
+        List<User> loginResult = userDao.select(user);
+        if (loginResult.isEmpty()) {
             // 用户名或者密码错误
             throw new GlobalCustomException(ResultEnum.ERROR_LOGIN_VALIDATE);
         } else {
-            User loginUser = users.get(0);
+            // 登陆成功
+            loginResult.get(0).setLoginTime(new Date());
+            loginResult.get(0).setLoginIp(ip);
+            userDao.updateByPrimaryKey(loginResult.get(0));
             // 创建JWT
             Map<String, Object> claims = new HashMap<>();
-            claims.put("aud", loginUser.getId());
-            claims.put("secret", loginUser.getSecret());
+            claims.put("aud", loginResult.get(0).getId());
             claims.put("roles", "add;delete;update;select;");
             Map<String, Object> data = new HashMap<>();
             data.put("jwt", JwtUtil.encodeJWT(claims));
@@ -75,6 +83,13 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object modifyPassword(User user) {
+        User selectEmail = new User();
+        selectEmail.setEmail(user.getEmail());
+        List<User> checkEmailResult = userDao.select(selectEmail);
+        if(checkEmailResult.isEmpty()){
+            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL);
+        }
+        user.setId(checkEmailResult.get(0).getId());
         userDao.updateByPrimaryKeySelective(user);
         return ResultUtil.success();
     }

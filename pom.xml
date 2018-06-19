@@ -74,28 +74,42 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency><!--Spring Boot mybatis依赖-->
-            <!--做复杂查询使用mybatis做实体映射可以灵活调试动态sql（互联网行业通常使用mybatis）
+        <!--
+            Spring Boot mybatis依赖: 做复杂查询使用mybatis做实体映射可以灵活调试动态sql（互联网行业通常使用mybatis）
             1)无配置文件注解方式适合简单快速的模式,其实像现在流行的这种微服务模式
             2)xml配置方式适合大型项目,可以灵活的动态生成SQL,方便调整SQL
-            -->
-            <!--http://mvnrepository.com/artifact/org.mybatis/mybatis-->
+        -->
+        <!--
+            MyBatis: http://mvnrepository.com/artifact/org.mybatis/mybatis
+        -->
+        <!--<dependency>-->
             <!--<groupId>org.mybatis</groupId>-->
             <!--<artifactId>mybatis</artifactId>-->
             <!--<version>3.4.6</version>-->
-            <!--http://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter-->
+        <!--</dependency>-->
+        <!--
+            Mybatis Mapper: http://mvnrepository.com/artifact/tk.mybatis/mapper
+        -->
+        <!--<dependency>-->
+            <!--<groupId>tk.mybatis</groupId>-->
+            <!--<artifactId>mapper</artifactId>-->
+            <!--<version>4.0.0</version>-->
+        <!--</dependency>-->
+        <!--
+            MyBatis Spring Boot Starter: http://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+        -->
+        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.2</version>
         </dependency>
-        <dependency><!--MyBatis Mapper-->
+        <!--
+            Mapper Spring Boot Starter: http://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter
+        -->
+        <dependency>
             <groupId>tk.mybatis</groupId>
-            <!--http://mvnrepository.com/artifact/tk.mybatis/mapper-->
-            <!--<artifactId>mapper</artifactId>-->
-            <!--<version>4.0.1</version>-->
-            <!--http://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter-->
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.2</version>
         </dependency>
         <!--分页插件-->
         <!--<dependency>-->
@@ -111,7 +125,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin><!-- MyBatis Generator产生的Mapper更简洁 -->
+            <plugin><!-- MyBatis Generator Maven插件配置 -->
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.6</version>
@@ -129,12 +143,11 @@
                     <dependency>
                         <groupId>tk.mybatis</groupId>
                         <artifactId>mapper</artifactId>
-                        <version>4.0.1</version>
+                        <version>4.0.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
         </plugins>
     </build>
-
 
 </project>

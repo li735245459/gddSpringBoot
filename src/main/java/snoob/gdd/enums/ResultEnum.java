@@ -12,6 +12,7 @@ public enum ResultEnum {
     ERROR_LOGIN_VALIDATE(12,"邮箱或者密码错误"),
     ERROR_EMAIL_ONLY_VALIDATE(13,"邮箱已被注册"),
     ERROR_EMAIL_CODE(14,"验证码错误"),
+    ERROR_EMAIL(15,"邮箱错误"),
     ;
 
     private Integer code;
