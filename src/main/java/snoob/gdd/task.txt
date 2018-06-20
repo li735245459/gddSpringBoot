@@ -1,0 +1,40 @@
+admin后台的完成。
+	表格加载成功或者失败给一个提示信息
+	mysql分页查询插件还是自定义分页
+
+
+/*QBC查询*/
+    @RequestMapping("/queryByExample1")
+    @ResponseBody
+    public List<Employee> queryByExample1(){
+
+        Example example=new Example(Employee.class);
+        Example.Criteria criteria=example.createCriteria();
+        //名字中含有c的员工  传入实体类的属性值
+        criteria.andLike("name","%c%");
+        //传入criteria
+        return employeeMapper.selectByExample(example);
+
+    }
+
+
+     /*QBC查询   传入两个criterial*/
+     @RequestMapping("/queryByExample2")
+     @ResponseBody
+    public List<Employee> queryByExample2(){
+
+        Example example=new Example(Employee.class);
+        Example.Criteria criteria=example.createCriteria();
+
+        Example.Criteria criteria2=example.createCriteria();
+        criteria.andLike("name","%c%");
+        //名字中含有c的员工  传入实体类的属性值
+
+         criteria2.andLike("name","%m%");
+        //加入第二个criterial
+         example.or(criteria2);
+
+        //传入criteria
+        return employeeMapper.selectByExample(example);
+
+    }

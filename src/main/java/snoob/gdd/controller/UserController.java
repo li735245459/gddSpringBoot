@@ -6,6 +6,7 @@ import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import snoob.gdd.model.Page;
 
 /**
  * 用户模块
@@ -66,13 +67,23 @@ public class UserController {
     }
 
     /**
-     * 首页
+     * 门户网站首页
      *
      * @return
      */
     @GetMapping("/home")
     public Object home(HttpServletRequest request) throws Exception {
         return userService.home(request.getAttribute("userId").toString());
+    }
+
+
+    /**
+     * 分页查询
+     * @return
+     */
+    @GetMapping("/queryByPage")
+    public Object queryByPage() throws Exception {
+        return userService.userByPage(new Page());
     }
 
 }

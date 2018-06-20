@@ -133,9 +133,9 @@
             https://github.com/alibaba/fastjson/wiki
         -->
         <!--<dependency>-->
-        <!--<groupId>com.alibaba</groupId>-->
-        <!--<artifactId>fastjson</artifactId>-->
-        <!--<version>1.2.47</version>-->
+            <!--<groupId>com.alibaba</groupId>-->
+            <!--<artifactId>fastjson</artifactId>-->
+            <!--<version>1.2.47</version>-->
         <!--</dependency>-->
     </dependencies>
 
