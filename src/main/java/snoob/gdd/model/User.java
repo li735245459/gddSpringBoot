@@ -1,5 +1,8 @@
 package snoob.gdd.model;
 
+import snoob.gdd.util.UUIdGenId;
+import tk.mybatis.mapper.annotation.KeySql;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -9,6 +12,7 @@ public class User {
      * 编号,UUID字符串
      */
     @Id
+    @KeySql(genId = UUIdGenId.class)
     private String id;
 
     /**
@@ -88,12 +92,6 @@ public class User {
      */
     @Column(name = "login_ip")
     private String loginIp;
-
-    /**
-     * 登出时间
-     */
-    @Column(name = "logout_time")
-    private Date logoutTime;
 
     /**
      * 获取编号,UUID字符串
@@ -381,23 +379,5 @@ public class User {
      */
     public void setLoginIp(String loginIp) {
         this.loginIp = loginIp;
-    }
-
-    /**
-     * 获取登出时间
-     *
-     * @return logout_time - 登出时间
-     */
-    public Date getLogoutTime() {
-        return logoutTime;
-    }
-
-    /**
-     * 设置登出时间
-     *
-     * @param logoutTime 登出时间
-     */
-    public void setLogoutTime(Date logoutTime) {
-        this.logoutTime = logoutTime;
     }
 }

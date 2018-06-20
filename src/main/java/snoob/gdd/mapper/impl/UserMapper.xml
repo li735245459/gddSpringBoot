@@ -21,6 +21,5 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
-    <result column="logout_time" jdbcType="TIMESTAMP" property="logoutTime" />
   </resultMap>
 </mapper>

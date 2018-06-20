@@ -66,7 +66,9 @@ jwt是无状态的,其不与任何机器绑定,只要签名秘钥足够的安全
 将共有的逻辑从不同的业务逻辑中抽离出来,使得业务逻辑各部分之间的耦合度降低,提高程序的可重用性
 
 =================================构建Jar包,运行命令Spring Boot程序:
-d: && cd D:\WorkSpace\GitHub\gddSpringBoot && mvn clean install
+d: && cd D:\WorkSpace\GitHub\gddSpringBoot
+mvn mybatis-generator:generate(执行MyBatis Generator)
+mvn clean install
 cd target && java -jar gdd-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 
 

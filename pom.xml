@@ -25,76 +25,65 @@
     </properties>
 
     <dependencies>
-        <dependency><!--Spring Boot Web依赖-->
+        <!--Spring Boot Web依赖-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency><!--Spring Boot Test依赖-->
+        <!--Spring Boot Test依赖-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency><!--Spring Boot Aop依赖-->
+        <!--Spring Boot Aop依赖-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <dependency><!--通过使用注解处理器生成自己的元数据-->
+        <!--通过使用注解处理器生成自己的元数据-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency><!--发送邮件-->
+        <!--发送邮件-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-        <dependency><!--JWT依赖-->
+        <!--JWT依赖-->
+        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.0</version>
         </dependency>
-        <!--<dependency>&lt;!&ndash;spring-security&ndash;&gt;-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
-        <dependency><!--热部署-->
+        <!--热部署-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--<dependency>&lt;!&ndash;Spring Boot jpa依赖&ndash;&gt;-->
-            <!--做基本的增删改查使用
-            在ORM框架(Hibernate、TopLink、JDO)和JPA规范的基础上封装的一套操作数据的应用框架
-            不用写一句SQL的hibernate（传统企业大都喜欢使用hibernate）
-            -->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-        <!--</dependency>-->
-        <dependency><!--mysql连接驱动-->
+        <!--mysql-->
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!--<dependency>&lt;!&ndash;Spring Boot jpa依赖&ndash;&gt;-->
+        <!--做基本的增删改查使用
+        在ORM框架(Hibernate、TopLink、JDO)和JPA规范的基础上封装的一套操作数据的应用框架
+        不用写一句SQL的hibernate（传统企业大都喜欢使用hibernate）
+        -->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+        <!--</dependency>-->
         <!--
-            Spring Boot mybatis依赖: 做复杂查询使用mybatis做实体映射可以灵活调试动态sql（互联网行业通常使用mybatis）
+            mybatis
+            做复杂查询使用mybatis做实体映射可以灵活调试动态sql（互联网行业通常使用mybatis）
             1)无配置文件注解方式适合简单快速的模式,其实像现在流行的这种微服务模式
             2)xml配置方式适合大型项目,可以灵活的动态生成SQL,方便调整SQL
         -->
-        <!--
-            MyBatis: http://mvnrepository.com/artifact/org.mybatis/mybatis
-        -->
-        <!--<dependency>-->
-            <!--<groupId>org.mybatis</groupId>-->
-            <!--<artifactId>mybatis</artifactId>-->
-            <!--<version>3.4.6</version>-->
-        <!--</dependency>-->
-        <!--
-            Mybatis Mapper: http://mvnrepository.com/artifact/tk.mybatis/mapper
-        -->
-        <!--<dependency>-->
-            <!--<groupId>tk.mybatis</groupId>-->
-            <!--<artifactId>mapper</artifactId>-->
-            <!--<version>4.0.0</version>-->
-        <!--</dependency>-->
         <!--
             MyBatis Spring Boot Starter: http://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
         -->
@@ -117,6 +106,37 @@
             <!--<artifactId>pagehelper</artifactId>-->
             <!--<version>4.2.1</version>-->
         <!--</dependency>-->
+        <!--
+            MyBatis: http://mvnrepository.com/artifact/org.mybatis/mybatis
+        -->
+        <!--<dependency>-->
+        <!--<groupId>org.mybatis</groupId>-->
+        <!--<artifactId>mybatis</artifactId>-->
+        <!--<version>3.4.6</version>-->
+        <!--</dependency>-->
+        <!--
+            Mybatis Mapper: http://mvnrepository.com/artifact/tk.mybatis/mapper
+        -->
+        <!--<dependency>-->
+        <!--<groupId>tk.mybatis</groupId>-->
+        <!--<artifactId>mapper</artifactId>-->
+        <!--<version>4.0.0</version>-->
+        <!--</dependency>-->
+        <!--spring-security-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
+        <!--
+            将Java对象转换为JSON字符串,也可以将一个JSON字符串转换成一个等效的Java对象(可以处理任意Java对象包括已存在的对象)
+            https://github.com/alibaba/fastjson/wiki/Samples-DataBind
+            https://github.com/alibaba/fastjson/wiki
+        -->
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>fastjson</artifactId>-->
+        <!--<version>1.2.47</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -125,7 +145,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin><!-- MyBatis Generator Maven插件配置 -->
+            <plugin><!-- Maven下 MyBatis Generator插件 配置 -->
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.6</version>
@@ -140,6 +160,7 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>5.1.46</version>
                     </dependency>
+                    <!--通用 Mapper4 是一个可以实现任意 MyBatis 通用方法的框架，提供了常规的增删改查操作以及Example 相关的单表操作-->
                     <dependency>
                         <groupId>tk.mybatis</groupId>
                         <artifactId>mapper</artifactId>

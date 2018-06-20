@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
-import snoob.gdd.model.EmailCode;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
@@ -35,9 +34,7 @@ public class UserServiceImpl implements UserService {
         selectEmail.setEmail(user.getEmail());
         List<User> checkEmailResult = userDao.select(selectEmail);
         if (checkEmailResult.isEmpty()) { // size=0为true,size>0为false
-            user.setId(StrUtil.getUuidStr());
             userDao.insertSelective(user); //选择性的插入存在值的字段
-            //userDao.insert(user); // 全部插入,存在非空字段会报错
             return ResultUtil.success();
         } else {
             // 邮箱已被注册
