@@ -1,6 +1,7 @@
 package snoob.gdd.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
@@ -12,6 +13,7 @@ import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -126,8 +128,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object page(User user, Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize,true);
-        List<User> users = userMapper.select(user);
+        System.out.println("pageNumber-"+pageNumber);
+        System.out.println("pageSize-"+pageSize);
+        System.out.println("---------------------");
+//        PageHelper.startPage(pageNumber,pageSize);
+        List<User> users = userMapper.selectAll();
+//        PageInfo page = new PageInfo(users);
         return ResultUtil.success(users);
     }
 
