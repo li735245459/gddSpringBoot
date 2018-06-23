@@ -13,16 +13,16 @@ import javax.annotation.Resource;
 @RestController
 public class DemoController {
 
-    @Value("${page.currentPage}")
-    private Integer currentPage;
-
-    @Resource
-    private Page page;
-
-    @GetMapping("/demo1")
-    public Object demo1() throws Exception{
-        System.out.println(currentPage);
-        System.out.println(page);
-        return page;
-    }
+//    @Value("${page.currentPage}")
+//    private Integer currentPage;
+//
+//    @Resource
+//    private Page page;
+//
+//    @GetMapping("/demo1")
+//    public Object demo1() throws Exception{
+//        System.out.println(currentPage);
+//        System.out.println(page);
+//        return page;
+//    }
 }

@@ -9,50 +9,23 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix="page")
 public class Page {
-    private Integer currentPage;
-    private Integer currentPageSize;
-    private Integer start;
-    private Integer end;
+    private Integer pageNumber;
+    private Integer pageSize;
 
-    public Integer getCurrentPage() {
-        return currentPage;
+    public Integer getPageNumber() {
+        return pageNumber;
     }
 
-    public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
+    public void setPageNumber(Integer pageNumber) {
+        this.pageNumber = pageNumber;
     }
 
-    public Integer getCurrentPageSize() {
-        return currentPageSize;
+    public Integer getPageSize() {
+        return pageSize;
     }
 
-    public void setCurrentPageSize(Integer currentPageSize) {
-        this.currentPageSize = currentPageSize;
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Integer getStart() {
-        return start;
-    }
-
-    public void setStart(Integer start) {
-        this.start = start;
-    }
-
-    public Integer getEnd() {
-        return end;
-    }
-
-    public void setEnd(Integer end) {
-        this.end = end;
-    }
-
-    @Override
-    public String toString() {
-        return "Page{" +
-                "currentPage=" + currentPage +
-                ", currentPageSize=" + currentPageSize +
-                ", start=" + start +
-                ", end=" + end +
-                '}';
-    }
 }

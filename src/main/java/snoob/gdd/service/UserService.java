@@ -1,6 +1,5 @@
 package snoob.gdd.service;
 
-import snoob.gdd.model.Page;
 import snoob.gdd.model.User;
 
 
@@ -15,5 +14,5 @@ public interface UserService {
 
     Object home(String userId) throws Exception;
 
-    Object page(Page page) throws Exception;
+    Object page(User user, Integer pageNumber, Integer pageSize) throws Exception;
 }

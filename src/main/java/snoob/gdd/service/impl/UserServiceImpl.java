@@ -119,12 +119,16 @@ public class UserServiceImpl implements UserService {
     /**
      * 分页查询
      *
-     * @param page
+     * @param user
+     * @param pageNumber
+     * @param pageSize
      * @return
      */
     @Override
-    public Object page(Page page) {
-        return ResultUtil.success(userMapper.selectAll());
+    public Object page(User user, Integer pageNumber, Integer pageSize) {
+        PageHelper.startPage(pageNumber,pageSize,true);
+        List<User> users = userMapper.select(user);
+        return ResultUtil.success(users);
     }
 
 }

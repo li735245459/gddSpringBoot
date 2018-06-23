@@ -86,9 +86,12 @@ public class UserController {
      *
      * @return
      */
-    @GetMapping("/page")
-    public Object queryByPage() throws Exception {
-        return userService.page(new Page());
+    @PostMapping("/page/{pageNumber}/{pageSize}")
+    public Object page(@RequestBody User user,
+                       @PathVariable(value = "pageNumber") Integer pageNumber,
+                       @PathVariable(value = "pageSize") Integer pageSize
+    ) throws Exception {
+        return userService.page(user, pageNumber, pageSize);
     }
 
 }
