@@ -15,5 +15,5 @@ public interface UserService {
 
     Object home(String userId) throws Exception;
 
-    Object userByPage(Page page) throws Exception;
+    Object page(Page page) throws Exception;
 }

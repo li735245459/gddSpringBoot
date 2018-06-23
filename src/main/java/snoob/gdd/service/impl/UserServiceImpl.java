@@ -1,5 +1,6 @@
 package snoob.gdd.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
@@ -111,7 +112,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object home(String userId) {
-        List<User> users = userMapper.select(new User());//selectByExample
+        List<User> users = userMapper.select(new User());
         return ResultUtil.success(users.get(0));
     }
 
@@ -122,8 +123,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Object userByPage(Page page) {
-        System.out.print(userMapper.selectAll().get(0).getCreateTime());
+    public Object page(Page page) {
         return ResultUtil.success(userMapper.selectAll());
     }
 

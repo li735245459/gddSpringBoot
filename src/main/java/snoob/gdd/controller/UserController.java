@@ -1,12 +1,16 @@
 package snoob.gdd.controller;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import snoob.gdd.model.Page;
+
+import java.util.List;
 
 /**
  * 用户模块
@@ -79,11 +83,12 @@ public class UserController {
 
     /**
      * 分页查询
+     *
      * @return
      */
-    @GetMapping("/queryByPage")
+    @GetMapping("/page")
     public Object queryByPage() throws Exception {
-        return userService.userByPage(new Page());
+        return userService.page(new Page());
     }
 
 }
