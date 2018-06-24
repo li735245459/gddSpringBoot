@@ -126,10 +126,10 @@ public class UserServiceImpl implements UserService {
         System.out.println("pageNumber-" + pageNumber);
         System.out.println("pageSize-" + pageSize);
         System.out.println("---------------------");
-//        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber,pageSize);
         List<User> users = userMapper.selectAll();
-//        PageInfo page = new PageInfo(users);
-        return ResultUtil.success(users);
+        PageInfo page = new PageInfo(users);
+        return ResultUtil.success(page);
     }
 
     /**

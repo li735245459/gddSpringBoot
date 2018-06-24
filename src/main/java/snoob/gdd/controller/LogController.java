@@ -1,9 +1,6 @@
 package snoob.gdd.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.Log;
 import snoob.gdd.service.LogService;
 
@@ -19,8 +16,8 @@ public class LogController {
     @Resource
     private LogService logService;
 
-    @PostMapping("/page")
-    public Object page(@RequestBody Log log, Integer pageNumber, Integer pageSize) throws Exception {
+    @PostMapping("/page/{pageNumber}/{pageSize}")
+    public Object page(@RequestBody Log log, @PathVariable Integer pageNumber, @PathVariable Integer pageSize) throws Exception {
         return logService.page(log, pageNumber, pageSize);
     }
 
