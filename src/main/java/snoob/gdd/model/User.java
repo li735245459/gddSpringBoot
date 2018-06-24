@@ -47,7 +47,7 @@ public class User {
     private String password;
 
     /**
-     * 性别(male:男,remale:女)
+     * 性别(male:男,female:女)
      */
     private String sex;
 
@@ -57,7 +57,7 @@ public class User {
     private String hobby;
 
     /**
-     * 自我介绍
+     * 备注
      */
     private String introduce;
 
@@ -108,7 +108,7 @@ public class User {
      * @param id 编号,UUID字符串
      */
     public void setId(String id) {
-        this.id = id;
+        this.id = id == null ? null : id.trim();
     }
 
     /**
@@ -144,7 +144,7 @@ public class User {
      * @param cover 头像地址链接
      */
     public void setCover(String cover) {
-        this.cover = cover;
+        this.cover = cover == null ? null : cover.trim();
     }
 
     /**
@@ -162,7 +162,7 @@ public class User {
      * @param name 姓名
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     /**
@@ -180,7 +180,7 @@ public class User {
      * @param phone 手机号码
      */
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = phone == null ? null : phone.trim();
     }
 
     /**
@@ -198,7 +198,7 @@ public class User {
      * @param email 邮箱(一个邮箱只能注册一个用户),找回密码使用
      */
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
     /**
@@ -216,25 +216,25 @@ public class User {
      * @param password 密码,MD5加密显示
      */
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     /**
-     * 获取性别(male:男,remale:女)
+     * 获取性别(male:男,female:女)
      *
-     * @return sex - 性别(male:男,remale:女)
+     * @return sex - 性别(male:男,female:女)
      */
     public String getSex() {
         return sex;
     }
 
     /**
-     * 设置性别(male:男,remale:女)
+     * 设置性别(male:男,female:女)
      *
-     * @param sex 性别(male:男,remale:女)
+     * @param sex 性别(male:男,female:女)
      */
     public void setSex(String sex) {
-        this.sex = sex;
+        this.sex = sex == null ? null : sex.trim();
     }
 
     /**
@@ -252,25 +252,25 @@ public class User {
      * @param hobby 爱好
      */
     public void setHobby(String hobby) {
-        this.hobby = hobby;
+        this.hobby = hobby == null ? null : hobby.trim();
     }
 
     /**
-     * 获取自我介绍
+     * 获取备注
      *
-     * @return introduce - 自我介绍
+     * @return introduce - 备注
      */
     public String getIntroduce() {
         return introduce;
     }
 
     /**
-     * 设置自我介绍
+     * 设置备注
      *
-     * @param introduce 自我介绍
+     * @param introduce 备注
      */
     public void setIntroduce(String introduce) {
-        this.introduce = introduce;
+        this.introduce = introduce == null ? null : introduce.trim();
     }
 
     /**
@@ -288,7 +288,7 @@ public class User {
      * @param province 省
      */
     public void setProvince(String province) {
-        this.province = province;
+        this.province = province == null ? null : province.trim();
     }
 
     /**
@@ -306,7 +306,7 @@ public class User {
      * @param city 市
      */
     public void setCity(String city) {
-        this.city = city;
+        this.city = city == null ? null : city.trim();
     }
 
     /**
@@ -324,7 +324,7 @@ public class User {
      * @param area 区
      */
     public void setArea(String area) {
-        this.area = area;
+        this.area = area == null ? null : area.trim();
     }
 
     /**
@@ -342,7 +342,7 @@ public class User {
      * @param address 详细地址
      */
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     /**
@@ -378,6 +378,6 @@ public class User {
      * @param loginIp 登陆ip
      */
     public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
+        this.loginIp = loginIp == null ? null : loginIp.trim();
     }
 }

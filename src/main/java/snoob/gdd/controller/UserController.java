@@ -1,16 +1,11 @@
 package snoob.gdd.controller;
 
-import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
-import snoob.gdd.model.Page;
-
-import java.util.List;
 
 /**
  * 用户模块
@@ -92,6 +87,17 @@ public class UserController {
                        @PathVariable(value = "pageSize") Integer pageSize
     ) throws Exception {
         return userService.page(user, pageNumber, pageSize);
+    }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete")
+    public Object delete(@RequestBody String id) throws Exception {
+        return userService.delete(id);
     }
 
 }

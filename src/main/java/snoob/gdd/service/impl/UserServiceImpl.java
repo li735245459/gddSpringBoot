@@ -14,10 +14,7 @@ import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
 import java.text.MessageFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -128,13 +125,31 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object page(User user, Integer pageNumber, Integer pageSize) {
-        System.out.println("pageNumber-"+pageNumber);
-        System.out.println("pageSize-"+pageSize);
+        System.out.println("pageNumber-" + pageNumber);
+        System.out.println("pageSize-" + pageSize);
         System.out.println("---------------------");
 //        PageHelper.startPage(pageNumber,pageSize);
         List<User> users = userMapper.selectAll();
 //        PageInfo page = new PageInfo(users);
         return ResultUtil.success(users);
     }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Object delete(String id) throws Exception {
+        if ("all".equals(id)) { // 删除所有
+            userMapper.delete(new User());
+        } else { // 删除所选(批量)
+            List<String> ids = Arrays.asList(id.split(","));
+            userMapper.customDelete(ids);
+        }
+        return ResultUtil.success();
+    }
+
 
 }

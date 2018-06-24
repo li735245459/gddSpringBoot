@@ -1,30 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+            "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
     <!--引入配置文件-->
     <properties resource="application.properties"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
-        <!-- 开始和结束分隔符 -->
+        <!-- 生成的Java文件的编码-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码-->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码-->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!-- 指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
+
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.MySqlMapper"/>
             <property name="caseSensitive" value="true"/>
         </plugin>
+
         <!--数据库连接参数-->
-        <jdbcConnection driverClass="${mysql.driver}" connectionURL="${mysql.url}" userId="${mysql.username}" password="${mysql.password}">
+        <jdbcConnection driverClass="${mysql.driver}" connectionURL="${mysql.url}" userId="${mysql.username}"
+                        password="${mysql.password}">
         </jdbcConnection>
+
         <!--model包路径-->
-        <javaModelGenerator targetProject="src/main/java" targetPackage="snoob.gdd.model"/>
+        <javaModelGenerator targetProject="src/main/java" targetPackage="snoob.gdd.model">
+            <!--自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；-->
+            <!--<property name="constructorBased" value="true"></property>-->
+            <!--设置是否在getter方法中，对String类型字段调用trim()方法-->
+            <property name="trimStrings" value="true"></property>
+            <!--<property name="enableSubPackages" value="true" />-->
+        </javaModelGenerator>
+
         <!--mybatis sql文件存放路径-->
-        <sqlMapGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper.impl"/>
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper.impl">
+            <!--<property name="enableSubPackages" value="true" />-->
+        </sqlMapGenerator>
+
+        <!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
+        targetPackage/targetProject:同javaModelGenerator
+        type：选择怎么生成mapper接口（在MyBatis3/MyBatis3Simple下）：
+            1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
+            2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；
+            3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
+        注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
+        -->
         <!--mapper包路径-->
-        <javaClientGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper" type="XMLMAPPER"/>
+        <javaClientGenerator targetProject="src/main/java" targetPackage="snoob.gdd.mapper" type="XMLMAPPER">
+            <!--<property name="enableSubPackages" value="true" />-->
+        </javaClientGenerator>
+
         <!--指定需要反向同步的表-->
-        <table tableName="user"></table>
+        <table tableName="user" domainObjectName="User"></table>
+
     </context>
 </generatorConfiguration>

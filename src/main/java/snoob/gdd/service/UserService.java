@@ -15,4 +15,6 @@ public interface UserService {
     Object home(String userId) throws Exception;
 
     Object page(User user, Integer pageNumber, Integer pageSize) throws Exception;
+
+    Object delete(String id) throws Exception;
 }
