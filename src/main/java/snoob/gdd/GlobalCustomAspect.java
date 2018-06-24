@@ -7,9 +7,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import snoob.gdd.enums.ResultEnum;
+import snoob.gdd.model.Log;
+import snoob.gdd.service.LogService;
 import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.LoggerUtil;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
 
@@ -20,6 +23,10 @@ import java.text.MessageFormat;
 @Aspect
 @Component
 public class GlobalCustomAspect {
+
+    @Resource
+    private LogService logService;
+
     /**
      * 定义一个切点pointCut
      * 切入的位置: 所有controller模块下的所有的方法
@@ -88,15 +95,29 @@ public class GlobalCustomAspect {
      * 异常通知。在方法抛出异常退出时执行的通知
      */
     @AfterThrowing(pointcut = "pointCut()", throwing = "e")
-    public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
+    public void doAfterThrowing(JoinPoint joinPoint, Throwable e) throws Exception {
         LoggerUtil.info("===============【系统错误】===============");
-        LoggerUtil.info(MessageFormat.format("错误信息:{0}", e.getMessage()));
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        LoggerUtil.info(MessageFormat.format("ip地址-->{0}", request.getRemoteAddr()));
-        LoggerUtil.info(MessageFormat.format("请求链接-->{0}", request.getRequestURL()));
-        LoggerUtil.info(MessageFormat.format("请求参数-->{0}", joinPoint.getArgs()));
-        LoggerUtil.info(MessageFormat.format("请求类型-->{0}", request.getMethod()));
-        LoggerUtil.info(MessageFormat.format("执行方法-->{0}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName()));
+
+//        LoggerUtil.info(MessageFormat.format("请求链接-->{0}", request.getRequestURL()));
+//        LoggerUtil.info(MessageFormat.format("请求类型-->{0}", request.getMethod()));
+//        LoggerUtil.info(MessageFormat.format("请求参数-->{0}", joinPoint.getArgs()));
+//        LoggerUtil.info(MessageFormat.format("执行方法-->{0}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName()));
+//        LoggerUtil.info(MessageFormat.format("错误信息:{0}", e.getMessage()));
+
+        Log log = new Log();
+
+        String controllerMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        String reqUrl = request.getRequestURL().toString();
+        String reqMethod = request.getMethod();
+        Object[] reqArgs = joinPoint.getArgs();
+
+        log.setReqUrl(reqUrl);
+        log.setReqMethod(reqMethod);
+        log.setControllerMethod(controllerMethod);
+        log.setMsg(e.getMessage());
+        log.setReqArgs(reqArgs[0].toString());
+        logService.insert(log);
     }
 }

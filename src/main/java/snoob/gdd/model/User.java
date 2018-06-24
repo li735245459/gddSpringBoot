@@ -380,4 +380,26 @@ public class User {
     public void setLoginIp(String loginIp) {
         this.loginIp = loginIp == null ? null : loginIp.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", createTime=" + createTime +
+                ", cover='" + cover + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", address='" + address + '\'' +
+                ", loginTime=" + loginTime +
+                ", loginIp='" + loginIp + '\'' +
+                '}';
+    }
 }

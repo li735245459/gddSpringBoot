@@ -55,8 +55,11 @@
             <!--<property name="enableSubPackages" value="true" />-->
         </javaClientGenerator>
 
-        <!--指定需要反向同步的表-->
-        <table tableName="user" domainObjectName="User"></table>
+        <!--
+        指定需要反向同步的表
+        -->
+        <!--<table tableName="user" domainObjectName="User"></table>-->
+        <table tableName="log" domainObjectName="Log"></table>
 
     </context>
 </generatorConfiguration>
