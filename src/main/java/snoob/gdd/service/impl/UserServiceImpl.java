@@ -28,6 +28,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object register(User user) {
+        /*
+        校验手机号码和邮箱是否存在
+         */
         User selectEmail = new User();
         selectEmail.setEmail(user.getEmail());
         List<User> checkEmailResult = userMapper.select(selectEmail);
@@ -126,7 +129,7 @@ public class UserServiceImpl implements UserService {
         System.out.println("pageNumber-" + pageNumber);
         System.out.println("pageSize-" + pageSize);
         System.out.println("---------------------");
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         List<User> users = userMapper.selectAll();
         PageInfo page = new PageInfo(users);
         return ResultUtil.success(page);
@@ -146,6 +149,21 @@ public class UserServiceImpl implements UserService {
             List<String> ids = Arrays.asList(id.split(","));
             userMapper.customDelete(ids);
         }
+        return ResultUtil.success();
+    }
+
+    /**
+     * 修改
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object modify(User user) throws Exception {
+        /*
+        当手机号码或者邮箱存在则需要检查是否重复
+         */
         return ResultUtil.success();
     }
 

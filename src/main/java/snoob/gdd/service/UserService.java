@@ -17,4 +17,6 @@ public interface UserService {
     Object page(User user, Integer pageNumber, Integer pageSize) throws Exception;
 
     Object delete(String id) throws Exception;
+
+    Object modify(User user) throws Exception;
 }

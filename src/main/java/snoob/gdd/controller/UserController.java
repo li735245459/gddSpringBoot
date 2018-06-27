@@ -96,8 +96,17 @@ public class UserController {
      * @return
      */
     @PostMapping("/delete")
-    public Object delete(@RequestBody String id) throws Exception {
+    public Object delete(@PathVariable String id) throws Exception {
         return userService.delete(id);
     }
 
+    /**
+     * 修改
+     * @param user
+     * @return
+     */
+    @PostMapping("/modify")
+    public Object modify(@RequestBody User user) throws Exception {
+        return userService.modify(user);
+    }
 }
