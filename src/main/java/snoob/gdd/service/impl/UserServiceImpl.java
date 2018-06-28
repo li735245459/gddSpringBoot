@@ -26,14 +26,14 @@ public class UserServiceImpl implements UserService {
         checkUser.setEmail(user.getEmail());
         List<User> checkResult = userMapper.select(checkUser);
         // 检查邮箱
-        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+        if (!checkResult.isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
         }
         // 检查手机号码
         checkUser.setEmail(null);
         checkUser.setPhone(user.getPhone());
         checkResult = userMapper.select(checkUser);
-        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+        if (!checkResult.isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
         }
         // 添加数据
@@ -47,14 +47,14 @@ public class UserServiceImpl implements UserService {
         checkUser.setEmail(user.getEmail());
         List<User> checkResult = userMapper.select(checkUser);
         // 检查邮箱
-        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+        if (!checkResult.isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
         }
         // 检查手机号码
         checkUser.setEmail(null);
         checkUser.setPhone(user.getPhone());
         checkResult = userMapper.select(checkUser);
-        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+        if (!checkResult.isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
         }
         // 修改数据
@@ -75,6 +75,12 @@ public class UserServiceImpl implements UserService {
         return ResultUtil.success();
     }
 
+    /**
+     * 登录
+     *
+     * @param user
+     * @return
+     */
     @Override
     public Object login(User user) {
         String ip = user.getLoginIp();
@@ -129,6 +135,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 删除
      * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1" 表示单一删除
      * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1,3b2ebfa1-ed59-4091-a800-aef6e867f1a2" 表示批量删除
      *
