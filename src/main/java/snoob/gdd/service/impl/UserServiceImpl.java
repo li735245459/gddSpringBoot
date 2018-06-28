@@ -20,35 +20,61 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
-    /**
-     * 用户注册
-     *
-     * @param user
-     * @return
-     */
     @Override
-    public Object register(User user) {
-        /*
-        校验手机号码和邮箱是否存在
-         */
+    public Object insert(User user) {
+        User checkUser = new User();
+        checkUser.setEmail(user.getEmail());
+        List<User> checkResult = userMapper.select(checkUser);
+        // 检查邮箱
+        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
+        }
+        // 检查手机号码
+        checkUser.setEmail(null);
+        checkUser.setPhone(user.getPhone());
+        checkResult = userMapper.select(checkUser);
+        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+            throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
+        }
+        // 添加数据
+        userMapper.insertSelective(user);
+        return ResultUtil.success();
+    }
+
+    @Override
+    public Object modify(User user) throws Exception {
+        User checkUser = new User();
+        checkUser.setEmail(user.getEmail());
+        List<User> checkResult = userMapper.select(checkUser);
+        // 检查邮箱
+        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
+        }
+        // 检查手机号码
+        checkUser.setEmail(null);
+        checkUser.setPhone(user.getPhone());
+        checkResult = userMapper.select(checkUser);
+        if (!checkResult.isEmpty()) { // size=0为true,size>0为false
+            throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
+        }
+        // 修改数据
+        userMapper.updateByPrimaryKey(user);
+        return ResultUtil.success();
+    }
+
+    @Override
+    public Object modifyPassword(User user) {
         User selectEmail = new User();
         selectEmail.setEmail(user.getEmail());
         List<User> checkEmailResult = userMapper.select(selectEmail);
-        if (checkEmailResult.isEmpty()) { // size=0为true,size>0为false
-            userMapper.insertSelective(user); //选择性的插入存在值的字段
-            return ResultUtil.success();
-        } else {
-            // 邮箱已被注册
-            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
+        if (checkEmailResult.isEmpty()) {
+            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL);
         }
+        user.setId(checkEmailResult.get(0).getId());
+        userMapper.updateByPrimaryKeySelective(user);
+        return ResultUtil.success();
     }
 
-    /**
-     * 用户登录
-     *
-     * @param user
-     * @return
-     */
     @Override
     public Object login(User user) {
         String ip = user.getLoginIp();
@@ -72,44 +98,11 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * 修改密码
-     *
-     * @param user
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public Object modifyPassword(User user) {
-        User selectEmail = new User();
-        selectEmail.setEmail(user.getEmail());
-        List<User> checkEmailResult = userMapper.select(selectEmail);
-        if (checkEmailResult.isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL);
-        }
-        user.setId(checkEmailResult.get(0).getId());
-        userMapper.updateByPrimaryKeySelective(user);
-        return ResultUtil.success();
-    }
-
-    /**
-     * 检查jwt
-     *
-     * @param jwt
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object checkJWT(String jwt) {
         return JwtUtil.checkJWT(jwt);
     }
 
-    /**
-     * 门户网站首页
-     *
-     * @param userId
-     * @return
-     */
     @Override
     public Object home(String userId) {
         List<User> users = userMapper.select(new User());
@@ -136,10 +129,12 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 删除
+     * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1" 表示单一删除
+     * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1,3b2ebfa1-ed59-4091-a800-aef6e867f1a2" 表示批量删除
      *
      * @param id
      * @return
+     * @throws Exception
      */
     @Override
     public Object delete(String id) throws Exception {
@@ -151,21 +146,4 @@ public class UserServiceImpl implements UserService {
         }
         return ResultUtil.success();
     }
-
-    /**
-     * 修改
-     *
-     * @param user
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public Object modify(User user) throws Exception {
-        /*
-        当手机号码或者邮箱存在则需要检查是否重复
-         */
-        return ResultUtil.success();
-    }
-
-
 }

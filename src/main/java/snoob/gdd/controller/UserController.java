@@ -25,19 +25,17 @@ public class UserController {
      */
     @PostMapping("/register")
     public Object register(@RequestBody User user) throws Exception {
-        return userService.register(user);
+        return userService.insert(user);
     }
 
     /**
-     * 用户登录
-     *
+     * 编辑
      * @param user
      * @return
      */
-    @PostMapping("/login")
-    public Object login(@RequestBody User user, HttpServletRequest request) throws Exception {
-        user.setLoginIp(request.getAttribute("ip").toString());
-        return userService.login(user);
+    @PostMapping("/modify")
+    public Object modify(@RequestBody User user) throws Exception {
+        return userService.modify(user);
     }
 
     /**
@@ -50,6 +48,18 @@ public class UserController {
     @PostMapping("/modifyPassword")
     public Object modifyPassword(@RequestBody User user) throws Exception {
         return userService.modifyPassword(user);
+    }
+
+    /**
+     * 用户登录
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("/login")
+    public Object login(@RequestBody User user, HttpServletRequest request) throws Exception {
+        user.setLoginIp(request.getAttribute("ip").toString());
+        return userService.login(user);
     }
 
     /**
@@ -96,17 +106,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/delete")
-    public Object delete(@PathVariable String id) throws Exception {
+    public Object delete(@RequestBody String id) throws Exception {
         return userService.delete(id);
-    }
-
-    /**
-     * 修改
-     * @param user
-     * @return
-     */
-    @PostMapping("/modify")
-    public Object modify(@RequestBody User user) throws Exception {
-        return userService.modify(user);
     }
 }
