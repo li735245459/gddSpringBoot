@@ -69,14 +69,13 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public Object sendHtmlEmail(String type, String receiver) throws Exception {
         EmailCode emailCode = new EmailCode();
-        emailCode.setId(StrUtil.getUuidStr());
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
         /**
-         * 忘记密码模块发送验证码功能
+         * 忘记密码模块
          */
-        if ("1".equals(type)) {
+        if ("0".equals(type)) {
             emailCode.setSubject("忘记密码模块发送验证码功能");
             String code = StrUtil.getCodeStr();
             emailCode.setCode(code);
@@ -85,6 +84,8 @@ public class EmailServiceImpl implements EmailService {
                     MessageFormat.format("<a href='http://127.0.0.1:4200/forgetPassword' style='color:#F00'>{0}</a>", code));
             String content = sb.toString();
             emailCode.setContent(content);
+        } else {
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_TYPE);
         }
         // 发送邮件
         sendEmail.sendHtmlEmail(emailCode);
@@ -109,7 +110,7 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setReceiver(email);
         emailCode.setCode(code);
         if (emailCodeDao.select(emailCode).isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_CODE);
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_CODE);
         } else {
             return ResultUtil.success();
         }

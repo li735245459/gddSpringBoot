@@ -1,5 +1,8 @@
 package snoob.gdd.model;
 
+import snoob.gdd.util.UUIdGenId;
+import tk.mybatis.mapper.annotation.KeySql;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -9,6 +12,7 @@ public class EmailCode {
      * 编号,UUID
      */
     @Id
+    @KeySql(genId = UUIdGenId.class)
     private String id;
 
     /**
@@ -18,7 +22,7 @@ public class EmailCode {
     private Date createTime;
 
     /**
-     * 验证类型（1:忘记密码模块）
+     * 验证类型（0:忘记密码模块）
      */
     private String type;
 
@@ -62,7 +66,7 @@ public class EmailCode {
      * @param id 编号,UUID
      */
     public void setId(String id) {
-        this.id = id;
+        this.id = id == null ? null : id.trim();
     }
 
     /**
@@ -84,21 +88,21 @@ public class EmailCode {
     }
 
     /**
-     * 获取验证类型（1:忘记密码模块）
+     * 获取验证类型（0:忘记密码模块）
      *
-     * @return type - 验证类型（1:忘记密码模块）
+     * @return type - 验证类型（0:忘记密码模块）
      */
     public String getType() {
         return type;
     }
 
     /**
-     * 设置验证类型（1:忘记密码模块）
+     * 设置验证类型（0:忘记密码模块）
      *
-     * @param type 验证类型（1:忘记密码模块）
+     * @param type 验证类型（0:忘记密码模块）
      */
     public void setType(String type) {
-        this.type = type;
+        this.type = type == null ? null : type.trim();
     }
 
     /**
@@ -116,7 +120,7 @@ public class EmailCode {
      * @param sender 发送者邮箱
      */
     public void setSender(String sender) {
-        this.sender = sender;
+        this.sender = sender == null ? null : sender.trim();
     }
 
     /**
@@ -134,7 +138,7 @@ public class EmailCode {
      * @param receiver 接收者邮箱
      */
     public void setReceiver(String receiver) {
-        this.receiver = receiver;
+        this.receiver = receiver == null ? null : receiver.trim();
     }
 
     /**
@@ -152,7 +156,7 @@ public class EmailCode {
      * @param subject 邮件主题
      */
     public void setSubject(String subject) {
-        this.subject = subject;
+        this.subject = subject == null ? null : subject.trim();
     }
 
     /**
@@ -170,7 +174,7 @@ public class EmailCode {
      * @param content 邮件内容
      */
     public void setContent(String content) {
-        this.content = content;
+        this.content = content == null ? null : content.trim();
     }
 
     /**
@@ -188,6 +192,6 @@ public class EmailCode {
      * @param code 验证码
      */
     public void setCode(String code) {
-        this.code = code;
+        this.code = code == null ? null : code.trim();
     }
 }

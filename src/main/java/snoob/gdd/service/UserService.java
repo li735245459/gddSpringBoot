@@ -5,10 +5,9 @@ import snoob.gdd.model.User;
 
 public interface UserService {
     Object insert(User user) throws Exception;
+    Object modify(User user) throws Exception;
 
     Object modifyPassword(User user) throws Exception;
-
-    Object modify(User user) throws Exception;
 
     Object login(User user) throws Exception;
 

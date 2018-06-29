@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
         selectEmail.setEmail(user.getEmail());
         List<User> checkEmailResult = userMapper.select(selectEmail);
         if (checkEmailResult.isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL);
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL);
         }
         user.setId(checkEmailResult.get(0).getId());
         userMapper.updateByPrimaryKeySelective(user);
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
         List<User> loginResult = userMapper.select(user);
         if (loginResult.isEmpty()) {
             // 用户名或者密码错误
-            throw new GlobalCustomException(ResultEnum.ERROR_LOGIN_VALIDATE);
+            return ResultUtil.error(ResultEnum.ERROR_LOGIN_VALIDATE);
         } else {
             // 登陆成功
             loginResult.get(0).setLoginTime(new Date());
@@ -100,6 +100,8 @@ public class UserServiceImpl implements UserService {
             claims.put("roles", "add;delete;update;select;");
             Map<String, Object> data = new HashMap<>();
             data.put("jwt", JwtUtil.encodeJWT(claims));
+            data.put("name", loginResult.get(0).getName());
+            data.put("cover", loginResult.get(0).getCover());
             return ResultUtil.success(data);
         }
     }

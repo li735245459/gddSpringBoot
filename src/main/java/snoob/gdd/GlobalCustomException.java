@@ -5,6 +5,7 @@ import snoob.gdd.enums.ResultEnum;
 /**
  * 自定义全局异常
  * spring 对于 RuntimeException 异常会进行事务回滚
+ * throw new GlobalCustomException(ResultEnum.ERROR_LOGIN_VALIDATE);
  */
 public class GlobalCustomException extends RuntimeException{
 
