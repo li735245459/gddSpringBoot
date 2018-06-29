@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private OnlyUtil onlyUtil;
 
     /**
-     * 编辑
+     * 添加、编辑
      *
      * @param user
      * @return
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 修改密码,参照邮箱为标志进行更新
+     * 通过email修改密码
      *
      * @param user
      * @return
@@ -62,11 +62,11 @@ public class UserServiceImpl implements UserService {
     public Object modifyPassword(User user) {
         User item = new User();
         item.setEmail(user.getEmail());
-        List<User> items = userMapper.select(item);
-        if (items.isEmpty()) {
+        item = userMapper.selectOne(item);
+        if (item == null) {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
         }
-        user.setId(items.get(0).getId());
+        user.setId(item.getId());
         user.setEmail(null);
         userMapper.updateByPrimaryKeySelective(user);
         return ResultUtil.success();
