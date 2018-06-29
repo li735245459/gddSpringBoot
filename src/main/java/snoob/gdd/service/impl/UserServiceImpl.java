@@ -82,25 +82,24 @@ public class UserServiceImpl implements UserService {
     public Object login(User user) {
         String ip = user.getLoginIp();
         user.setLoginIp(null);
-        List<User> loginResult = userMapper.select(user);
-        if (loginResult.isEmpty()) {
+        User item = userMapper.selectOne(user);
+        if (item == null) {
             // 用户名或者密码错误
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_OR_PASSWORD);
-        } else {
-            // 登陆成功
-            loginResult.get(0).setLoginTime(new Date());
-            loginResult.get(0).setLoginIp(ip);
-            userMapper.updateByPrimaryKey(loginResult.get(0));
-            // 创建JWT
-            Map<String, Object> claims = new HashMap<>();
-            claims.put("aud", loginResult.get(0).getId());
-            claims.put("roles", "add;delete;update;select;");
-            Map<String, Object> data = new HashMap<>();
-            data.put("jwt", JwtUtil.encodeJWT(claims));
-            data.put("name", loginResult.get(0).getName());
-            data.put("cover", loginResult.get(0).getCover());
-            return ResultUtil.success(data);
         }
+        // 登陆成功
+        item.setLoginTime(new Date());
+        item.setLoginIp(ip);
+        userMapper.updateByPrimaryKey(item);
+        // 创建JWT
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("aud", item.getId());
+        claims.put("roles", "add;delete;update;select;");
+        Map<String, Object> data = new HashMap<>();
+        data.put("jwt", JwtUtil.encodeJWT(claims));
+        data.put("name", item.getName());
+        data.put("cover", item.getCover());
+        return ResultUtil.success(data);
     }
 
     @Override

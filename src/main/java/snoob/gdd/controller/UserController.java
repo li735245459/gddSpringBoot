@@ -29,7 +29,7 @@ public class UserController {
     }
 
     /**
-     * 编辑
+     * 添加、编辑
      * @param user
      * @return
      */
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     /**
-     * 修改密码
+     * 通过邮箱修改密码
      *
      * @param user
      * @return
