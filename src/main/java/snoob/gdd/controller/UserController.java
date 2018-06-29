@@ -25,7 +25,7 @@ public class UserController {
      */
     @PostMapping("/register")
     public Object register(@RequestBody User user) throws Exception {
-        return userService.insert(user);
+        return userService.modify(user);
     }
 
     /**

@@ -3,13 +3,14 @@ package snoob.gdd.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
-import snoob.gdd.GlobalCustomException;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
+import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.ResultUtil;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -20,50 +21,58 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
-    @Override
-    public Object insert(User user) {
-        User item = new User();
-        item.setEmail(user.getEmail());
-        List<User> items = userMapper.select(item);
-        // 检查邮箱
-        if (!items.isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
-        }
-        // 检查手机号码
-        item.setEmail(null);
-        item.setPhone(user.getPhone());
-        items = userMapper.select(item);
-        if (!items.isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
-        }
-        // 添加数据
-        userMapper.insertSelective(user);
-        return ResultUtil.success();
-    }
+    @Resource
+    private OnlyUtil onlyUtil;
 
+    /**
+     * 编辑
+     *
+     * @param user
+     * @return
+     */
     @Override
-    public Object modify(User user) throws Exception {
-        User checkUser = new User();
-        checkUser.setEmail(user.getEmail());
-        List<User> checkResult = userMapper.select(checkUser);
-        // 检查邮箱
-        if (!checkResult.isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
+    public Object modify(User user) {
+        if (user.getId() == null) {
+            if (onlyUtil.emailUsed(user.getEmail())) {
+                return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
+            }
+            if (onlyUtil.phoneUsed(user.getPhone())) {
+                return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
+            }
+            /**
+             * 添加
+             */
+            userMapper.insertSelective(user);
+        } else {
+            User item = new User();
+            item.setId(user.getId());
+            item = userMapper.selectOne(item);
+            //
+            if (item.getEmail().equals(user.getEmail())) {
+                user.setEmail(null);
+            } else {
+                if (onlyUtil.emailUsed(user.getEmail())) {
+                    return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
+                }
+            }
+            //
+            if (item.getPhone().equals(user.getPhone())) {
+                user.setPhone(null);
+            } else {
+                if (onlyUtil.phoneUsed(user.getPhone())) {
+                    return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
+                }
+            }
+            /**
+             * 修改
+             */
+            userMapper.updateByPrimaryKeySelective(user);
         }
-        // 检查手机号码
-        checkUser.setEmail(null);
-        checkUser.setPhone(user.getPhone());
-        checkResult = userMapper.select(checkUser);
-        if (!checkResult.isEmpty()) {
-            throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
-        }
-        // 修改数据
-        userMapper.updateByPrimaryKey(user);
         return ResultUtil.success();
     }
 
     /**
-     * 修改密码
+     * 修改密码,参照邮箱为标志进行更新
      *
      * @param user
      * @return
@@ -74,9 +83,10 @@ public class UserServiceImpl implements UserService {
         item.setEmail(user.getEmail());
         List<User> items = userMapper.select(item);
         if (items.isEmpty()) {
-            return ResultUtil.error(ResultEnum.ERROR_EMAIL);
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
         }
         user.setId(items.get(0).getId());
+        user.setEmail(null);
         userMapper.updateByPrimaryKeySelective(user);
         return ResultUtil.success();
     }
@@ -94,7 +104,7 @@ public class UserServiceImpl implements UserService {
         List<User> loginResult = userMapper.select(user);
         if (loginResult.isEmpty()) {
             // 用户名或者密码错误
-            return ResultUtil.error(ResultEnum.ERROR_LOGIN_VALIDATE);
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_OR_PASSWORD);
         } else {
             // 登陆成功
             loginResult.get(0).setLoginTime(new Date());

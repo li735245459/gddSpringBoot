@@ -76,13 +76,13 @@ public class EmailServiceImpl implements EmailService {
          * 忘记密码模块
          */
         if ("0".equals(type)) {
-            emailCode.setSubject("找回密码模块验证码功能：");
+            emailCode.setSubject("忘记密码模块验证码功能：");
             String code = StrUtil.getCodeStr();
             emailCode.setCode(code);
             String content = "<h1>验证码:</h1><a href='http:www.baidu.com' style='color:#F00'>{0}</a>";
             emailCode.setContent(content);
         } else {
-            return ResultUtil.error(ResultEnum.ERROR_EMAIL_TYPE);
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_CODE_MODULE_ILLEGAL);
         }
         // 添加邮件内容到数据库
         emailCodeDao.insertSelective(emailCode);
@@ -107,7 +107,7 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setReceiver(email);
         emailCode.setCode(code);
         if (emailCodeDao.select(emailCode).isEmpty()) {
-            return ResultUtil.error(ResultEnum.ERROR_EMAIL_CODE);
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_OR_CODE);
         } else {
             return ResultUtil.success();
         }

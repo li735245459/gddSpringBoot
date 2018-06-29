@@ -1,7 +1,3 @@
-admin后台的完成。
-	表格加载成功或者失败给一个提示信息
-	mysql分页查询插件还是自定义分页
-
 
 /*QBC查询*/
     @RequestMapping("/queryByExample1")
