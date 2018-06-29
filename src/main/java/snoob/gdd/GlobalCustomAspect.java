@@ -57,12 +57,12 @@ public class GlobalCustomAspect {
             // 校验jwt
             String authorization = request.getHeader("Authorization");
             if (authorization == null || !authorization.startsWith("Bearer")) {
-                throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
+                throw new GlobalCustomException(ResultEnum.ERROR_JWT);
             } else {
                 String jwt = authorization.substring(6);
                 Claims claims = JwtUtil.decodeJWT(jwt);
                 if (claims == null) {
-                    throw new GlobalCustomException(ResultEnum.ERROR_JWT_ERROR);
+                    throw new GlobalCustomException(ResultEnum.ERROR_JWT);
                 } else {
                     request.setAttribute("userId", claims.getAudience());
                 }

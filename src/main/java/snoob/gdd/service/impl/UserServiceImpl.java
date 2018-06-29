@@ -22,18 +22,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Object insert(User user) {
-        User checkUser = new User();
-        checkUser.setEmail(user.getEmail());
-        List<User> checkResult = userMapper.select(checkUser);
+        User item = new User();
+        item.setEmail(user.getEmail());
+        List<User> items = userMapper.select(item);
         // 检查邮箱
-        if (!checkResult.isEmpty()) {
+        if (!items.isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_EMAIL_ONLY_VALIDATE);
         }
         // 检查手机号码
-        checkUser.setEmail(null);
-        checkUser.setPhone(user.getPhone());
-        checkResult = userMapper.select(checkUser);
-        if (!checkResult.isEmpty()) {
+        item.setEmail(null);
+        item.setPhone(user.getPhone());
+        items = userMapper.select(item);
+        if (!items.isEmpty()) {
             throw new GlobalCustomException(ResultEnum.ERROR_PHONE);
         }
         // 添加数据
@@ -62,15 +62,21 @@ public class UserServiceImpl implements UserService {
         return ResultUtil.success();
     }
 
+    /**
+     * 修改密码
+     *
+     * @param user
+     * @return
+     */
     @Override
     public Object modifyPassword(User user) {
-        User selectEmail = new User();
-        selectEmail.setEmail(user.getEmail());
-        List<User> checkEmailResult = userMapper.select(selectEmail);
-        if (checkEmailResult.isEmpty()) {
+        User item = new User();
+        item.setEmail(user.getEmail());
+        List<User> items = userMapper.select(item);
+        if (items.isEmpty()) {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL);
         }
-        user.setId(checkEmailResult.get(0).getId());
+        user.setId(items.get(0).getId());
         userMapper.updateByPrimaryKeySelective(user);
         return ResultUtil.success();
     }
@@ -140,6 +146,7 @@ public class UserServiceImpl implements UserService {
      * 删除
      * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1" 表示单一删除
      * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1,3b2ebfa1-ed59-4091-a800-aef6e867f1a2" 表示批量删除
+     * id = "all" 表示清空
      *
      * @param id
      * @return
