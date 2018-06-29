@@ -10,7 +10,6 @@ import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.ResultUtil;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -32,37 +31,19 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object modify(User user) {
+        if (user.getEmail() != null && onlyUtil.emailUsed(user.getEmail())) {
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
+        }
+        if (user.getPhone() != null && onlyUtil.phoneUsed(user.getPhone())) {
+            return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
+        }
         if (user.getId() == null) {
-            if (onlyUtil.emailUsed(user.getEmail())) {
-                return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
-            }
-            if (onlyUtil.phoneUsed(user.getPhone())) {
-                return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
-            }
             /**
              * 添加
              */
             userMapper.insertSelective(user);
         } else {
-            User item = new User();
-            item.setId(user.getId());
-            item = userMapper.selectOne(item);
-            //
-            if (item.getEmail().equals(user.getEmail())) {
-                user.setEmail(null);
-            } else {
-                if (onlyUtil.emailUsed(user.getEmail())) {
-                    return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
-                }
-            }
-            //
-            if (item.getPhone().equals(user.getPhone())) {
-                user.setPhone(null);
-            } else {
-                if (onlyUtil.phoneUsed(user.getPhone())) {
-                    return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
-                }
-            }
+
             /**
              * 修改
              */
