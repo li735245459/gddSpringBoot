@@ -8,6 +8,7 @@ import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.EmailCodeMapper;
 import snoob.gdd.model.EmailCode;
 import snoob.gdd.service.EmailService;
+import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.StrUtil;
 import snoob.gdd.util.ResultUtil;
 import snoob.gdd.util.SendEmailUtil;
@@ -26,6 +27,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Value("${spring.mail.username}")
     private String sender;
+
+    @Resource
+    private OnlyUtil onlyUtil;
 
     /**
      * 发送邮件: 文本格式
@@ -72,6 +76,10 @@ public class EmailServiceImpl implements EmailService {
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
+        // 检查邮箱的有效性
+        if (!onlyUtil.emailUsed(receiver)) {
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
+        }
         /**
          * 忘记密码模块
          */

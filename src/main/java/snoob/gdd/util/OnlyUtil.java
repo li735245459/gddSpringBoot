@@ -1,7 +1,6 @@
 package snoob.gdd.util;
 
 import org.springframework.stereotype.Component;
-import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 
