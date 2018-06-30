@@ -72,11 +72,11 @@ public class EmailServiceImpl implements EmailService {
      */
     @Override
     public Object sendHtmlEmail(String type, String receiver) throws Exception {
-        EmailCode emailCode = new EmailCode();
-        emailCode.setType(type);
-        emailCode.setSender(sender);
-        emailCode.setReceiver(receiver);
-        // 检查邮箱的有效性
+        EmailCode item = new EmailCode();
+        item.setType(type);
+        item.setSender(sender);
+        item.setReceiver(receiver);
+        // 检查邮箱是否存在
         if (!onlyUtil.emailUsed(receiver)) {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
         }
@@ -84,18 +84,18 @@ public class EmailServiceImpl implements EmailService {
          * 忘记密码模块
          */
         if ("0".equals(type)) {
-            emailCode.setSubject("忘记密码模块验证码功能：");
+            item.setSubject("忘记密码模块验证码功能：");
             String code = StrUtil.getCodeStr();
-            emailCode.setCode(code);
+            item.setCode(code);
             String content = "<h1>验证码:</h1><a href='http:www.baidu.com' style='color:#F00'>{0}</a>";
-            emailCode.setContent(content);
+            item.setContent(content);
         } else {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_CODE_MODULE_ILLEGAL);
         }
         // 添加邮件内容到数据库
-        emailCodeDao.insertSelective(emailCode);
+        emailCodeDao.insertSelective(item);
         // 发送邮件
-        sendEmail.sendHtmlEmail(emailCode);
+        sendEmail.sendHtmlEmail(item);
         return ResultUtil.success();
     }
 
@@ -110,15 +110,14 @@ public class EmailServiceImpl implements EmailService {
      */
     @Override
     public Object checkEmailCode(String type, String email, String code) {
-        EmailCode emailCode = new EmailCode();
-        emailCode.setType(type);
-        emailCode.setReceiver(email);
-        emailCode.setCode(code);
-        if (emailCodeDao.select(emailCode).isEmpty()) {
+        EmailCode item = new EmailCode();
+        item.setType(type);
+        item.setReceiver(email);
+        item.setCode(code);
+        if (emailCodeDao.selectOne(item) == null) {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_OR_CODE);
-        } else {
-            return ResultUtil.success();
         }
+        return ResultUtil.success();
     }
 
 }

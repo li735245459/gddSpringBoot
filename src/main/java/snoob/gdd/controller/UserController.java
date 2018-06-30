@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 用户注册
+     * 注册
      *
      * @param user
      * @return

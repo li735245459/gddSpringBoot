@@ -31,11 +31,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object modify(User user) {
-        if (user.getEmail() != null && onlyUtil.emailUsed(user.getEmail())) {
-            return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
-        }
         if (user.getPhone() != null && onlyUtil.phoneUsed(user.getPhone())) {
             return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
+        }
+        if (user.getEmail() != null && onlyUtil.emailUsed(user.getEmail())) {
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
         }
         if (user.getId() == null) {
             /**
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
         // 登陆成功
         item.setLoginTime(new Date());
         item.setLoginIp(ip);
-        userMapper.updateByPrimaryKey(item);
+        userMapper.updateByPrimaryKeySelective(item);
         // 创建JWT
         Map<String, Object> claims = new HashMap<>();
         claims.put("aud", item.getId());
