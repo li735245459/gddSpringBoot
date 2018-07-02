@@ -10,6 +10,7 @@ import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
 import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.ResultUtil;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
         } else {
 
             /**
-             * 修改
+             * 编辑
              */
             userMapper.updateByPrimaryKeySelective(user);
         }
@@ -123,11 +124,39 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object page(User user, Integer pageNumber, Integer pageSize) {
-        System.out.println("pageNumber-" + pageNumber);
-        System.out.println("pageSize-" + pageSize);
-        System.out.println("---------------------");
+        // 开启模糊查询
+        Example example = new Example(User.class);
+//        // 设置行级锁,确保数据一致性
+//        example.setForUpdate(true);
+//        // 去重
+//        example.setDistinct(true);
+//        // 指定查询列
+//        example.selectProperties("id", "name");
+//        // 设置排序规则 .orderBy("loginTime").asc();
+        example.orderBy("createTime").asc();
+        Example.Criteria criteria = example.createCriteria();
+        if (user.getName() != null) {
+            criteria.andLike("name", user.getName().trim() + "%");
+        }
+        if (user.getSex() != null && !"0".equals(user.getSex())) {
+            criteria.andEqualTo("sex", user.getSex().trim());
+        }
+        if ( user.getEmail() != null) {
+            criteria.andEqualTo("email", user.getEmail().trim());
+        }
+        if (user.getPhone() != null) {
+            criteria.andEqualTo("phone", user.getPhone().trim());
+        }
+        if (user.getCreateTime() != null) {
+            criteria.andGreaterThanOrEqualTo("createTime", user.getCreateTime());
+        }
+        if (user.getLoginTime() != null) {
+            criteria.andGreaterThanOrEqualTo("loginTime", user.getLoginTime());
+        }
+        // 开启分页模式
         PageHelper.startPage(pageNumber, pageSize);
-        List<User> users = userMapper.selectAll();
+        List<User> users = userMapper.selectByExample(example);
+        // 获取分页对象
         PageInfo page = new PageInfo(users);
         return ResultUtil.success(page);
     }
