@@ -2,6 +2,9 @@ package snoob.gdd.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.jeecgframework.poi.excel.ExcelExportUtil;
+import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.springframework.stereotype.Service;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
@@ -13,6 +16,9 @@ import snoob.gdd.util.ResultUtil;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
 import java.util.*;
 
 @Service
@@ -124,7 +130,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object page(User user, Integer pageNumber, Integer pageSize) {
-        // 开启模糊查询
+        // 动态sql
         Example example = new Example(User.class);
 //        // 设置行级锁,确保数据一致性
 //        example.setForUpdate(true);
@@ -141,7 +147,7 @@ public class UserServiceImpl implements UserService {
         if (user.getSex() != null && !"0".equals(user.getSex())) {
             criteria.andEqualTo("sex", user.getSex().trim());
         }
-        if ( user.getEmail() != null) {
+        if (user.getEmail() != null) {
             criteria.andEqualTo("email", user.getEmail().trim());
         }
         if (user.getPhone() != null) {
@@ -179,6 +185,50 @@ public class UserServiceImpl implements UserService {
             List<String> ids = Arrays.asList(id.split(","));
             userMapper.customDelete(ids);
         }
+        return ResultUtil.success();
+    }
+
+    /**
+     * 导出
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object export(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // 告诉浏览器用什么软件可以打开此文件
+        response.setHeader("content-Type", "application/vnd.ms-excel");
+        // 下载文件的默认名称
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("用户数据表","UTF-8") + ".xls");
+        //编码
+        response.setCharacterEncoding("UTF-8");
+        // 动态sql
+        Example example = new Example(User.class);
+        example.orderBy("createTime").asc();
+        Example.Criteria criteria = example.createCriteria();
+        if (user.getName() != null) {
+            criteria.andLike("name", user.getName().trim() + "%");
+        }
+        if (user.getSex() != null && !"0".equals(user.getSex())) {
+            criteria.andEqualTo("sex", user.getSex().trim());
+        }
+        if (user.getEmail() != null) {
+            criteria.andEqualTo("email", user.getEmail().trim());
+        }
+        if (user.getPhone() != null) {
+            criteria.andEqualTo("phone", user.getPhone().trim());
+        }
+        if (user.getCreateTime() != null) {
+            criteria.andGreaterThanOrEqualTo("createTime", user.getCreateTime());
+        }
+        if (user.getLoginTime() != null) {
+            criteria.andGreaterThanOrEqualTo("loginTime", user.getLoginTime());
+        }
+        List<User> list = userMapper.selectByExample(example);
+        // 导出数据
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(), User.class, list);
+        workbook.write(response.getOutputStream());
         return ResultUtil.success();
     }
 }

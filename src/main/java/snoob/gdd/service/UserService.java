@@ -2,6 +2,9 @@ package snoob.gdd.service;
 
 import snoob.gdd.model.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 public interface UserService {
     Object modify(User user) throws Exception;
@@ -16,5 +19,7 @@ public interface UserService {
     Object page(User user, Integer pageNumber, Integer pageSize) throws Exception;
 
     Object delete(String id) throws Exception;
+
+    Object export(User user, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
