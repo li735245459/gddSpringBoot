@@ -1,7 +1,5 @@
 package snoob.gdd.model;
 
-import org.jeecgframework.poi.excel.annotation.Excel;
-import org.jeecgframework.poi.excel.annotation.ExcelTarget;
 import snoob.gdd.util.UUIdGenId;
 import tk.mybatis.mapper.annotation.KeySql;
 
@@ -9,45 +7,38 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "user")
-@ExcelTarget("user")
 public class User {
     /**
      * 编号,UUID字符串
      */
     @Id
     @KeySql(genId = UUIdGenId.class)
-    @Excel(name = "编号", orderNum = "1")
     private String id;
 
     /**
      * 数据生成时间
      */
     @Column(name = "create_time")
-    @Excel(name = "注册时间", orderNum = "2", format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 头像地址链接
      */
-    @Excel(name = "头像", orderNum = "3", imageType = 1)
     private String cover;
 
     /**
      * 姓名
      */
-    @Excel(name = "姓名", orderNum = "4")
     private String name;
 
     /**
      * 手机号码
      */
-    @Excel(name = "手机号码", orderNum = "5")
     private String phone;
 
     /**
      * 邮箱(一个邮箱只能注册一个用户),找回密码使用
      */
-    @Excel(name = "邮箱", orderNum = "6")
     private String email;
 
     /**
@@ -101,6 +92,17 @@ public class User {
      */
     @Column(name = "login_ip")
     private String loginIp;
+
+    public User(){}
+
+    public User(String id,String cover, String name, String phone, String email, String sex) {
+        this.id = id;
+        this.cover = cover;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.sex = sex;
+    }
 
     /**
      * 获取编号,UUID字符串

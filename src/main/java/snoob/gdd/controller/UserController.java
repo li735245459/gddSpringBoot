@@ -6,7 +6,6 @@ import snoob.gdd.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * 用户模块
@@ -110,17 +109,5 @@ public class UserController {
     @PostMapping("/delete")
     public Object delete(@RequestBody String id) throws Exception {
         return userService.delete(id);
-    }
-
-    /**
-     * 导出
-     *
-     * @param request
-     * @param response
-     * @throws Exception
-     */
-    @PostMapping("/export")
-    public Object export(HttpServletRequest request, HttpServletResponse response, @RequestBody User user) throws Exception {
-        return userService.export(user, request, response);
     }
 }
