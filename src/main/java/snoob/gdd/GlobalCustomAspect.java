@@ -46,12 +46,14 @@ public class GlobalCustomAspect {
         HttpServletRequest request = attributes.getRequest();
         request.setAttribute("ip", request.getRemoteAddr()); // 保存登陆ip到request对象中
         String requestURI = request.getRequestURI();
-        if (requestURI.contains("/gdd/user/login") ||
-                requestURI.contains("/gdd/user/register") ||
-                requestURI.contains("/gdd/user/forgetPassword") ||
-                requestURI.contains("/gdd/user/modifyPassword") ||
-                requestURI.contains("/gdd/email/send") ||
-                requestURI.contains("/gdd/email/checkEmailCode")) {
+        if (
+            requestURI.contains("/gdd/user/register") ||
+            requestURI.contains("/gdd/user/login") ||
+            requestURI.contains("/gdd/user/forgetPassword") ||
+            requestURI.contains("/gdd/email/send") ||
+            requestURI.contains("/gdd/email/checkEmailCode") ||
+            requestURI.contains("/gdd/user/modifyPassword")
+            ) {
             // 不需要校验jwt
         } else {
             // 校验jwt
@@ -67,7 +69,6 @@ public class GlobalCustomAspect {
                     request.setAttribute("userId", claims.getAudience());
                 }
             }
-
         }
     }
 
