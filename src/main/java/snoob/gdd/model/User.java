@@ -93,17 +93,6 @@ public class User {
     @Column(name = "login_ip")
     private String loginIp;
 
-    public User(){}
-
-    public User(String id,String cover, String name, String phone, String email, String sex) {
-        this.id = id;
-        this.cover = cover;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.sex = sex;
-    }
-
     /**
      * 获取编号,UUID字符串
      *
