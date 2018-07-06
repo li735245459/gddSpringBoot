@@ -3,10 +3,6 @@ package snoob.gdd.service.impl;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
@@ -26,7 +22,8 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void exportUser(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("Content-disposition", "attachment; filename=details.xls");
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         // 查询数据
         String excel = user.getId();
         user.setId(null);
@@ -40,23 +37,23 @@ public class ExcelServiceImpl implements ExcelService {
         // 导出字段
         String[] exportFields = {"姓名", "性别", "手机号码", "邮箱", "爱好", "省", "市", "区/县", "详细地址", "注册时间"};
         if ("oxlsx".equals(excel)) {
-            //创建工作簿
-            XSSFWorkbook workBook = new XSSFWorkbook();
-            //创建工作表
-            XSSFSheet sheet = workBook.createSheet("helloWorld");
-            for (int i = 0; i < 50000; i++) {
-                //创建行
-                XSSFRow row = sheet.createRow(i);
-                for (int j = 0; j < 10; j++) {
-                    //创建单元格
-                    XSSFCell cell = row.createCell(j, CellType.STRING);
-                    cell.setCellValue("测试");
-                }
-            }
-            workBook.write(bufferOs);
-            bufferOs.flush();
-            bufferOs.close();
-            workBook.close();
+//            //创建工作簿
+//            XSSFWorkbook workBook = new XSSFWorkbook();
+//            //创建工作表
+//            XSSFSheet sheet = workBook.createSheet("helloWorld");
+//            for (int i = 0; i < 50000; i++) {
+//                //创建行
+//                XSSFRow row = sheet.createRow(i);
+//                for (int j = 0; j < 10; j++) {
+//                    //创建单元格
+//                    XSSFCell cell = row.createCell(j, CellType.STRING);
+//                    cell.setCellValue("测试");
+//                }
+//            }
+//            workBook.write(bufferOs);
+//            bufferOs.flush();
+//            bufferOs.close();
+//            workBook.close();
         } else {
             /*
             创建工作簿
@@ -82,12 +79,15 @@ public class ExcelServiceImpl implements ExcelService {
             cell = row.createCell(0);
             cell.setCellValue("用户信息列表");
             cellStyle = workBook.createCellStyle();
-            cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-            cellStyle.setAlignment(HorizontalAlignment.CENTER_SELECTION);
+            cellStyle.setVerticalAlignment(VerticalAlignment.CENTER); // 垂直居中
+            cellStyle.setAlignment(HorizontalAlignment.CENTER_SELECTION); // 水平居中
             font = workBook.createFont();
             font.setBold(true);
             font.setFontHeightInPoints((short) 16);
-            cellStyle.setFont(font);
+            font.setColor(IndexedColors.WHITE.getIndex());
+            cellStyle.setFont(font); // 设置字体
+            cellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex()); // 设置前景色
+            cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cell.setCellStyle(cellStyle);
             /*
             创建标题
@@ -145,6 +145,8 @@ public class ExcelServiceImpl implements ExcelService {
              */
             cellStyle = workBook.createCellStyle();
             cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+            cellStyle.setAlignment(HorizontalAlignment.LEFT);
+            cellStyle.setDataFormat(workBook.createDataFormat().getFormat("yyyy-MM-dd  hh:mm:ss"));
             for (int i = 0; i < users.size(); i++) {
                 row = sheet.createRow(i + 4);
                 row.setHeight((short) (26.25 * 15));
@@ -181,8 +183,6 @@ public class ExcelServiceImpl implements ExcelService {
                             break;
                         case 9:
                             cell.setCellValue(users.get(i).getCreateTime()); // 注册时间
-                            cellStyle.setDataFormat(workBook.createDataFormat().getFormat("yyyy-MM-dd  hh:mm:ss"));
-                            cellStyle.setAlignment(HorizontalAlignment.LEFT);
                             break;
                     }
                     // 设置列样式
