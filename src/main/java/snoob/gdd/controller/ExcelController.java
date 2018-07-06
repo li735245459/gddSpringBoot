@@ -6,9 +6,9 @@ import snoob.gdd.model.User;
 import snoob.gdd.service.ExcelService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("/excel")
 @Controller
@@ -18,14 +18,26 @@ public class ExcelController {
     private ExcelService excelService;
 
     /**
-     * 导出用户信息 , @RequestBody User user
+     * 导出用户信息
      *
-     * @param request
      * @param response
+     * @param user
      * @throws Exception
      */
     @PostMapping("/exportUser")
-    public void export(HttpServletRequest request, HttpServletResponse response, @RequestBody User user) throws Exception {
-        excelService.exportUser(user, request, response);
+    public void exportUser(HttpServletResponse response, @RequestBody User user) throws Exception {
+        excelService.exportUser(response, user);
+    }
+
+    /**
+     * 导入用户信息
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/importUser")
+    public Object importUser(HttpServletRequest request) throws Exception {
+        return excelService.importUser(request);
     }
 }
