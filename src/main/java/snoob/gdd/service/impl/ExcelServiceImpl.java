@@ -20,6 +20,7 @@ public class ExcelServiceImpl implements ExcelService {
     @Resource
     private UserMapper userMapper;
 
+
     @Override
     public void exportUser(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Content-disposition", "attachment; filename=details.xls");
@@ -176,7 +177,7 @@ public class ExcelServiceImpl implements ExcelService {
                             cell.setCellValue(users.get(i).getCity()); // 市
                             break;
                         case 7:
-                            cell.setCellValue(users.get(i).getArea()); // 区
+                            cell.setCellValue("-1".equals(users.get(i).getArea()) ? null : users.get(i).getArea()); // 区
                             break;
                         case 8:
                             cell.setCellValue(users.get(i).getAddress()); // 详细地址

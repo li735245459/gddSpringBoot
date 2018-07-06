@@ -202,36 +202,54 @@ public class User {
     }
 
     /**
-     * 获取密码,MD5加密显示
+     * 获取密码
      *
-     * @return password - 密码,MD5加密显示
+     * @return password - 密码
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * 设置密码,MD5加密显示
+     * 设置密码
      *
-     * @param password 密码,MD5加密显示
+     * @param password 密码
      */
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
 
     /**
-     * 获取性别(male:男,female:女)
+     * 获取备注
      *
-     * @return sex - 性别(male:男,female:女)
+     * @return introduce - 备注
+     */
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    /**
+     * 设置备注
+     *
+     * @param introduce 备注
+     */
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce == null ? null : introduce.trim();
+    }
+
+    /**
+     * 获取性别
+     *
+     * @return sex - 性别
      */
     public String getSex() {
         return sex;
     }
 
     /**
-     * 设置性别(male:男,female:女)
+     * 设置性别
      *
-     * @param sex 性别(male:男,female:女)
+     * @param sex 性别
      */
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
@@ -253,24 +271,6 @@ public class User {
      */
     public void setHobby(String hobby) {
         this.hobby = hobby == null ? null : hobby.trim();
-    }
-
-    /**
-     * 获取备注
-     *
-     * @return introduce - 备注
-     */
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    /**
-     * 设置备注
-     *
-     * @param introduce 备注
-     */
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
     }
 
     /**
@@ -379,27 +379,5 @@ public class User {
      */
     public void setLoginIp(String loginIp) {
         this.loginIp = loginIp == null ? null : loginIp.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", createTime=" + createTime +
-                ", cover='" + cover + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", sex='" + sex + '\'' +
-                ", hobby='" + hobby + '\'' +
-                ", introduce='" + introduce + '\'' +
-                ", province='" + province + '\'' +
-                ", city='" + city + '\'' +
-                ", area='" + area + '\'' +
-                ", address='" + address + '\'' +
-                ", loginTime=" + loginTime +
-                ", loginIp='" + loginIp + '\'' +
-                '}';
     }
 }

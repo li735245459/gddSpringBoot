@@ -1,15 +1,11 @@
 package snoob.gdd.model;
 
-import snoob.gdd.util.UUIdGenId;
-import tk.mybatis.mapper.annotation.KeySql;
-
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "log")
 public class Log {
     @Id
-    @KeySql(genId = UUIdGenId.class)
     private String id;
 
     @Column(name = "create_time")
