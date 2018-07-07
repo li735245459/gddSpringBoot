@@ -4,6 +4,8 @@ import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.ExcelService;
@@ -11,28 +13,37 @@ import snoob.gdd.util.ResultUtil;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
 public class ExcelServiceImpl implements ExcelService {
     @Resource
     private UserMapper userMapper;
-
+    private HSSFWorkbook workBook = null;
+    private HSSFSheet hssfSheet = null;
+    private HSSFRow hssfRow = null;
+    private HSSFCell hssfCell = null;
+    private Sheet sheet = null;
+    private Row row = null;
+    private Cell cell = null;
+    private HSSFCellStyle hssfCellStyle = null;
+    private HSSFFont font = null;
 
     /**
      * 导出用户信息
      *
      * @param response
      * @param user
-     * @throws Exception
+     * @thhssfRows Exception
      */
     @Override
     public void exportUser(HttpServletResponse response, User user) throws Exception {
-        response.setHeader("Content-disposition", "attachment; filename=details.xls");
         response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         // 查询数据
         Example example = new Example(User.class);
@@ -57,144 +68,137 @@ public class ExcelServiceImpl implements ExcelService {
             criteria.andGreaterThanOrEqualTo("loginTime", user.getLoginTime());
         }
         List<User> users = userMapper.selectByExample(example);
-        // 获得输出流,该输出流的输出介质是客户端浏览器
-        OutputStream os = response.getOutputStream();
-        BufferedOutputStream bufferOs = new BufferedOutputStream(os);
         /*
          * 创建工作簿
          */
         String[] exportFields = {"姓名", "性别", "手机号码", "邮箱", "爱好", "省", "市", "区/县", "详细地址", "注册时间"}; // 导出字段
-        HSSFWorkbook workBook = new HSSFWorkbook();
+        workBook = new HSSFWorkbook();
         /*
          * 创建工作表
          */
-        HSSFSheet sheet = workBook.createSheet("用户信息");
-        /*
-         *
-         */
-        HSSFRow row = null;
-        HSSFCell cell = null;
-        HSSFCellStyle cellStyle = null;
-        HSSFFont font = null;
+        hssfSheet = workBook.createSheet("用户信息");
         /*
          * 创建表头,合并(0,0),(1,9)
          */
         CellRangeAddress cra = new CellRangeAddress(0, 2, 0, 9);
-        sheet.addMergedRegion(cra);
-        row = sheet.createRow(0);
-        cell = row.createCell(0);
-        cell.setCellValue("用户信息列表");
-        cellStyle = workBook.createCellStyle();
-        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER); // 垂直居中
-        cellStyle.setAlignment(HorizontalAlignment.CENTER_SELECTION); // 水平居中
+        hssfSheet.addMergedRegion(cra);
+        hssfRow = hssfSheet.createRow(0);
+        hssfCell = hssfRow.createCell(0);
+        hssfCell.setCellValue("用户信息列表");
+        hssfCellStyle = workBook.createCellStyle();
+        hssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER); // 垂直居中
+        hssfCellStyle.setAlignment(HorizontalAlignment.CENTER_SELECTION); // 水平居中
         font = workBook.createFont();
         font.setBold(true);
         font.setFontHeightInPoints((short) 16);
         font.setColor(IndexedColors.WHITE.getIndex());
-        cellStyle.setFont(font); // 设置字体
-        cellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex()); // 设置前景色
-        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        cell.setCellStyle(cellStyle);
+        hssfCellStyle.setFont(font); // 设置字体
+        hssfCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex()); // 设置前景色
+        hssfCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        hssfCell.setCellStyle(hssfCellStyle);
         /*
          * 创建标题
          */
-        row = sheet.createRow(3);
-        row.setHeight((short) (26.25 * 20));
-        cellStyle = workBook.createCellStyle();
-        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        hssfRow = hssfSheet.createRow(3);
+        hssfRow.setHeight((short) (26.25 * 20));
+        hssfCellStyle = workBook.createCellStyle();
+        hssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         font = workBook.createFont();
         font.setBold(true);
         font.setFontHeightInPoints((short) 12);
-        cellStyle.setFont(font);
+        hssfCellStyle.setFont(font);
         for (int i = 0; i < exportFields.length; i++) {
-            cell = row.createCell(i);
+            hssfCell = hssfRow.createCell(i);
             // 设置列宽
             switch (i) {
                 case 0:
-                    sheet.setColumnWidth(i, 10 * 256); // 姓名
+                    hssfSheet.setColumnWidth(i, 10 * 256); // 姓名
                     break;
                 case 1:
-                    sheet.setColumnWidth(i, 8 * 256); // 性别
+                    hssfSheet.setColumnWidth(i, 8 * 256); // 性别
                     break;
                 case 2:
-                    sheet.setColumnWidth(i, 20 * 256); // 手机号码
+                    hssfSheet.setColumnWidth(i, 20 * 256); // 手机号码
                     break;
                 case 3:
-                    sheet.setColumnWidth(i, 30 * 256); // 邮箱
+                    hssfSheet.setColumnWidth(i, 30 * 256); // 邮箱
                     break;
                 case 4:
-                    sheet.setColumnWidth(i, 40 * 256); // 爱好
+                    hssfSheet.setColumnWidth(i, 40 * 256); // 爱好
                     break;
                 case 5:
-                    sheet.setColumnWidth(i, 20 * 256); // 省
+                    hssfSheet.setColumnWidth(i, 20 * 256); // 省
                     break;
                 case 6:
-                    sheet.setColumnWidth(i, 20 * 256); // 市
+                    hssfSheet.setColumnWidth(i, 20 * 256); // 市
                     break;
                 case 7:
-                    sheet.setColumnWidth(i, 30 * 256); // 区
+                    hssfSheet.setColumnWidth(i, 30 * 256); // 区
                     break;
                 case 8:
-                    sheet.setColumnWidth(i, 50 * 256); // 详细地址
+                    hssfSheet.setColumnWidth(i, 50 * 256); // 详细地址
                     break;
                 case 9:
-                    sheet.setColumnWidth(i, 20 * 256); // 注册时间
+                    hssfSheet.setColumnWidth(i, 20 * 256); // 注册时间
                     break;
             }
             // 设置列样式
-            cell.setCellStyle(cellStyle);
+            hssfCell.setCellStyle(hssfCellStyle);
             // 设置值
-            cell.setCellValue(exportFields[i]);
+            hssfCell.setCellValue(exportFields[i]);
         }
         /*
          * 创建数据
          */
-        cellStyle = workBook.createCellStyle();
-        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        cellStyle.setAlignment(HorizontalAlignment.LEFT);
-        cellStyle.setDataFormat(workBook.createDataFormat().getFormat("yyyy-MM-dd  hh:mm:ss"));
+        hssfCellStyle = workBook.createCellStyle();
+        hssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        hssfCellStyle.setAlignment(HorizontalAlignment.LEFT);
+        hssfCellStyle.setDataFormat(workBook.createDataFormat().getFormat("yyyy-MM-dd  hh:mm:ss"));
         for (int i = 0; i < users.size(); i++) {
-            row = sheet.createRow(i + 4);
-            row.setHeight((short) (26.25 * 15));
+            hssfRow = hssfSheet.createRow(i + 4);
+            hssfRow.setHeight((short) (26.25 * 15));
             for (int j = 0; j < exportFields.length; j++) {
-                cell = row.createCell(j);
+                hssfCell = hssfRow.createCell(j);
                 // 设置值
                 switch (j) {
                     case 0:
-                        cell.setCellValue(users.get(i).getName()); // 姓名
+                        hssfCell.setCellValue(users.get(i).getName()); // 姓名
                         break;
                     case 1:
-                        cell.setCellValue(users.get(i).getSex()); // 性别
+                        hssfCell.setCellValue(users.get(i).getSex()); // 性别
                         break;
                     case 2:
-                        cell.setCellValue(users.get(i).getPhone()); // 手机号码
+                        hssfCell.setCellValue(users.get(i).getPhone()); // 手机号码
                         break;
                     case 3:
-                        cell.setCellValue(users.get(i).getEmail()); // 邮箱
+                        hssfCell.setCellValue(users.get(i).getEmail()); // 邮箱
                         break;
                     case 4:
-                        cell.setCellValue(users.get(i).getHobby()); // 爱好
+                        hssfCell.setCellValue(users.get(i).getHobby()); // 爱好
                         break;
                     case 5:
-                        cell.setCellValue(users.get(i).getProvince()); // 省
+                        hssfCell.setCellValue(users.get(i).getProvince()); // 省
                         break;
                     case 6:
-                        cell.setCellValue(users.get(i).getCity()); // 市
+                        hssfCell.setCellValue(users.get(i).getCity()); // 市
                         break;
                     case 7:
-                        cell.setCellValue("-1".equals(users.get(i).getArea()) ? null : users.get(i).getArea()); // 区
+                        hssfCell.setCellValue("-1".equals(users.get(i).getArea()) ? null : users.get(i).getArea()); // 区
                         break;
                     case 8:
-                        cell.setCellValue(users.get(i).getAddress()); // 详细地址
+                        hssfCell.setCellValue(users.get(i).getAddress()); // 详细地址
                         break;
                     case 9:
-                        cell.setCellValue(users.get(i).getCreateTime()); // 注册时间
+                        hssfCell.setCellValue(users.get(i).getCreateTime()); // 注册时间
                         break;
                 }
                 // 设置列样式
-                cell.setCellStyle(cellStyle);
+                hssfCell.setCellStyle(hssfCellStyle);
             }
         }
+        // 获得输出流,该输出流的输出介质是客户端浏览器
+        OutputStream os = response.getOutputStream();
+        BufferedOutputStream bufferOs = new BufferedOutputStream(os);
         workBook.write(bufferOs);
         bufferOs.flush();
         bufferOs.close();
@@ -204,12 +208,63 @@ public class ExcelServiceImpl implements ExcelService {
     /**
      * 导入用户信息
      *
-     * @param request
-     * @throws Exception
+     * @param file
+     * @return
      */
     @Override
-    public Object importUser(HttpServletRequest request) throws Exception {
-
-        return ResultUtil.success();
+    public Object importUser(MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            User user = new User();
+            List<User> users = new ArrayList();
+            workBook = new HSSFWorkbook(file.getInputStream()); // 工作簿
+            // 遍历Excel中所有的sheet
+            for (int sheetIndex = 0; sheetIndex < workBook.getNumberOfSheets(); sheetIndex++) {
+                sheet = workBook.getSheetAt(sheetIndex);
+                // 遍历当前sheet中的所有row, 跳过表头和标题行
+                for (int rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                    row = sheet.getRow(rowIndex);
+                    // 遍历当前row中的所有cell
+                    for (int cellIndex = 0; cellIndex <= row.getLastCellNum(); cellIndex++) {
+                        cell = row.getCell(cellIndex);
+                        switch (cellIndex) {
+                            case 0:
+                                user.setName(cell.getStringCellValue());
+                                break;
+                            case 1:
+                                user.setSex(cell.getStringCellValue());
+                                break;
+                            case 2:
+                                user.setPhone(cell.getStringCellValue());
+                                break;
+                            case 3:
+                                user.setEmail(cell.getStringCellValue());
+                                break;
+                            case 4:
+                                user.setHobby(cell.getStringCellValue());
+                                break;
+                            case 5:
+                                user.setProvince(cell.getStringCellValue());
+                                break;
+                            case 6:
+                                user.setCity(cell.getStringCellValue());
+                                break;
+                            case 7:
+                                user.setArea(cell.getStringCellValue() == null ? "-1" : cell.getStringCellValue());
+                                break;
+                            case 8:
+                                user.setAddress(cell.getStringCellValue());
+                                break;
+                            case 9:
+                                user.setCreateTime(cell.getDateCellValue());
+                                break;
+                        }
+                    }
+                    users.add(user);
+                }
+            }
+            userMapper.insertList(users);
+            return ResultUtil.success();
+        }
+        return ResultUtil.error(ResultEnum.ERROR_UPFILE_NULL);
     }
 }
