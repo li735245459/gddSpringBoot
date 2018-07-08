@@ -10,6 +10,7 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.ExcelService;
 import snoob.gdd.util.ResultUtil;
+import snoob.gdd.util.StrUtil;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
@@ -17,8 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -34,6 +36,7 @@ public class ExcelServiceImpl implements ExcelService {
     private Cell cell = null;
     private HSSFCellStyle hssfCellStyle = null;
     private HSSFFont font = null;
+    HSSFDataFormat format = null;
 
     /**
      * 导出用户信息
@@ -108,7 +111,7 @@ public class ExcelServiceImpl implements ExcelService {
         font.setFontHeightInPoints((short) 12);
         hssfCellStyle.setFont(font);
         for (int i = 0; i < exportFields.length; i++) {
-            hssfCell = hssfRow.createCell(i);
+            hssfCell = hssfRow.createCell(i, CellType.STRING);
             // 设置列宽
             switch (i) {
                 case 0:
@@ -150,16 +153,16 @@ public class ExcelServiceImpl implements ExcelService {
         /*
          * 创建数据
          */
-        hssfCellStyle = workBook.createCellStyle();
-        hssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        hssfCellStyle.setAlignment(HorizontalAlignment.LEFT);
-        hssfCellStyle.setDataFormat(workBook.createDataFormat().getFormat("yyyy-MM-dd  hh:mm:ss"));
+        format = workBook.createDataFormat();
         for (int i = 0; i < users.size(); i++) {
             hssfRow = hssfSheet.createRow(i + 4);
             hssfRow.setHeight((short) (26.25 * 15));
             for (int j = 0; j < exportFields.length; j++) {
-                hssfCell = hssfRow.createCell(j);
-                // 设置值
+                hssfCellStyle = workBook.createCellStyle();
+                hssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+                hssfCellStyle.setAlignment(HorizontalAlignment.LEFT);
+                hssfCell = hssfRow.createCell(j, CellType.STRING);
+                // 设置cell值
                 switch (j) {
                     case 0:
                         hssfCell.setCellValue(users.get(i).getName()); // 姓名
@@ -168,6 +171,7 @@ public class ExcelServiceImpl implements ExcelService {
                         hssfCell.setCellValue(users.get(i).getSex()); // 性别
                         break;
                     case 2:
+                        hssfCellStyle.setDataFormat(format.getFormat("TEXT"));
                         hssfCell.setCellValue(users.get(i).getPhone()); // 手机号码
                         break;
                     case 3:
@@ -189,14 +193,15 @@ public class ExcelServiceImpl implements ExcelService {
                         hssfCell.setCellValue(users.get(i).getAddress()); // 详细地址
                         break;
                     case 9:
+                        hssfCellStyle.setDataFormat(format.getFormat("yyyy-MM-dd  hh:mm:ss"));
                         hssfCell.setCellValue(users.get(i).getCreateTime()); // 注册时间
                         break;
                 }
-                // 设置列样式
+                // 设置cell样式
                 hssfCell.setCellStyle(hssfCellStyle);
             }
         }
-        // 获得输出流,该输出流的输出介质是客户端浏览器
+        // 获得输出流,该输出流的输出介质是客户端浏览器（可不可以根据字节流输出到浏览器的进度推算出进度条的值？？？）
         OutputStream os = response.getOutputStream();
         BufferedOutputStream bufferOs = new BufferedOutputStream(os);
         workBook.write(bufferOs);
@@ -212,17 +217,17 @@ public class ExcelServiceImpl implements ExcelService {
      * @return
      */
     @Override
-    public Object importUser(MultipartFile file) throws IOException {
+    public Object importUser(MultipartFile file) throws Exception {
         if (!file.isEmpty()) {
-            User user = new User();
             List<User> users = new ArrayList();
             workBook = new HSSFWorkbook(file.getInputStream()); // 工作簿
             // 遍历Excel中所有的sheet
             for (int sheetIndex = 0; sheetIndex < workBook.getNumberOfSheets(); sheetIndex++) {
                 sheet = workBook.getSheetAt(sheetIndex);
-                // 遍历当前sheet中的所有row, 跳过表头和标题行
-                for (int rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                // 遍历当前sheet中的所有row, 跳过表头(3行)和标题行(1行)
+                for (int rowIndex = 4; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                     row = sheet.getRow(rowIndex);
+                    User user = new User();
                     // 遍历当前row中的所有cell
                     for (int cellIndex = 0; cellIndex <= row.getLastCellNum(); cellIndex++) {
                         cell = row.getCell(cellIndex);
@@ -255,14 +260,17 @@ public class ExcelServiceImpl implements ExcelService {
                                 user.setAddress(cell.getStringCellValue());
                                 break;
                             case 9:
+//                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(cell.getStringCellValue())
                                 user.setCreateTime(cell.getDateCellValue());
                                 break;
                         }
                     }
+                    user.setId(StrUtil.getUuidStr());
                     users.add(user);
                 }
+                break;
             }
-            userMapper.insertList(users);
+            userMapper.customInsert(users);
             return ResultUtil.success();
         }
         return ResultUtil.error(ResultEnum.ERROR_UPFILE_NULL);
