@@ -124,7 +124,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object page(User user, Integer pageNumber, Integer pageSize) {
-        // 动态sql
         Example example = new Example(User.class);
 //        // 设置行级锁,确保数据一致性
 //        example.setForUpdate(true);

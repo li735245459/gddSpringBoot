@@ -1,8 +1,5 @@
 package snoob.gdd.model;
 
-/**
- * 服务器全局响应对象
- */
 public class Result<T> {
     /**
      * 状态码,具体情况ResultEnum类

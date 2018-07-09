@@ -30,7 +30,6 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public Object page(Log log, Integer pageNumber, Integer pageSize) {
-        // 动态sql
         Example example = new Example(User.class);
         example.orderBy("createTime").asc();
         // 开启分页模式
@@ -54,7 +53,7 @@ public class LogServiceImpl implements LogService {
     }
 
     /**
-     * 删除日志
+     * 删除
      * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1" 表示单一删除
      * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1,3b2ebfa1-ed59-4091-a800-aef6e867f1a2" 表示批量删除
      * id = "all" 表示清空

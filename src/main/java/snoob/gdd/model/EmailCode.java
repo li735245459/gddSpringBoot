@@ -6,6 +6,9 @@ import tk.mybatis.mapper.annotation.KeySql;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * 邮箱验证码信息
+ */
 @Table(name = "email_code")
 public class EmailCode {
     /**

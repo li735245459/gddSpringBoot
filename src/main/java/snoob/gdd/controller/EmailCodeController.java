@@ -1,7 +1,8 @@
 package snoob.gdd.controller;
 
 import org.springframework.web.bind.annotation.*;
-import snoob.gdd.service.EmailService;
+import snoob.gdd.model.EmailCode;
+import snoob.gdd.service.EmailCodeService;
 
 import javax.annotation.Resource;
 
@@ -13,10 +14,10 @@ import javax.annotation.Resource;
 public class EmailCodeController {
 
     @Resource
-    private EmailService emailService;
+    private EmailCodeService emailCodeService;
 
     /**
-     * 发送邮件
+     * 发送验证码到邮件
      *
      * @return
      */
@@ -24,11 +25,11 @@ public class EmailCodeController {
     public Object send(
             @PathVariable(value = "type") String type,
             @PathVariable(value = "receiver") String receiver) throws Exception {
-        return emailService.sendHtmlEmail(type, receiver);
+        return emailCodeService.sendHtmlEmail(type, receiver);
     }
 
     /**
-     * 检查邮箱验证码
+     * 检查邮箱、验证码是否匹配
      *
      * @param type
      * @param email
@@ -42,6 +43,32 @@ public class EmailCodeController {
             @PathVariable(value = "email") String email,
             @PathVariable(value = "code") String code
     ) throws Exception {
-        return emailService.checkEmailCode(type, email, code);
+        return emailCodeService.checkEmailCode(type, email, code);
     }
+
+    /**
+     * 分页查询
+     *
+     * @return
+     */
+    @PostMapping("/page/{pageNumber}/{pageSize}")
+    public Object page(@RequestBody EmailCode emailCode,
+                       @PathVariable(value = "pageNumber") Integer pageNumber,
+                       @PathVariable(value = "pageSize") Integer pageSize
+    ) throws Exception {
+        return emailCodeService.page(emailCode, pageNumber, pageSize);
+    }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete")
+    public Object delete(@RequestBody String id) throws Exception {
+        return emailCodeService.delete(id);
+    }
+
+
 }

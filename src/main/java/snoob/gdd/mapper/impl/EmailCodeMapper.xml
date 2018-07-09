@@ -14,4 +14,12 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="code" jdbcType="VARCHAR" property="code" />
   </resultMap>
+
+  <!-- 批量删除 -->
+  <delete id="customDelete" parameterType="java.util.List">
+    delete from email_code where id in
+    <foreach collection="list" index="index" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>
