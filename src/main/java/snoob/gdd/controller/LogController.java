@@ -16,6 +16,15 @@ public class LogController {
     @Resource
     private LogService logService;
 
+    /**
+     * 分页查询
+     *
+     * @param log
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/page/{pageNumber}/{pageSize}")
     public Object page(@RequestBody Log log, @PathVariable Integer pageNumber, @PathVariable Integer pageSize) throws Exception {
         return logService.page(log, pageNumber, pageSize);
