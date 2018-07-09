@@ -1,20 +1,16 @@
 package snoob.gdd.controller;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import snoob.gdd.model.User;
 import snoob.gdd.service.ExcelService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 
 
 @RequestMapping("/excel")
-@Controller
+@RestController
 public class ExcelController {
 
     @Resource

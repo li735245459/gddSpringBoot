@@ -16,10 +16,7 @@ import tk.mybatis.mapper.entity.Example;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -260,7 +257,6 @@ public class ExcelServiceImpl implements ExcelService {
                                 user.setAddress(cell.getStringCellValue());
                                 break;
                             case 9:
-//                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(cell.getStringCellValue())
                                 user.setCreateTime(cell.getDateCellValue());
                                 break;
                         }
