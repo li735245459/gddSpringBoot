@@ -6,9 +6,6 @@ import tk.mybatis.mapper.annotation.KeySql;
 import java.util.Date;
 import javax.persistence.*;
 
-/**
- * 用户信息
- */
 @Table(name = "user")
 public class User {
     /**
@@ -45,12 +42,17 @@ public class User {
     private String email;
 
     /**
-     * 密码,MD5加密显示
+     * 密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
      */
     private String password;
 
     /**
-     * 性别(male:男,female:女)
+     * 备注
+     */
+    private String introduce;
+
+    /**
+     * 性别
      */
     private String sex;
 
@@ -58,11 +60,6 @@ public class User {
      * 爱好
      */
     private String hobby;
-
-    /**
-     * 备注
-     */
-    private String introduce;
 
     /**
      * 省
@@ -205,18 +202,18 @@ public class User {
     }
 
     /**
-     * 获取密码
+     * 获取密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
      *
-     * @return password - 密码
+     * @return password - 密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * 设置密码
+     * 设置密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
      *
-     * @param password 密码
+     * @param password 密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
      */
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();

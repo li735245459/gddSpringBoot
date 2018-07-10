@@ -6,9 +6,6 @@ import tk.mybatis.mapper.annotation.KeySql;
 import java.util.Date;
 import javax.persistence.*;
 
-/**
- * 日志信息
- */
 @Table(name = "log")
 public class Log {
     /**

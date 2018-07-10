@@ -2,7 +2,7 @@ package snoob.gdd.enums;
 
 public enum ResultEnum {
     SYSTEM_ERROR(-1, "系统错误"),
-    ERROR_JWT(1000, "JWT校验失败"),
+    ERROR_JWT(1000, "JWT非法"),
     ERROR_EMAIL_OR_PASSWORD(100100, "邮箱或密码错误"),
     ERROR_EMAIL_OR_CODE(100101, "邮箱或验证码错误"),
     ERROR_EMAIL_USED(100102, "邮箱已被注册"),

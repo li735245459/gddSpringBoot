@@ -65,7 +65,7 @@ public class GlobalCustomAspect {
                 String jwt = authorization.substring(6);
                 Claims claims = JwtUtil.decodeJWT(jwt);
                 if (claims == null) {
-                    throw new GlobalCustomException(ResultEnum.ERROR_JWT); // jwt错误或失效
+                    throw new GlobalCustomException(ResultEnum.ERROR_JWT); // jwt错误或过期
                 } else {
                     request.setAttribute("userId", claims.getAudience());
                 }

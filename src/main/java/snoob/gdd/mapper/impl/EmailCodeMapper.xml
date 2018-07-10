@@ -18,7 +18,7 @@
   <!-- 批量删除 -->
   <delete id="customDelete" parameterType="java.util.List">
     delete from email_code where id in
-    <foreach collection="list" index="index" item="id" open="(" close=")" separator=",">
+    <foreach close=")" collection="list" index="index" item="id" open="(" separator=",">
       #{id}
     </foreach>
   </delete>
