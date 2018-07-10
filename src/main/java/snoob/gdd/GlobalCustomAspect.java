@@ -60,12 +60,12 @@ public class GlobalCustomAspect {
             // 校验jwt
             String authorization = request.getHeader("Authorization");
             if (authorization == null || !authorization.startsWith("Bearer")) {
-                throw new GlobalCustomException(ResultEnum.ERROR_JWT);
+                throw new GlobalCustomException(ResultEnum.ERROR_JWT); // 请求头中缺失jwt参数
             } else {
                 String jwt = authorization.substring(6);
                 Claims claims = JwtUtil.decodeJWT(jwt);
                 if (claims == null) {
-                    throw new GlobalCustomException(ResultEnum.ERROR_JWT);
+                    throw new GlobalCustomException(ResultEnum.ERROR_JWT); // jwt错误或失效
                 } else {
                     request.setAttribute("userId", claims.getAudience());
                 }
