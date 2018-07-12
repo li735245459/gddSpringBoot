@@ -19,7 +19,10 @@ public class EmailCodeController {
     /**
      * 发送验证码到邮件
      *
+     * @param type
+     * @param receiver
      * @return
+     * @throws Exception
      */
     @GetMapping("/send/{type}/{receiver}")
     public Object send(
@@ -49,7 +52,11 @@ public class EmailCodeController {
     /**
      * 分页查询
      *
+     * @param emailCode
+     * @param pageNumber
+     * @param pageSize
      * @return
+     * @throws Exception
      */
     @PostMapping("/page/{pageNumber}/{pageSize}")
     public Object page(@RequestBody EmailCode emailCode,

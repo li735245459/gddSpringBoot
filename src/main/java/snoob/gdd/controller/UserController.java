@@ -55,7 +55,9 @@ public class UserController {
      * 用户登录
      *
      * @param user
+     * @param request
      * @return
+     * @throws Exception
      */
     @PostMapping("/login")
     public Object login(@RequestBody User user, HttpServletRequest request) throws Exception {
@@ -90,7 +92,11 @@ public class UserController {
     /**
      * 分页查询
      *
+     * @param user
+     * @param pageNumber
+     * @param pageSize
      * @return
+     * @throws Exception
      */
     @PostMapping("/page/{pageNumber}/{pageSize}")
     public Object page(@RequestBody User user,

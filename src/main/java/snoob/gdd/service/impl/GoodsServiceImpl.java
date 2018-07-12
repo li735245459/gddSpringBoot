@@ -1,11 +1,17 @@
 package snoob.gdd.service.impl;
 
 import org.springframework.stereotype.Service;
+import snoob.gdd.mapper.GoodsTypeMapper;
 import snoob.gdd.model.GoodsType;
 import snoob.gdd.service.GoodsService;
 
+import javax.annotation.Resource;
+
 @Service
 public class GoodsServiceImpl implements GoodsService {
+
+    @Resource
+    private GoodsTypeMapper goodsTypeMapper;
 
     /**
      * 编辑、添加商品类型信息

@@ -29,7 +29,7 @@ public class ExcelController {
     }
 
     /**
-     * 导入用户信息 , consumes = "multipart/form-data"
+     * 导入用户信息
      *
      * @param file
      * @return

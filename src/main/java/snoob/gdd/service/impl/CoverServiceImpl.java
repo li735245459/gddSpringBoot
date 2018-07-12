@@ -1,11 +1,18 @@
 package snoob.gdd.service.impl;
 
 import org.springframework.stereotype.Service;
+import snoob.gdd.mapper.CoverTypeMapper;
 import snoob.gdd.model.CoverType;
 import snoob.gdd.service.CoverService;
 
+import javax.annotation.Resource;
+
 @Service
 public class CoverServiceImpl implements CoverService {
+
+    @Resource
+    private CoverTypeMapper coverTypeMapper;
+
     /**
      * 编辑、添加封面类型信息
      *
@@ -20,6 +27,7 @@ public class CoverServiceImpl implements CoverService {
 
     /**
      * 分页查询封面类型信息
+     *
      * @param coverType
      * @param pageNumber
      * @param pageSize
@@ -33,6 +41,7 @@ public class CoverServiceImpl implements CoverService {
 
     /**
      * 删除封面类型信息
+     *
      * @param id
      * @return
      * @throws Exception
