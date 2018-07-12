@@ -58,9 +58,10 @@
         <!--
         指定需要反向同步的表
         -->
-        <table tableName="user" domainObjectName="User"></table>
-        <table tableName="log" domainObjectName="Log"></table>
-        <table tableName="email_code" domainObjectName="EmailCode"></table>
-
+        <!--<table tableName="user" domainObjectName="User"></table>-->
+        <!--<table tableName="log" domainObjectName="Log"></table>-->
+        <!--<table tableName="email_code" domainObjectName="EmailCode"></table>-->
+        <!--<table tableName="cover_type" domainObjectName="CoverType"></table>-->
+        <!--<table tableName="goods_type" domainObjectName="GoodsType"></table>-->
     </context>
 </generatorConfiguration>

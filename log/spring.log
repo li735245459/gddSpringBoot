@@ -54,21 +54,21 @@
 2018-07-12 18:21:24.812  INFO 3084 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:21:24.906  INFO 3084 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2018-07-12 18:21:26.107  INFO 3084 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2018-07-12 18:21:26.107 DEBUG 3084 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.selectOne    : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user WHERE email = ? AND password = ? 
+2018-07-12 18:21:26.107 DEBUG 3084 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.selectOne    : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user WHERE email = ? AND password = ?
 2018-07-12 18:21:26.154 DEBUG 3084 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.selectOne    : ==> Parameters: lixing_java@163.com(String), afb4f702e90e70060d09f4d28a848914(String)
 2018-07-12 18:21:26.341 DEBUG 3084 --- [http-nio-8080-exec-2] snoob.gdd.mapper.UserMapper.selectOne    : <==      Total: 1
-2018-07-12 18:21:26.388 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.U.updateByPrimaryKeySelective      : ==>  Preparing: UPDATE user SET id = id,create_time = ?,cover = ?,name = ?,phone = ?,email = ?,password = ?,introduce = ?,sex = ?,hobby = ?,province = ?,city = ?,area = ?,address = ?,login_time = ?,login_ip = ? WHERE id = ? 
-2018-07-12 18:21:26.388 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.U.updateByPrimaryKeySelective      : ==> Parameters: 2018-07-06 19:58:09.0(Timestamp), cover.jpg(String), 李星(String), 18013896707(String), lixing_java@163.com(String), afb4f702e90e70060d09f4d28a848914(String), 该用户很懒什么都没有留下(String), 男(String), 篮球,足球,排球,皮球(String), 河北省(String), 承德市(String), 围场满族蒙古族自治县(String), 育群胡同21号(String), 2018-07-12 18:21:26.388(Timestamp), 127.0.0.1(String), 4bd0f26c-e0fc-4530-b3bb-6dbb65c27c16(String)
+2018-07-12 18:21:26.388 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.U.updateByPrimaryKeySelective      : ==>  Preparing: UPDATE user SET id = id,create_time = ?,coverService = ?,name = ?,phone = ?,email = ?,password = ?,introduce = ?,sex = ?,hobby = ?,province = ?,city = ?,area = ?,address = ?,login_time = ?,login_ip = ? WHERE id = ?
+2018-07-12 18:21:26.388 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.U.updateByPrimaryKeySelective      : ==> Parameters: 2018-07-06 19:58:09.0(Timestamp), coverService.jpg(String), 李星(String), 18013896707(String), lixing_java@163.com(String), afb4f702e90e70060d09f4d28a848914(String), 该用户很懒什么都没有留下(String), 男(String), 篮球,足球,排球,皮球(String), 河北省(String), 承德市(String), 围场满族蒙古族自治县(String), 育群胡同21号(String), 2018-07-12 18:21:26.388(Timestamp), 127.0.0.1(String), 4bd0f26c-e0fc-4530-b3bb-6dbb65c27c16(String)
 2018-07-12 18:21:26.528 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.U.updateByPrimaryKeySelective      : <==    Updates: 1
 2018-07-12 18:21:28.905  INFO 3084 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:21:29.181 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:21:29.186 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:21:29.220 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:21:29.224 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:21:29.224 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:21:29.225 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:21:29.236 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:21:42.306  INFO 3084 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
-2018-07-12 18:21:42.332 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC 
+2018-07-12 18:21:42.332 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC
 2018-07-12 18:21:42.332 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 
 2018-07-12 18:21:42.338 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:21:51.736  INFO 3084 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
@@ -131,14 +131,14 @@
 ### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '张三@163.com' for key 'email'
 ; ]; Duplicate entry '张三@163.com' for key 'email'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '张三@163.com' for key 'email'
 2018-07-12 18:22:26.350  INFO 3084 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
-2018-07-12 18:22:26.368 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC 
+2018-07-12 18:22:26.368 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC
 2018-07-12 18:22:26.368 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 
 2018-07-12 18:22:26.384 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:24:54.567  INFO 3084 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:24:54.571 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:24:54.572 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:24:54.573 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:24:54.574 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:24:54.574 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:24:54.574 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:24:54.577 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:28:33.706  INFO 3084 --- [http-nio-8080-exec-10] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
@@ -208,98 +208,98 @@
 2018-07-12 18:44:13.881 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:44:13.882 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:44:13.882 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:44:13.884 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:44:13.884 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:44:13.884 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:44:13.887 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:46:53.902  INFO 3084 --- [http-nio-8080-exec-10] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:46:53.907 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:46:53.907 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:46:53.907 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:46:53.908 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:46:53.908 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:46:53.928 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:46:53.938 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:47:14.964  INFO 3084 --- [http-nio-8080-exec-9] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:47:14.969 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:47:14.969 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:47:14.970 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:47:14.971 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:47:14.971 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:47:14.972 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:47:14.974 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:47:33.867  INFO 3084 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:47:33.872 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:47:33.872 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:47:33.873 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:47:33.874 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:47:33.874 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:47:33.875 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:47:33.878 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:48:22.220  INFO 3084 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:48:22.225 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:48:22.226 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:48:22.227 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:48:22.230 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:48:22.230 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:48:22.230 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:48:22.233 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:48:39.104  INFO 3084 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:48:39.108 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:48:39.108 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:48:39.109 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:48:39.110 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:48:39.110 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:48:39.111 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:48:39.113 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:48:58.215  INFO 3084 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:48:58.218 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:48:58.219 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:48:58.219 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:48:58.221 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:48:58.221 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:48:58.221 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:48:58.223 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:49:04.922  INFO 3084 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:49:04.927 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:49:04.927 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:49:04.928 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:49:04.929 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:49:04.929 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:49:04.930 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:49:04.931 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:49:14.773  INFO 3084 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:49:14.777 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:49:14.777 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:49:14.778 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:49:14.780 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:49:14.780 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:49:14.780 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:49:14.782 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 18:49:25.494  INFO 3084 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 18:49:25.498 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 18:49:25.499 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 18:49:25.499 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 18:49:25.501 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 18:49:25.501 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 18:49:25.501 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 18:49:25.503 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:03:14.322  INFO 3084 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 19:03:14.389 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:03:14.405 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:03:14.423 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:03:14.423 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:03:14.423 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:03:14.423 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:03:14.501 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:03:51.088  INFO 3084 --- [http-nio-8080-exec-10] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 19:03:51.104 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:03:51.104 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:03:51.104 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:03:51.104 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:03:51.104 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:03:51.104 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:03:51.153 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:03:59.106  INFO 3084 --- [http-nio-8080-exec-9] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 19:03:59.106 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:03:59.106 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:03:59.106 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:03:59.106 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:03:59.106 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:03:59.121 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:03:59.121 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:04:24.337  INFO 3084 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:04:24.337 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:09:56.892  INFO 3084 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
@@ -324,20 +324,175 @@
 2018-07-12 19:10:02.967 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:10:02.967 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:10:02.967 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:10:02.968 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:10:02.968 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:10:02.969 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:10:02.970 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:21:27.698  INFO 3084 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 19:21:27.702 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:21:27.703 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:21:27.708 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:21:27.710 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:21:27.710 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:21:27.710 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:21:27.712 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
 2018-07-12 19:27:54.644  INFO 3084 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
 2018-07-12 19:27:54.660 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
 2018-07-12 19:27:54.660 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
 2018-07-12 19:27:54.660 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
-2018-07-12 19:27:54.660 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,cover,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ? 
+2018-07-12 19:27:54.660 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
 2018-07-12 19:27:54.660 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
 2018-07-12 19:27:54.760 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:49:11.504  INFO 3084 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:49:11.507 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:49:11.507 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:49:11.507 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:49:11.508 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:49:11.509 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:49:11.510 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:49:55.618  INFO 3084 --- [http-nio-8080-exec-10] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:49:55.634 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:49:55.634 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:49:55.634 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:49:55.634 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:49:55.634 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:49:55.634 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:50:47.833  INFO 3084 --- [http-nio-8080-exec-9] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:50:47.921 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:50:47.923 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:50:47.941 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:50:47.957 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:50:47.957 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:50:47.957 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:51:07.085  INFO 3084 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:51:07.101 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:51:07.101 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:51:07.101 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:51:07.101 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:51:07.101 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:51:07.101 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:51:18.190  INFO 3084 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:51:18.208 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:51:18.241 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:51:18.242 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:51:18.272 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:51:18.272 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:51:18.290 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:52:32.847  INFO 3084 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:52:32.866 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:52:32.866 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:52:32.866 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:52:32.866 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:52:32.866 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:52:32.882 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:53:10.330  INFO 3084 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:53:10.330 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:53:10.346 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:53:10.347 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:53:10.349 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:53:10.349 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:53:10.349 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:53:26.152  INFO 3084 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:53:26.159 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:53:26.160 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:53:26.161 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:53:26.162 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:53:26.163 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:53:26.165 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:53:34.395  INFO 3084 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:53:34.451 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:53:34.451 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:53:34.452 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:53:34.455 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:53:34.455 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:53:34.458 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:54:49.391  INFO 3084 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:54:49.416 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:54:49.417 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:54:49.417 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:54:49.428 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:54:49.429 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:54:49.431 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:55:20.145  INFO 3084 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:55:20.147 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:55:20.147 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:55:20.147 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:55:20.147 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:55:20.147 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:55:20.147 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:55:39.741  INFO 3084 --- [http-nio-8080-exec-10] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:55:39.744 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:55:39.745 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:55:39.745 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:55:39.746 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:55:39.747 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:55:39.748 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:55:48.195  INFO 3084 --- [http-nio-8080-exec-9] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:55:48.195 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:55:48.195 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:55:48.195 DEBUG 3084 --- [http-nio-8080-exec-9] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:55:48.195 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:55:48.195 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:55:48.195 DEBUG 3084 --- [http-nio-8080-exec-9] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:56:34.562  INFO 3084 --- [http-nio-8080-exec-2] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:56:34.577 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:56:34.577 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:56:34.577 DEBUG 3084 --- [http-nio-8080-exec-2] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:56:34.577 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:56:34.577 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:56:34.577 DEBUG 3084 --- [http-nio-8080-exec-2] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 19:57:00.976  INFO 3084 --- [http-nio-8080-exec-1] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 19:57:00.976 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 19:57:00.976 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 19:57:00.976 DEBUG 3084 --- [http-nio-8080-exec-1] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 19:57:00.992 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 19:57:00.992 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 19:57:00.994 DEBUG 3084 --- [http-nio-8080-exec-1] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:00:07.073  INFO 3084 --- [http-nio-8080-exec-3] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:00:07.107 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:00:07.122 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:00:07.122 DEBUG 3084 --- [http-nio-8080-exec-3] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:00:07.122 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:00:07.122 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:00:07.122 DEBUG 3084 --- [http-nio-8080-exec-3] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:00:12.324  INFO 3084 --- [http-nio-8080-exec-4] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:00:12.324 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:00:12.324 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:00:12.324 DEBUG 3084 --- [http-nio-8080-exec-4] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:00:12.339 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:00:12.339 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:00:12.339 DEBUG 3084 --- [http-nio-8080-exec-4] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:00:20.490  INFO 3084 --- [http-nio-8080-exec-5] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:00:20.490 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:00:20.490 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:00:20.490 DEBUG 3084 --- [http-nio-8080-exec-5] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:00:20.524 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:00:20.524 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:00:20.524 DEBUG 3084 --- [http-nio-8080-exec-5] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:01:19.438  INFO 3084 --- [http-nio-8080-exec-6] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:01:19.438 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:01:19.438 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:01:19.438 DEBUG 3084 --- [http-nio-8080-exec-6] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:01:19.438 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:01:19.438 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:01:19.438 DEBUG 3084 --- [http-nio-8080-exec-6] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:03:27.638  INFO 3084 --- [http-nio-8080-exec-7] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:03:27.638 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:03:27.638 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:03:27.638 DEBUG 3084 --- [http-nio-8080-exec-7] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:03:27.638 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:03:27.638 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:03:27.653 DEBUG 3084 --- [http-nio-8080-exec-7] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:03:42.360  INFO 3084 --- [http-nio-8080-exec-8] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:03:42.370 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:03:42.370 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:03:42.370 DEBUG 3084 --- [http-nio-8080-exec-8] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:03:42.386 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:03:42.386 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:03:42.386 DEBUG 3084 --- [http-nio-8080-exec-8] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 20:03:52.269  INFO 3084 --- [http-nio-8080-exec-10] snoob.gdd.util.LoggerUtil                : ===============HttpAspect before===============
+2018-07-12 20:03:52.303 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==>  Preparing: SELECT count(0) FROM user 
+2018-07-12 20:03:52.303 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : ==> Parameters: 
+2018-07-12 20:03:52.303 DEBUG 3084 --- [http-nio-8080-exec-10] s.g.m.UserMapper.selectByExample_COUNT   : <==      Total: 1
+2018-07-12 20:03:52.303 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==>  Preparing: SELECT id,create_time,coverService,name,phone,email,password,introduce,sex,hobby,province,city,area,address,login_time,login_ip FROM user order by create_time ASC LIMIT ?
+2018-07-12 20:03:52.303 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : ==> Parameters: 20(Integer)
+2018-07-12 20:03:52.319 DEBUG 3084 --- [http-nio-8080-exec-10] s.gdd.mapper.UserMapper.selectByExample  : <==      Total: 7
+2018-07-12 21:32:30.741  WARN 3084 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52m56s519ms271µs936ns).

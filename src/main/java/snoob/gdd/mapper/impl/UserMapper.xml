@@ -7,7 +7,7 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="coverService" jdbcType="VARCHAR" property="coverService" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
