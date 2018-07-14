@@ -17,32 +17,26 @@ public class CoverController {
     private CoverService coverService;
 
     /**
+     * 分页查询封面类型信息
+     *
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/findCoverType")
+    public Object findCoverType() throws Exception {
+        return coverService.findCoverType();
+    }
+
+    /**
      * 添加、编辑封面类型信息
      *
      * @param coverType
      * @return
      * @throws Exception
      */
-    @PostMapping("/modify")
+    @PostMapping("/modifyCoverType")
     public Object modify(@RequestBody CoverType coverType) throws Exception {
-        return coverService.modify(coverType);
-    }
-
-    /**
-     * 分页查询封面类型信息
-     *
-     * @param coverType
-     * @param pageNumber
-     * @param pageSize
-     * @return
-     * @throws Exception
-     */
-    @PostMapping("/page/{pageNumber}/{pageSize}")
-    public Object page(@RequestBody CoverType coverType,
-                       @PathVariable(value = "pageNumber") Integer pageNumber,
-                       @PathVariable(value = "pageSize") Integer pageSize
-    ) throws Exception {
-        return coverService.page(coverType, pageNumber, pageSize);
+        return coverService.modifyCoverType(coverType);
     }
 
     /**
@@ -51,8 +45,8 @@ public class CoverController {
      * @param id
      * @return
      */
-    @PostMapping("/delete")
+    @PostMapping("/deleteCoverType")
     public Object delete(@RequestBody String id) throws Exception {
-        return coverService.delete(id);
+        return coverService.deleteCoverType(id);
     }
 }

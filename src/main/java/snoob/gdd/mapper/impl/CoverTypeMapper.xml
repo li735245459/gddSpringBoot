@@ -11,4 +11,12 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="node_level" jdbcType="VARCHAR" property="nodeLevel" />
   </resultMap>
+
+  <!-- 批量删除 -->
+  <delete id="customDelete" parameterType="java.util.List">
+    delete from cover_type where id in
+    <foreach close=")" collection="list" index="index" item="id" open="(" separator=",">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

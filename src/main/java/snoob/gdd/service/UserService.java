@@ -4,9 +4,6 @@ import snoob.gdd.model.User;
 
 
 public interface UserService {
-    Object modify(User user) throws Exception;
-    Object modifyPassword(User user) throws Exception;
-
     Object login(User user) throws Exception;
 
     Object checkJWT(String jwt) throws Exception;
@@ -14,6 +11,10 @@ public interface UserService {
     Object home(String userId) throws Exception;
 
     Object page(User user, Integer pageNumber, Integer pageSize) throws Exception;
+
+    Object modify(User user) throws Exception;
+
+    Object modifyPassword(User user) throws Exception;
 
     Object delete(String id) throws Exception;
 }

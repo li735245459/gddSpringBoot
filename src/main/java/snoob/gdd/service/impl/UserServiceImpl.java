@@ -133,6 +133,7 @@ public class UserServiceImpl implements UserService {
 //        example.selectProperties("id", "name");
 //        // 设置排序规则 .orderBy("loginTime").asc();
         example.orderBy("createTime").asc();
+        // 动态sql
         Example.Criteria criteria = example.createCriteria();
         if (user.getName() != null) {
             criteria.andLike("name", user.getName().trim() + "%");
