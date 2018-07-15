@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `email_code` (
   `receiver` varchar(50) NOT NULL COMMENT '接收者邮箱',
   `subject` varchar(225) NOT NULL COMMENT '邮件主题',
   `content` varchar(225) NOT NULL COMMENT '邮件内容',
-  `code` varchar(225) NOT NULL COMMENT '验证码',
+  `code` varchar(4) NOT NULL COMMENT '验证码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='通过邮箱获取验证码';
 

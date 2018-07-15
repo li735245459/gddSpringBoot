@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `create_time`, `cover`, `name`, `phone`, `email`, `password`, `introduce`, `sex`, `hobby`, `province`, `city`, `area`, `address`, `login_time`, `login_ip`) VALUES
-	('77cfd433-c255-4978-aca2-efb453558eb8', '2018-07-06 19:58:09', 'coverService.jpg', '李星', '18013896707', 'lixing_java@163.com', 'afb4f702e90e70060d09f4d28a848914', '该用户很懒什么都没有留下', '男', '篮球,足球,排球,皮球', '河北省', '承德市', '围场满族蒙古族自治县', '育群胡同21号', '2018-07-12 12:42:07', '127.0.0.1');
+	('77cfd433-c255-4978-aca2-efb453558eb8', '2018-07-06 19:58:09', 'cover.jpg', '李星', '18013896707', 'lixing_java@163.com', '1750637e26c7cad8c487824ad7f6337b', '该用户很懒什么都没有留下', '男', '篮球,足球,排球,皮球', '河北省', '承德市', '围场满族蒙古族自治县', '育群胡同21号', '2018-07-12 12:42:07', '127.0.0.1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
