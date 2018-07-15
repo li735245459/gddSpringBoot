@@ -6,10 +6,10 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="pId" jdbcType="VARCHAR" property="pid" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="node_level" jdbcType="VARCHAR" property="nodeLevel" />
+    <result column="node_level" jdbcType="INTEGER" property="nodeLevel" />
   </resultMap>
 
   <!-- 批量删除 -->

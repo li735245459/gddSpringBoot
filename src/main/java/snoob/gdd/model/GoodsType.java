@@ -16,10 +16,10 @@ public class GoodsType {
     private String id;
 
     /**
-     * 父级编号,0表示根节点
+     * 父级编号,"0"表示根节点
      */
-    @Column(name = "pId")
-    private String pid;
+    @Column(name = "p_id")
+    private String pId;
 
     /**
      * 创建时间
@@ -36,7 +36,7 @@ public class GoodsType {
      * 节点级别,0表示根节点,1表示一级子节点
      */
     @Column(name = "node_level")
-    private String nodeLevel;
+    private Integer nodeLevel;
 
     /**
      * 获取编号
@@ -57,21 +57,21 @@ public class GoodsType {
     }
 
     /**
-     * 获取父级编号,0表示根节点
+     * 获取父级编号,"0"表示根节点
      *
-     * @return pId - 父级编号,0表示根节点
+     * @return p_id - 父级编号,"0"表示根节点
      */
-    public String getPid() {
-        return pid;
+    public String getpId() {
+        return pId;
     }
 
     /**
-     * 设置父级编号,0表示根节点
+     * 设置父级编号,"0"表示根节点
      *
-     * @param pid 父级编号,0表示根节点
+     * @param pId 父级编号,"0"表示根节点
      */
-    public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
+    public void setpId(String pId) {
+        this.pId = pId == null ? null : pId.trim();
     }
 
     /**
@@ -115,7 +115,7 @@ public class GoodsType {
      *
      * @return node_level - 节点级别,0表示根节点,1表示一级子节点
      */
-    public String getNodeLevel() {
+    public Integer getNodeLevel() {
         return nodeLevel;
     }
 
@@ -124,7 +124,7 @@ public class GoodsType {
      *
      * @param nodeLevel 节点级别,0表示根节点,1表示一级子节点
      */
-    public void setNodeLevel(String nodeLevel) {
-        this.nodeLevel = nodeLevel == null ? null : nodeLevel.trim();
+    public void setNodeLevel(Integer nodeLevel) {
+        this.nodeLevel = nodeLevel;
     }
 }

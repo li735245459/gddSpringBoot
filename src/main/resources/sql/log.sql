@@ -13,7 +13,7 @@
 
 -- 导出  表 gdd.log 结构
 CREATE TABLE IF NOT EXISTS `log` (
-  `id` varchar(50) NOT NULL COMMENT '编号',
+  `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `req_url` varchar(500) DEFAULT NULL COMMENT '请求链接',
   `req_method` varchar(50) DEFAULT NULL COMMENT '请求方法',

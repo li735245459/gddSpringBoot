@@ -5,6 +5,7 @@ import snoob.gdd.mapper.CoverTypeMapper;
 import snoob.gdd.model.CoverType;
 import snoob.gdd.service.CoverService;
 import snoob.gdd.util.ResultUtil;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -23,7 +24,9 @@ public class CoverServiceImpl implements CoverService {
      */
     @Override
     public Object findCoverType() {
-        List<CoverType> coverTypes = coverTypeMapper.selectAll();
+        Example example = new Example(CoverType.class);
+        example.orderBy("nodeLevel").asc();
+        List<CoverType> coverTypes = coverTypeMapper.selectByExample(example);
         return ResultUtil.success(coverTypes);
     }
 
@@ -35,7 +38,18 @@ public class CoverServiceImpl implements CoverService {
      * @throws Exception
      */
     @Override
-    public Object modifyCoverType(CoverType coverType) throws Exception {
+    public Object modifyCoverType(CoverType coverType) {
+        if (coverType.getId() == null) {
+            /**
+             * 添加
+             */
+            coverTypeMapper.insertSelective(coverType);
+        } else {
+            /**
+             * 编辑
+             */
+            coverTypeMapper.updateByPrimaryKeySelective(coverType);
+        }
         return ResultUtil.success();
     }
 

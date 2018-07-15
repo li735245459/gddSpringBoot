@@ -31,7 +31,7 @@ public class LogServiceImpl implements LogService {
     @Override
     public Object page(Log log, Integer pageNumber, Integer pageSize) {
         Example example = new Example(User.class);
-        example.orderBy("createTime").asc();
+        example.orderBy("createTime").desc();
         // 开启分页模式
         PageHelper.startPage(pageNumber, pageSize);
         List<Log> logs = logMapper.selectByExample(example);

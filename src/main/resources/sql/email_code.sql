@@ -13,7 +13,7 @@
 
 -- 导出  表 gdd.email_code 结构
 CREATE TABLE IF NOT EXISTS `email_code` (
-  `id` varchar(50) NOT NULL COMMENT '编号,UUID',
+  `id` varchar(36) NOT NULL COMMENT '编号,UUID',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发送时间',
   `type` varchar(50) NOT NULL COMMENT '验证类型（0:忘记密码模块）',
   `sender` varchar(50) NOT NULL COMMENT '发送者邮箱',
