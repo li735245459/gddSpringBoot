@@ -25,7 +25,7 @@ public class CoverServiceImpl implements CoverService {
     @Override
     public Object findCoverType() {
         Example example = new Example(CoverType.class);
-        example.orderBy("nodeLevel").asc();
+        example.orderBy("nodeLevel").desc();
         List<CoverType> coverTypes = coverTypeMapper.selectByExample(example);
         return ResultUtil.success(coverTypes);
     }
