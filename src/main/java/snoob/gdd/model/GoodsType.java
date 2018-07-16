@@ -16,16 +16,16 @@ public class GoodsType {
     private String id;
 
     /**
-     * 父级编号,"0"表示根节点
-     */
-    @Column(name = "p_id")
-    private String pId;
-
-    /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
+
+    /**
+     * 父级编号,root表示根节点
+     */
+    @Column(name = "parent_id")
+    private String parentId;
 
     /**
      * 类别名称
@@ -57,24 +57,6 @@ public class GoodsType {
     }
 
     /**
-     * 获取父级编号,"0"表示根节点
-     *
-     * @return p_id - 父级编号,"0"表示根节点
-     */
-    public String getpId() {
-        return pId;
-    }
-
-    /**
-     * 设置父级编号,"0"表示根节点
-     *
-     * @param pId 父级编号,"0"表示根节点
-     */
-    public void setpId(String pId) {
-        this.pId = pId == null ? null : pId.trim();
-    }
-
-    /**
      * 获取创建时间
      *
      * @return create_time - 创建时间
@@ -90,6 +72,24 @@ public class GoodsType {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    /**
+     * 获取父级编号,root表示根节点
+     *
+     * @return parent_id - 父级编号,root表示根节点
+     */
+    public String getParentId() {
+        return parentId;
+    }
+
+    /**
+     * 设置父级编号,root表示根节点
+     *
+     * @param parentId 父级编号,root表示根节点
+     */
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
     }
 
     /**

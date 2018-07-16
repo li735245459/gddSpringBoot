@@ -22,9 +22,10 @@ public class CoverType {
     private Date createTime;
 
     /**
-     * 父级编号,"0"表示根节点
+     * 父级编号,root表示根节点
      */
-    private String parent;
+    @Column(name = "parent_id")
+    private String parentId;
 
     /**
      * 类别名称
@@ -74,21 +75,21 @@ public class CoverType {
     }
 
     /**
-     * 获取父级编号,"0"表示根节点
+     * 获取父级编号,root表示根节点
      *
-     * @return parent - 父级编号,"0"表示根节点
+     * @return parent_id - 父级编号,root表示根节点
      */
-    public String getParent() {
-        return parent;
+    public String getParentId() {
+        return parentId;
     }
 
     /**
-     * 设置父级编号,"0"表示根节点
+     * 设置父级编号,root表示根节点
      *
-     * @param parent 父级编号,"0"表示根节点
+     * @param parentId 父级编号,root表示根节点
      */
-    public void setParent(String parent) {
-        this.parent = parent == null ? null : parent.trim();
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
     }
 
     /**

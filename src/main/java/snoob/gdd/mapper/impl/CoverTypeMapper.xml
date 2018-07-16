@@ -7,7 +7,7 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="parent" jdbcType="VARCHAR" property="parent" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="node_level" jdbcType="INTEGER" property="nodeLevel" />
   </resultMap>
