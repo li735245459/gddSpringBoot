@@ -15,7 +15,7 @@
 CREATE TABLE IF NOT EXISTS `cover_type` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `parent` varchar(36) NOT NULL COMMENT '父级编号,"0"表示根节点',
+  `parent` varchar(36) NOT NULL DEFAULT 'root' COMMENT '父级编号,root表示根节点',
   `name` varchar(32) NOT NULL COMMENT '类别名称',
   `node_level` int(11) NOT NULL COMMENT '节点级别,0表示根节点,1表示一级子节点',
   PRIMARY KEY (`id`)
