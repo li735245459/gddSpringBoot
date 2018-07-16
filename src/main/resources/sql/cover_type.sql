@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.17-log - MySQL Community Server (GPL)
--- 服务器操作系统:                      Win64
--- HeidiSQL 版本:                  9.4.0.5125
+-- 服务器版本:                        5.7.22-log - MySQL Community Server (GPL)
+-- 服务器操作系统:                      Win32
+-- HeidiSQL 版本:                  9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -15,16 +15,15 @@
 CREATE TABLE IF NOT EXISTS `cover_type` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `p_id` varchar(36) NOT NULL COMMENT '父级编号,"0"表示根节点',
+  `parent` varchar(36) NOT NULL COMMENT '父级编号,"0"表示根节点',
   `name` varchar(32) NOT NULL COMMENT '类别名称',
   `node_level` int(11) NOT NULL COMMENT '节点级别,0表示根节点,1表示一级子节点',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='封面类别信息';
 
 -- 正在导出表  gdd.cover_type 的数据：~12 rows (大约)
-DELETE FROM `cover_type`;
 /*!40000 ALTER TABLE `cover_type` DISABLE KEYS */;
-INSERT INTO `cover_type` (`id`, `create_time`, `p_id`, `name`, `node_level`) VALUES
+INSERT INTO `cover_type` (`id`, `create_time`, `parent`, `name`, `node_level`) VALUES
 	('4112e27d-8f13-445f-8f8e-75bab131740d', '2018-07-15 22:00:44', 'a48c4a1e-0868-4824-9319-67ed7181bbb4', '皮肤药', 2),
 	('495885db-c0e6-4c4d-a967-969faa61e1e2', '2018-07-15 21:53:09', '0', '用户头像', 0),
 	('628d7ecc-73e2-454c-8f8c-11b826ce15f8', '2018-07-15 21:54:59', 'ff032041-15ec-4ff7-a7bf-c48dc21f3ca1', '犬类', 1),
