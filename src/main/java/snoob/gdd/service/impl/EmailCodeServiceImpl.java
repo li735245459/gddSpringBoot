@@ -92,7 +92,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
             item.setSubject("忘记密码模块验证码功能：");
             String code = StrUtil.getCodeStr();
             item.setCode(code);
-            String content = "<h1>验证码:</h1><a href='http:www.baidu.com' style='color:#F00'>{0}</a>";
+            String content = MessageFormat.format("<h1>验证码:</h1><a href='http:www.baidu.com' style='color:#F00'>{0}</a>", code);
             item.setContent(content);
         } else {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_CODE_MODULE_ILLEGAL);
