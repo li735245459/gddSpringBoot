@@ -29,7 +29,7 @@ public class GoodsController {
     }
 
     /**
-     * 分页查询商品类型信息
+     * 查询商品类型信息
      *
      * @return
      * @throws Exception

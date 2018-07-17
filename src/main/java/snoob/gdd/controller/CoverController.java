@@ -17,7 +17,7 @@ public class CoverController {
     private CoverService coverService;
 
     /**
-     * 分页查询封面类型信息
+     * 查询封面类型信息
      *
      * @return
      * @throws Exception
