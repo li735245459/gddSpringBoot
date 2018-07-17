@@ -1,6 +1,6 @@
 package snoob.gdd.model;
 
-import snoob.gdd.util.UUIdGenId;
+import snoob.gdd.util.UUIdGenIdUtil;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import java.util.Date;
@@ -12,7 +12,7 @@ public class User {
      * 编号,UUID字符串
      */
     @Id
-    @KeySql(genId = UUIdGenId.class)
+    @KeySql(genId = UUIdGenIdUtil.class)
     private String id;
 
     /**

@@ -51,9 +51,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
         emailCode.setType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
-        /**
-         * 忘记密码模块发送验证码功能
-         */
+        /*忘记密码模块发送验证码功能*/
         if ("1".equals(type)) {
             emailCode.setSubject("忘记密码模块发送验证码功能");
             String code = StrUtil.getCodeStr();
@@ -85,9 +83,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
         if (!onlyUtil.emailUsed(receiver)) {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
         }
-        /**
-         * 忘记密码模块
-         */
+        /*忘记密码模块*/
         if ("0".equals(type)) {
             item.setSubject("忘记密码模块验证码功能：");
             String code = StrUtil.getCodeStr();
@@ -158,9 +154,11 @@ public class EmailCodeServiceImpl implements EmailCodeService {
      */
     @Override
     public Object delete(String id) throws Exception {
-        if ("all".equals(id)) { // 删除所有
+        if ("all".equals(id)) {
+            /*删除所有*/
             emailCodeMapper.delete(new EmailCode());
-        } else { // 删除所选(批量)
+        } else {
+            /*删除所选(批量)*/
             List<String> ids = Arrays.asList(id.split(","));
             emailCodeMapper.customDelete(ids);
         }

@@ -8,10 +8,10 @@ import java.util.UUID;
  * 自动生成主键
  *
  * @Id
- * @KeySql(genId = UUIdGenId.class)
+ * @KeySql(genId = UUIdGenIdUtil.class)
  * private String id;
  */
-public class UUIdGenId implements GenId<String> {
+public class UUIdGenIdUtil implements GenId<String> {
     @Override
     public String genId(String table, String column) {
         return UUID.randomUUID().toString();

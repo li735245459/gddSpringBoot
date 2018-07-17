@@ -62,6 +62,8 @@
         <!--<table tableName="log" domainObjectName="Log"></table>-->
         <!--<table tableName="email_code" domainObjectName="EmailCode"></table>-->
         <!--<table tableName="cover_type" domainObjectName="CoverType"></table>-->
+        <!--<table tableName="cover" domainObjectName="Cover"></table>-->
         <!--<table tableName="goods_type" domainObjectName="GoodsType"></table>-->
+        <!--<table tableName="goods" domainObjectName="Goods"></table>-->
     </context>
 </generatorConfiguration>

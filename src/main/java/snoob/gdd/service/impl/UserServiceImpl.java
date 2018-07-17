@@ -39,15 +39,10 @@ public class UserServiceImpl implements UserService {
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
         }
         if (user.getId() == null) {
-            /**
-             * 添加
-             */
+            /*添加*/
             userMapper.insertSelective(user);
         } else {
-
-            /**
-             * 编辑
-             */
+            /*编辑*/
             userMapper.updateByPrimaryKeySelective(user);
         }
         return ResultUtil.success();
@@ -173,9 +168,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Object delete(String id) throws Exception {
-        if ("all".equals(id)) { // 删除所有
+        if ("all".equals(id)) {
+            /*删除所有*/
             userMapper.delete(new User());
-        } else { // 删除所选(批量)
+        } else {
+            /*删除所选(批量)*/
             List<String> ids = Arrays.asList(id.split(","));
             userMapper.customDelete(ids);
         }

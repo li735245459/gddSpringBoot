@@ -64,9 +64,11 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public Object delete(String id) throws Exception {
-        if ("all".equals(id)) { // 删除所有
+        if ("all".equals(id)) {
+            /*删除所有*/
             logMapper.delete(new Log());
-        } else { // 删除所选(批量)
+        } else {
+            /*删除所选(批量)*/
             List<String> ids = Arrays.asList(id.split(","));
             logMapper.customDelete(ids);
         }
