@@ -22,13 +22,7 @@ public class Cover {
     private Date createTime;
 
     /**
-     * 外键编号,uuid
-     */
-    @Column(name = "cover_type_id")
-    private String coverTypeId;
-
-    /**
-     * 外键名称
+     * 封面类型名称
      */
     @Column(name = "cover_type_name")
     private String coverTypeName;
@@ -49,9 +43,15 @@ public class Cover {
     private String src;
 
     /**
-     * 外链
+     * 外链地址
      */
-    private String link;
+    private String href;
+
+    /**
+     * 是否激活,0屏蔽,1激活
+     */
+    @Column(name = "isActive")
+    private Integer isactive;
 
     /**
      * 获取编号,uuid
@@ -90,36 +90,18 @@ public class Cover {
     }
 
     /**
-     * 获取外键编号,uuid
+     * 获取封面类型名称
      *
-     * @return cover_type_id - 外键编号,uuid
-     */
-    public String getCoverTypeId() {
-        return coverTypeId;
-    }
-
-    /**
-     * 设置外键编号,uuid
-     *
-     * @param coverTypeId 外键编号,uuid
-     */
-    public void setCoverTypeId(String coverTypeId) {
-        this.coverTypeId = coverTypeId == null ? null : coverTypeId.trim();
-    }
-
-    /**
-     * 获取外键名称
-     *
-     * @return cover_type_name - 外键名称
+     * @return cover_type_name - 封面类型名称
      */
     public String getCoverTypeName() {
         return coverTypeName;
     }
 
     /**
-     * 设置外键名称
+     * 设置封面类型名称
      *
-     * @param coverTypeName 外键名称
+     * @param coverTypeName 封面类型名称
      */
     public void setCoverTypeName(String coverTypeName) {
         this.coverTypeName = coverTypeName == null ? null : coverTypeName.trim();
@@ -180,20 +162,38 @@ public class Cover {
     }
 
     /**
-     * 获取外链
+     * 获取外链地址
      *
-     * @return link - 外链
+     * @return href - 外链地址
      */
-    public String getLink() {
-        return link;
+    public String getHref() {
+        return href;
     }
 
     /**
-     * 设置外链
+     * 设置外链地址
      *
-     * @param link 外链
+     * @param href 外链地址
      */
-    public void setLink(String link) {
-        this.link = link == null ? null : link.trim();
+    public void setHref(String href) {
+        this.href = href == null ? null : href.trim();
+    }
+
+    /**
+     * 获取是否激活,0屏蔽,1激活
+     *
+     * @return isActive - 是否激活,0屏蔽,1激活
+     */
+    public Integer getIsactive() {
+        return isactive;
+    }
+
+    /**
+     * 设置是否激活,0屏蔽,1激活
+     *
+     * @param isactive 是否激活,0屏蔽,1激活
+     */
+    public void setIsactive(Integer isactive) {
+        this.isactive = isactive;
     }
 }

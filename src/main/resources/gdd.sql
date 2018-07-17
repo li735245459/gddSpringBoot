@@ -22,16 +22,13 @@ DROP TABLE IF EXISTS `cover`;
 CREATE TABLE IF NOT EXISTS `cover` (
   `id` varchar(36) NOT NULL COMMENT '编号,uuid',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `cover_type_id` varchar(36) DEFAULT NULL COMMENT '外键编号,uuid',
-  `cover_type_name` varchar(36) DEFAULT NULL COMMENT '外键名称',
+  `cover_type_name` varchar(36) NOT NULL COMMENT '封面类型名称',
   `name` varchar(20) NOT NULL COMMENT '名称',
   `introduce` varchar(50) DEFAULT NULL COMMENT '说明',
   `src` varchar(500) NOT NULL COMMENT '下载地址',
-  `link` varchar(100) DEFAULT NULL COMMENT '外链',
+  `href` varchar(100) DEFAULT NULL COMMENT '外链地址',
   `isActive` int(1) NOT NULL DEFAULT '0' COMMENT '是否激活,0屏蔽,1激活',
-  PRIMARY KEY (`id`),
-  KEY `FK_cover_cover_type` (`cover_type_id`),
-  CONSTRAINT `FK_cover_cover_type` FOREIGN KEY (`cover_type_id`) REFERENCES `cover_type` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='封面信息';
 
 -- 正在导出表  gdd.cover 的数据：~0 rows (大约)
@@ -70,7 +67,7 @@ DROP TABLE IF EXISTS `email_code`;
 CREATE TABLE IF NOT EXISTS `email_code` (
   `id` varchar(36) NOT NULL COMMENT '编号,UUID',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发送时间',
-  `type` varchar(50) NOT NULL COMMENT '验证类型（0:忘记密码模块）',
+  `code_type` varchar(50) NOT NULL COMMENT '验证类型（0:忘记密码模块）',
   `sender` varchar(50) NOT NULL COMMENT '发送者邮箱',
   `receiver` varchar(50) NOT NULL COMMENT '接收者邮箱',
   `subject` varchar(225) NOT NULL COMMENT '邮件主题',
@@ -89,16 +86,13 @@ DROP TABLE IF EXISTS `goods`;
 CREATE TABLE IF NOT EXISTS `goods` (
   `id` varchar(36) NOT NULL COMMENT '编号,uuid',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `goods_type_id` varchar(36) DEFAULT NULL COMMENT '外键编号',
-  `goods_type_name` varchar(20) DEFAULT NULL COMMENT '外键名称',
+  `goods_type_name` varchar(20) NOT NULL COMMENT '商品类型名称',
   `name` varchar(20) NOT NULL COMMENT '名称',
   `introduce` varchar(50) DEFAULT NULL COMMENT '介绍',
   `price` double NOT NULL COMMENT '价格',
   `promotion_price` double DEFAULT NULL COMMENT '促销价格',
   `isActive` int(1) NOT NULL DEFAULT '0' COMMENT '是否激活,0屏蔽1激活',
-  PRIMARY KEY (`id`),
-  KEY `FK_goods_goods_type` (`goods_type_id`),
-  CONSTRAINT `FK_goods_goods_type` FOREIGN KEY (`goods_type_id`) REFERENCES `goods_type` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品';
 
 -- 正在导出表  gdd.goods 的数据：~0 rows (大约)

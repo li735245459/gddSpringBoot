@@ -48,7 +48,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     public Object sendEmail(String type, String receiver) {
         EmailCode emailCode = new EmailCode();
         emailCode.setId(StrUtil.getUuidStr());
-        emailCode.setType(type);
+        emailCode.setCodeType(type);
         emailCode.setSender(sender);
         emailCode.setReceiver(receiver);
         /*忘记密码模块发送验证码功能*/
@@ -76,7 +76,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Override
     public Object sendHtmlEmail(String type, String receiver) throws Exception {
         EmailCode item = new EmailCode();
-        item.setType(type);
+        item.setCodeType(type);
         item.setSender(sender);
         item.setReceiver(receiver);
         // 检查邮箱是否存在
@@ -112,7 +112,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Override
     public Object checkEmailCode(String type, String email, String code) {
         EmailCode item = new EmailCode();
-        item.setType(type);
+        item.setCodeType(type);
         item.setReceiver(email);
         item.setCode(code);
         if (emailCodeMapper.selectOne(item) == null) {

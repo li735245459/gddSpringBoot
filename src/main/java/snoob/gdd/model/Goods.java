@@ -3,8 +3,10 @@ package snoob.gdd.model;
 import snoob.gdd.util.UUIdGenIdUtil;
 import tk.mybatis.mapper.annotation.KeySql;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "goods")
 public class Goods {
@@ -22,13 +24,7 @@ public class Goods {
     private Date createTime;
 
     /**
-     * 外键编号
-     */
-    @Column(name = "goods_type_id")
-    private String goodsTypeId;
-
-    /**
-     * 外键名称
+     * 商品类型名称
      */
     @Column(name = "goods_type_name")
     private String goodsTypeName;
@@ -53,6 +49,12 @@ public class Goods {
      */
     @Column(name = "promotion_price")
     private Double promotionPrice;
+
+    /**
+     * 是否激活,0屏蔽1激活
+     */
+    @Column(name = "isActive")
+    private Integer isactive;
 
     /**
      * 获取编号,uuid
@@ -91,36 +93,18 @@ public class Goods {
     }
 
     /**
-     * 获取外键编号
+     * 获取商品类型名称
      *
-     * @return goods_type_id - 外键编号
-     */
-    public String getGoodsTypeId() {
-        return goodsTypeId;
-    }
-
-    /**
-     * 设置外键编号
-     *
-     * @param goodsTypeId 外键编号
-     */
-    public void setGoodsTypeId(String goodsTypeId) {
-        this.goodsTypeId = goodsTypeId == null ? null : goodsTypeId.trim();
-    }
-
-    /**
-     * 获取外键名称
-     *
-     * @return goods_type_name - 外键名称
+     * @return goods_type_name - 商品类型名称
      */
     public String getGoodsTypeName() {
         return goodsTypeName;
     }
 
     /**
-     * 设置外键名称
+     * 设置商品类型名称
      *
-     * @param goodsTypeName 外键名称
+     * @param goodsTypeName 商品类型名称
      */
     public void setGoodsTypeName(String goodsTypeName) {
         this.goodsTypeName = goodsTypeName == null ? null : goodsTypeName.trim();
@@ -196,5 +180,23 @@ public class Goods {
      */
     public void setPromotionPrice(Double promotionPrice) {
         this.promotionPrice = promotionPrice;
+    }
+
+    /**
+     * 获取是否激活,0屏蔽1激活
+     *
+     * @return isActive - 是否激活,0屏蔽1激活
+     */
+    public Integer getIsactive() {
+        return isactive;
+    }
+
+    /**
+     * 设置是否激活,0屏蔽1激活
+     *
+     * @param isactive 是否激活,0屏蔽1激活
+     */
+    public void setIsactive(Integer isactive) {
+        this.isactive = isactive;
     }
 }

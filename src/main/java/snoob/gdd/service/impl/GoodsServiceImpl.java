@@ -108,9 +108,6 @@ public class GoodsServiceImpl implements GoodsService {
         example.orderBy("createTime").asc();
         // 动态sql
         Example.Criteria criteria = example.createCriteria();
-        if (goods.getGoodsTypeId() != null) {
-            criteria.andEqualTo("goodsTypeId", goods.getGoodsTypeId());
-        }
         if (goods.getName() != null) {
             criteria.andLike("name", goods.getName());
         }

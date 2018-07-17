@@ -7,7 +7,7 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="code_type" jdbcType="VARCHAR" property="codeType" />
     <result column="sender" jdbcType="VARCHAR" property="sender" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="subject" jdbcType="VARCHAR" property="subject" />

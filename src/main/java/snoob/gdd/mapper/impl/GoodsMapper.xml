@@ -7,12 +7,12 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId" />
     <result column="goods_type_name" jdbcType="VARCHAR" property="goodsTypeName" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="promotion_price" jdbcType="DOUBLE" property="promotionPrice" />
+    <result column="isActive" jdbcType="INTEGER" property="isactive" />
   </resultMap>
 
   <!-- 批量删除 -->

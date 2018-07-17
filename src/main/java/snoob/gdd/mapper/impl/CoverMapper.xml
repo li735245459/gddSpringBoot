@@ -7,12 +7,12 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="cover_type_id" jdbcType="VARCHAR" property="coverTypeId" />
     <result column="cover_type_name" jdbcType="VARCHAR" property="coverTypeName" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="src" jdbcType="VARCHAR" property="src" />
-    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="href" jdbcType="VARCHAR" property="href" />
+    <result column="isActive" jdbcType="INTEGER" property="isactive" />
   </resultMap>
 
   <!-- 批量删除 -->

@@ -87,9 +87,6 @@ public class CoverServiceImpl implements CoverService {
         example.orderBy("createTime").asc();
         // 动态sql
         Example.Criteria criteria = example.createCriteria();
-        if (cover.getCoverTypeId() != null) {
-            criteria.andEqualTo("coverTypeId", cover.getCoverTypeId());
-        }
         if (cover.getName() != null) {
             criteria.andLike("name", cover.getName());
         }

@@ -24,7 +24,8 @@ public class EmailCode {
     /**
      * 验证类型（0:忘记密码模块）
      */
-    private String type;
+    @Column(name = "code_type")
+    private String codeType;
 
     /**
      * 发送者邮箱
@@ -90,19 +91,19 @@ public class EmailCode {
     /**
      * 获取验证类型（0:忘记密码模块）
      *
-     * @return type - 验证类型（0:忘记密码模块）
+     * @return code_type - 验证类型（0:忘记密码模块）
      */
-    public String getType() {
-        return type;
+    public String getCodeType() {
+        return codeType;
     }
 
     /**
      * 设置验证类型（0:忘记密码模块）
      *
-     * @param type 验证类型（0:忘记密码模块）
+     * @param codeType 验证类型（0:忘记密码模块）
      */
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setCodeType(String codeType) {
+        this.codeType = codeType == null ? null : codeType.trim();
     }
 
     /**
