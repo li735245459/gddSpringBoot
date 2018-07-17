@@ -30,7 +30,7 @@ public class CoverServiceImpl implements CoverService {
      * @return
      */
     @Override
-    public Object findCoverType() {
+    public Object selectCoverType() {
         Example example = new Example(CoverType.class);
         // 根据nodeLevel降序排列(用于创建tree格式数据)
         // 根据createTime升序(用于排列节点和子节点的顺序)

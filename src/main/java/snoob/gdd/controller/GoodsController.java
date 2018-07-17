@@ -35,9 +35,9 @@ public class GoodsController {
      * @return
      * @throws Exception
      */
-    @GetMapping("/findGoodsType")
-    public Object findGoodsType() throws Exception {
-        return goodsService.findGoodsType();
+    @GetMapping("/selectGoodsType")
+    public Object selectGoodsType() throws Exception {
+        return goodsService.selectGoodsType();
     }
 
     /**

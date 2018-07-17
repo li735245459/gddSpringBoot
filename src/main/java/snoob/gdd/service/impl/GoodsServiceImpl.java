@@ -51,7 +51,7 @@ public class GoodsServiceImpl implements GoodsService {
      * @throws Exception
      */
     @Override
-    public Object findGoodsType() {
+    public Object selectGoodsType() {
         Example example = new Example(CoverType.class);
         // 根据nodeLevel降序排列(用于创建tree格式数据)
         // 根据createTime升序(用于排列节点和子节点的顺序)

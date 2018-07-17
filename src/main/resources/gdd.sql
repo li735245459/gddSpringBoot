@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `cover` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `cover_type_id` varchar(36) DEFAULT NULL COMMENT '外键编号,uuid',
   `cover_type_name` varchar(36) DEFAULT NULL COMMENT '外键名称',
-  `name` varchar(50) NOT NULL COMMENT '名称',
+  `name` varchar(20) NOT NULL COMMENT '名称',
   `introduce` varchar(50) DEFAULT NULL COMMENT '说明',
   `src` varchar(500) NOT NULL COMMENT '下载地址',
   `link` varchar(100) DEFAULT NULL COMMENT '外链',
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `cover_type` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `parent_id` varchar(36) NOT NULL DEFAULT 'root' COMMENT '父级编号,root表示根节点',
-  `name` varchar(32) NOT NULL COMMENT '类别名称',
+  `name` varchar(20) NOT NULL COMMENT '类别名称',
   `node_level` int(11) NOT NULL COMMENT '节点级别,0表示根节点,1表示一级子节点',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='封面类别信息';
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `goods_type` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `parent_id` varchar(36) NOT NULL DEFAULT 'root' COMMENT '父级编号,root表示根节点',
-  `name` varchar(32) NOT NULL COMMENT '类别名称',
+  `name` varchar(20) NOT NULL COMMENT '类别名称',
   `node_level` int(11) NOT NULL COMMENT '节点级别,0表示根节点,1表示一级子节点',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品类别信息';

@@ -23,9 +23,9 @@ public class CoverController {
      * @return
      * @throws Exception
      */
-    @GetMapping("/findCoverType")
-    public Object findCoverType() throws Exception {
-        return coverService.findCoverType();
+    @GetMapping("/selectCoverType")
+    public Object selectCoverType() throws Exception {
+        return coverService.selectCoverType();
     }
 
     /**

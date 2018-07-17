@@ -5,7 +5,7 @@ import snoob.gdd.model.Cover;
 
 public interface CoverService {
     // 封面类型信息
-    Object findCoverType() throws Exception;
+    Object selectCoverType() throws Exception;
     Object modifyCoverType(CoverType coverType) throws Exception;
     Object deleteCoverType(String id) throws Exception;
     // 封面信息
