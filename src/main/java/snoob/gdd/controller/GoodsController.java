@@ -23,26 +23,20 @@ public class GoodsController {
      * @return
      * @throws Exception
      */
-    @PostMapping("/modify")
+    @PostMapping("/modifyGoodsType")
     public Object modify(@RequestBody GoodsType goodsType) throws Exception {
-        return goodsService.modify(goodsType);
+        return goodsService.modifyGoodsType(goodsType);
     }
 
     /**
      * 分页查询商品类型信息
      *
-     * @param goodsType
-     * @param pageNumber
-     * @param pageSize
      * @return
      * @throws Exception
      */
-    @PostMapping("/page/{pageNumber}/{pageSize}")
-    public Object page(@RequestBody GoodsType goodsType,
-                       @PathVariable(value = "pageNumber") Integer pageNumber,
-                       @PathVariable(value = "pageSize") Integer pageSize
-    ) throws Exception {
-        return goodsService.page(goodsType, pageNumber, pageSize);
+    @GetMapping("/findGoodsType")
+    public Object findGoodsType() throws Exception {
+        return goodsService.findGoodsType();
     }
 
     /**
@@ -51,8 +45,8 @@ public class GoodsController {
      * @param id
      * @return
      */
-    @PostMapping("/delete")
+    @PostMapping("/deleteGoodsType")
     public Object delete(@RequestBody String id) throws Exception {
-        return goodsService.delete(id);
+        return goodsService.deleteGoodsType(id);
     }
 }

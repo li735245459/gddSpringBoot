@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CoverTypeMapper extends Mapper<CoverType>, MySqlMapper<CoverType> {
     /**
-     * 根据ID批量删除用户信息
+     * 根据ID批量删除封面类型信息
      *
      * @param ids
      * @return
