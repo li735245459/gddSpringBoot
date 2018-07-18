@@ -3,11 +3,13 @@ package snoob.gdd.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.CoverMapper;
 import snoob.gdd.mapper.CoverTypeMapper;
 import snoob.gdd.model.Cover;
 import snoob.gdd.model.CoverType;
 import snoob.gdd.service.CoverService;
+import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.ResultUtil;
 import tk.mybatis.mapper.entity.Example;
 
@@ -23,6 +25,9 @@ public class CoverServiceImpl implements CoverService {
 
     @Resource
     private CoverMapper coverMapper;
+
+    @Resource
+    private OnlyUtil onlyUtil;
 
     /**
      * 查询封面类型信息
@@ -48,6 +53,9 @@ public class CoverServiceImpl implements CoverService {
      */
     @Override
     public Object modifyCoverType(CoverType coverType) {
+        if (coverType.getName() != null && onlyUtil.CoverTypeNameUsed(coverType.getName())) {
+            return ResultUtil.error(ResultEnum.ERROR_COVERTYPENAME_USED);
+        }
         if (coverType.getId() == null) {
             /*添加*/
             coverTypeMapper.insertSelective(coverType);
@@ -107,6 +115,9 @@ public class CoverServiceImpl implements CoverService {
      */
     @Override
     public Object modifyCover(Cover cover) {
+        if(cover.getName() != null && onlyUtil.CoverNameUsed(cover.getName())){
+            return ResultUtil.error(ResultEnum.ERROR_COVERNAME_USED);
+        }
         if (cover.getId() == null) {
             /*添加*/
             coverMapper.insertSelective(cover);
