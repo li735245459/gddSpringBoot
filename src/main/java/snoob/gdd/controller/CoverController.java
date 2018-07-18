@@ -71,7 +71,7 @@ public class CoverController {
     }
 
     /**
-     * 修改、添加封面信息
+     * 修改、添加封面信息 @RequestBody Cover cover
      *
      * Content type 'multipart/form-data;boundary=----WebKitFormBoundaryaJPqL4I6GEtD7a8H;charset=UTF-8' not supported
      *
@@ -80,7 +80,7 @@ public class CoverController {
      * @throws Exception
      */
     @PostMapping("/modifyCover")
-    public Object modifyCover(@RequestBody Cover cover, @RequestPart("files") MultipartFile files) throws Exception {
+    public Object modifyCover(@RequestParam String coverTypeName, @RequestPart("files") MultipartFile files) throws Exception {
 //        return coverService.modifyCover(cover);
         return ResultUtil.success();
 
