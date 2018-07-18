@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.22-log - MySQL Community Server (GPL)
--- 服务器操作系统:                      Win32
--- HeidiSQL 版本:                  9.5.0.5196
+-- 服务器版本:                        5.7.17-log - MySQL Community Server (GPL)
+-- 服务器操作系统:                      Win64
+-- HeidiSQL 版本:                  9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -23,11 +23,11 @@ CREATE TABLE IF NOT EXISTS `cover` (
   `id` varchar(36) NOT NULL COMMENT '编号,uuid',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `cover_type_name` varchar(36) NOT NULL COMMENT '封面类型名称',
-  `name` varchar(20) NOT NULL COMMENT '名称',
-  `introduce` varchar(50) DEFAULT NULL COMMENT '说明',
-  `src` varchar(500) NOT NULL COMMENT '下载地址',
-  `href` varchar(100) DEFAULT NULL COMMENT '外链地址',
   `isActive` int(1) NOT NULL DEFAULT '0' COMMENT '是否激活,0屏蔽,1激活',
+  `name` varchar(20) NOT NULL COMMENT '名称',
+  `src` varchar(500) NOT NULL COMMENT '下载地址',
+  `introduce` varchar(50) DEFAULT NULL COMMENT '说明',
+  `href` varchar(100) DEFAULT NULL COMMENT '外链地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='封面信息';
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `create_time`, `cover`, `name`, `phone`, `email`, `password`, `introduce`, `sex`, `hobby`, `province`, `city`, `area`, `address`, `login_time`, `login_ip`) VALUES
-	('77cfd433-c255-4978-aca2-efb453558eb8', '2018-07-06 19:58:09', 'cover.jpg', '李星', '18013896707', 'lixing_java@163.com', '1750637e26c7cad8c487824ad7f6337b', '该用户很懒什么都没有留下', '男', '篮球,足球,排球,皮球', '河北省', '承德市', '围场满族蒙古族自治县', '育群胡同21号', '2018-07-12 12:42:07', '127.0.0.1');
+	('77cfd433-c255-4978-aca2-efb453558eb8', '2018-07-06 19:58:09', 'cover.jpg', '李星', '18013896707', 'lixing_java@163.com', '1750637e26c7cad8c487824ad7f6337b', '该用户很懒什么都没有留下', '男', '篮球,足球,排球,皮球', '河北省', '承德市', '围场满族蒙古族自治县', '育群胡同21号', '2018-07-18 14:02:18', '127.0.0.1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
