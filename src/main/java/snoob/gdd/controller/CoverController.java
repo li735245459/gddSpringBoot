@@ -1,9 +1,11 @@
 package snoob.gdd.controller;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import snoob.gdd.model.Cover;
 import snoob.gdd.model.CoverType;
 import snoob.gdd.service.CoverService;
+import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
 
@@ -76,8 +78,10 @@ public class CoverController {
      * @throws Exception
      */
     @PostMapping("/modifyCover")
-    public Object modifyCover(@RequestBody Cover cover) throws Exception {
-        return coverService.modifyCover(cover);
+    public Object modifyCover(@RequestBody Cover cover, @RequestPart("file") MultipartFile file) throws Exception {
+//        return coverService.modifyCover(cover);
+        return ResultUtil.success();
+
     }
 
     /**
