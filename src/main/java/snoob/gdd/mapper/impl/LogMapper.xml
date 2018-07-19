@@ -16,7 +16,7 @@
   <!-- 批量删除 -->
   <delete id="customDelete" parameterType="java.util.List">
     delete from log where id in
-    <foreach close=")" collection="list" index="index" item="id" open="(" separator=",">
+    <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
       #{id}
     </foreach>
   </delete>

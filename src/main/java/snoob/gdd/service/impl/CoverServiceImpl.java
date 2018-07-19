@@ -107,7 +107,7 @@ public class CoverServiceImpl implements CoverService {
     }
 
     /**
-     * 修改、添加封面信息
+     * 添加封面信息
      *
      * @param cover
      * @return

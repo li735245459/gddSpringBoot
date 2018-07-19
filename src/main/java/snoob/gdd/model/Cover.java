@@ -28,14 +28,15 @@ public class Cover {
     private String coverTypeName;
 
     /**
+     * 是否激活,0屏蔽,1激活
+     */
+    @Column(name = "isActive")
+    private Integer isactive;
+
+    /**
      * 名称
      */
     private String name;
-
-    /**
-     * 说明
-     */
-    private String introduce;
 
     /**
      * 下载地址
@@ -43,15 +44,14 @@ public class Cover {
     private String src;
 
     /**
+     * 说明
+     */
+    private String introduce;
+
+    /**
      * 外链地址
      */
     private String href;
-
-    /**
-     * 是否激活,0屏蔽,1激活
-     */
-    @Column(name = "isActive")
-    private Integer isactive;
 
     /**
      * 获取编号,uuid
@@ -108,6 +108,24 @@ public class Cover {
     }
 
     /**
+     * 获取是否激活,0屏蔽,1激活
+     *
+     * @return isActive - 是否激活,0屏蔽,1激活
+     */
+    public Integer getIsactive() {
+        return isactive;
+    }
+
+    /**
+     * 设置是否激活,0屏蔽,1激活
+     *
+     * @param isactive 是否激活,0屏蔽,1激活
+     */
+    public void setIsactive(Integer isactive) {
+        this.isactive = isactive;
+    }
+
+    /**
      * 获取名称
      *
      * @return name - 名称
@@ -123,24 +141,6 @@ public class Cover {
      */
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    /**
-     * 获取说明
-     *
-     * @return introduce - 说明
-     */
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    /**
-     * 设置说明
-     *
-     * @param introduce 说明
-     */
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
     }
 
     /**
@@ -162,6 +162,24 @@ public class Cover {
     }
 
     /**
+     * 获取说明
+     *
+     * @return introduce - 说明
+     */
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    /**
+     * 设置说明
+     *
+     * @param introduce 说明
+     */
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce == null ? null : introduce.trim();
+    }
+
+    /**
      * 获取外链地址
      *
      * @return href - 外链地址
@@ -177,23 +195,5 @@ public class Cover {
      */
     public void setHref(String href) {
         this.href = href == null ? null : href.trim();
-    }
-
-    /**
-     * 获取是否激活,0屏蔽,1激活
-     *
-     * @return isActive - 是否激活,0屏蔽,1激活
-     */
-    public Integer getIsactive() {
-        return isactive;
-    }
-
-    /**
-     * 设置是否激活,0屏蔽,1激活
-     *
-     * @param isactive 是否激活,0屏蔽,1激活
-     */
-    public void setIsactive(Integer isactive) {
-        this.isactive = isactive;
     }
 }

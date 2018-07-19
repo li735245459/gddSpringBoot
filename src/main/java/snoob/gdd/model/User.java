@@ -42,7 +42,7 @@ public class User {
     private String email;
 
     /**
-     * 密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
+     * 密码(gdd1234)(1750637e26c7cad8c487824ad7f6337b)
      */
     private String password;
 
@@ -202,18 +202,18 @@ public class User {
     }
 
     /**
-     * 获取密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
+     * 获取密码(gdd1234)(1750637e26c7cad8c487824ad7f6337b)
      *
-     * @return password - 密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
+     * @return password - 密码(gdd1234)(1750637e26c7cad8c487824ad7f6337b)
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * 设置密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
+     * 设置密码(gdd1234)(1750637e26c7cad8c487824ad7f6337b)
      *
-     * @param password 密码(默认li123456)(afb4f702e90e70060d09f4d28a848914)
+     * @param password 密码(gdd1234)(1750637e26c7cad8c487824ad7f6337b)
      */
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();

@@ -8,11 +8,11 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="cover_type_name" jdbcType="VARCHAR" property="coverTypeName" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="src" jdbcType="VARCHAR" property="src" />
-    <result column="href" jdbcType="VARCHAR" property="href" />
     <result column="isActive" jdbcType="INTEGER" property="isactive" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="src" jdbcType="VARCHAR" property="src" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+    <result column="href" jdbcType="VARCHAR" property="href" />
   </resultMap>
 
   <!-- 批量删除 -->

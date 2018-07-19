@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.UserMapper;
+import snoob.gdd.model.Cover;
 import snoob.gdd.model.User;
-import snoob.gdd.service.ExcelService;
+import snoob.gdd.service.FileService;
 import snoob.gdd.util.ResultUtil;
 import snoob.gdd.util.StrUtil;
 import tk.mybatis.mapper.entity.Example;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ExcelServiceImpl implements ExcelService {
+public class FileServiceImpl implements FileService {
 
     @Resource
     private UserMapper userMapper;
@@ -45,7 +46,7 @@ public class ExcelServiceImpl implements ExcelService {
      */
     @Override
     public void exportUser(HttpServletResponse response, User user) throws Exception {
-        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+//        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         // 查询数据
         Example example = new Example(User.class);
         example.orderBy("createTime").asc();
@@ -267,9 +268,33 @@ public class ExcelServiceImpl implements ExcelService {
                 }
                 break;
             }
+            if (users.isEmpty()) {
+                return ResultUtil.error(ResultEnum.ERROR_IMPORT_FILE_DATA_NULL);
+            }
             userMapper.customInsert(users);
             return ResultUtil.success();
         }
-        return ResultUtil.error(ResultEnum.ERROR_UPFILE_NULL);
+        return ResultUtil.error(ResultEnum.ERROR_IMPORT_FILE_NULL);
+    }
+
+    /**
+     * 上传封面信息
+     *
+     * @param files
+     * @param cover
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object importCover(MultipartFile[] files, Cover cover) throws Exception {
+        for (MultipartFile multipartFile : files) {
+//            System.out.println(multipartFile.getOriginalFilename());
+//            System.out.println(multipartFile.getBytes());
+            // 判断文件名称是否重复
+            // 判断文件大小是否颌法
+            // 判断文件类型是否合法
+        }
+        // 将文件下载到服务器制定目录
+        return ResultUtil.success();
     }
 }
