@@ -288,8 +288,13 @@ public class FileServiceImpl implements FileService {
     @Override
     public Object importCover(MultipartFile[] files, Cover cover) throws Exception {
         for (MultipartFile multipartFile : files) {
-//            System.out.println(multipartFile.getOriginalFilename());
-//            System.out.println(multipartFile.getBytes());
+//            System.out.println(multipartFile.getOriginalFilename()); // h6.jpg
+//            System.out.println(multipartFile.getName()); // files
+//            System.out.println(multipartFile.getContentType()); // image/jpeg
+//            System.out.println(multipartFile.getSize()); // 33464
+//            System.out.println(multipartFile.getBytes()); // [B@7fbc3b4e
+//            System.out.println(multipartFile.getInputStream()); // java.io.FileInputStream@6051eb62
+//            System.out.println("-----------");
             // 判断文件名称是否重复
             // 判断文件大小是否颌法
             // 判断文件类型是否合法
