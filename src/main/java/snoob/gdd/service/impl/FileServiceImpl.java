@@ -10,14 +10,15 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.Cover;
 import snoob.gdd.model.User;
 import snoob.gdd.service.FileService;
+import snoob.gdd.util.OnlyUtil;
+import snoob.gdd.util.QNYUtil;
 import snoob.gdd.util.ResultUtil;
 import snoob.gdd.util.StrUtil;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,13 @@ public class FileServiceImpl implements FileService {
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private CoverServiceImpl coverService;
+
+    @Resource
+    private OnlyUtil onlyUtil;
+
     private HSSFWorkbook workBook = null;
     private HSSFSheet hssfSheet = null;
     private HSSFRow hssfRow = null;
@@ -286,20 +294,32 @@ public class FileServiceImpl implements FileService {
      * @throws Exception
      */
     @Override
-    public Object importCover(MultipartFile[] files, Cover cover) throws Exception {
-        for (MultipartFile multipartFile : files) {
-//            System.out.println(multipartFile.getOriginalFilename()); // h6.jpg
-//            System.out.println(multipartFile.getName()); // files
-//            System.out.println(multipartFile.getContentType()); // image/jpeg
-//            System.out.println(multipartFile.getSize()); // 33464
-//            System.out.println(multipartFile.getBytes()); // [B@7fbc3b4e
-//            System.out.println(multipartFile.getInputStream()); // java.io.FileInputStream@6051eb62
-//            System.out.println("-----------");
-            // 判断文件名称是否重复
-            // 判断文件大小是否颌法
-            // 判断文件类型是否合法
+    public Object importCover(
+            MultipartFile[] files, Cover cover) throws Exception {
+        for (MultipartFile file : files) {
+            /*封面名称判断*/
+            String fileName = file.getOriginalFilename();// h6.jpg
+            if (onlyUtil.CoverNameUsed(fileName)) {
+                return ResultUtil.error(ResultEnum.ERROR_COVERNAME_USED);
+            }
+            /*封面格式判断*/
+            String fileType = file.getContentType();// image/jpeg
+            if (!fileType.contains("jpeg")) {
+                return ResultUtil.error(ResultEnum.ERROR_COVER_FORMAT_ILLEGAL);
+            }
+            /*保存封面到项目目录*/
+            /*C:\Users\Administrator\AppData\Local\Temp\tomcat-docbase.5111887347846722637.8080\\h5.jpg*/
+            //String realPath = request.getSession().getServletContext().getRealPath("/"); // 项目在容器中实际发布运行的根路径
+            //String path = realPath + File.separator + fileName;
+            //file.transferTo(new File(path));
+            /*保存到七牛云*/
+            String fileUrl = QNYUtil.upFileByBytes(file);
+            /*添加到数据库*/
+            cover.setId(null);
+            cover.setName(fileName);
+            cover.setSrc(fileUrl);
+            coverService.modifyCover(cover);
         }
-        // 将文件下载到服务器制定目录
         return ResultUtil.success();
     }
 }

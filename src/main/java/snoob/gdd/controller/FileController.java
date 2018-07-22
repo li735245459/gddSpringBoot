@@ -49,7 +49,9 @@ public class FileController {
      * @throws Exception
      */
     @PostMapping(value = "/importCover")
-    public Object importCover(@RequestParam("files") MultipartFile[] files, @RequestParam("coverTypeName") String coverTypeName) throws Exception {
+    public Object importCover(
+            @RequestPart("files") MultipartFile[] files,
+            @RequestParam("coverTypeName") String coverTypeName) throws Exception {
         Cover item = new Cover();
         item.setCoverTypeName(coverTypeName);
         return fileService.importCover(files, item);
