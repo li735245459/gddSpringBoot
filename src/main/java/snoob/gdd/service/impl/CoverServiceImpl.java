@@ -3,11 +3,13 @@ package snoob.gdd.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.CoverMapper;
 import snoob.gdd.mapper.CoverTypeMapper;
 import snoob.gdd.model.Cover;
 import snoob.gdd.model.CoverType;
+import snoob.gdd.model.User;
 import snoob.gdd.service.CoverService;
 import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.ResultUtil;
@@ -30,29 +32,32 @@ public class CoverServiceImpl implements CoverService {
     private OnlyUtil onlyUtil;
 
     /**
-     * 查询封面类型信息
+     * 查询封面类型(前端根据parentId以Tree的形式展示)
+     * 按照nodeLevel(0表示根节点,1表示一级子节点...)降序排列,方便从最低层的节点依次向上关联父节点
+     * 按照createTime升序排列来构建子节排列顺序
      *
      * @return
      */
     @Override
     public Object selectCoverType() {
         Example example = new Example(CoverType.class);
-        // 根据nodeLevel降序排列(用于创建tree格式数据)
-        // 根据createTime升序(用于排列节点和子节点的顺序)
         example.orderBy("nodeLevel").desc().orderBy("createTime").asc();
         List<CoverType> coverTypes = coverTypeMapper.selectByExample(example);
         return ResultUtil.success(coverTypes);
     }
 
     /**
-     * 编辑、添加封面类型信息
+     * 1) 添加封面类型,名称不能重复
+     * 2) 编辑封面类型,名称不能重复
+     * 修改前需要级联修改封面信息的coverTypeName字段
      *
      * @param coverType
      * @return
-     * @throws Exception
      */
     @Override
+    @Transactional
     public Object modifyCoverType(CoverType coverType) {
+        /*校验封面类型名称*/
         if (coverType.getName() != null && onlyUtil.CoverTypeNameUsed(coverType.getName())) {
             return ResultUtil.error(ResultEnum.ERROR_COVERTYPENAME_USED);
         }
@@ -61,34 +66,44 @@ public class CoverServiceImpl implements CoverService {
             coverTypeMapper.insertSelective(coverType);
         } else {
             /*编辑*/
-            coverTypeMapper.updateByPrimaryKeySelective(coverType);
+            /*根据id查询coverType表的name(oldCoverTypeName)*/
+            CoverType coverTypeItem = new CoverType();
+            coverTypeItem.setId(coverType.getId());
+            coverTypeItem = coverTypeMapper.selectOne(coverTypeItem);
+            String oldCoverTypeName = coverTypeItem.getName(); // 修改前的CoverTypeName
+            String newCoverTypeName = coverType.getName(); // 修改后的CoverTypeName
+            /*封面类型的名称发送改变*/
+            if (!oldCoverTypeName.equals(newCoverTypeName)) {
+                Cover coverItem = new Cover();
+                coverItem.setCoverTypeName(newCoverTypeName);
+                Example example = new Example(Cover.class);
+                Example.Criteria criteria = example.createCriteria(); // 动态查询条件
+                criteria.andEqualTo("coverTypeName", oldCoverTypeName);
+                /*根据oldCoverTypeName修改封面的coverTypeName*/
+                coverMapper.updateByExampleSelective(coverItem, example);
+                /*修改封面类型*/
+                coverTypeMapper.updateByPrimaryKeySelective(coverType);
+            }
         }
         return ResultUtil.success();
     }
 
     /**
-     * 删除封面类型信息
-     *
      * @param id
      * @return
      * @throws Exception
      */
     @Override
+    @Transactional
     public Object deleteCoverType(String id) throws Exception {
         List<String> ids = Arrays.asList(id.split(","));
         coverTypeMapper.customDelete(ids);
+        /*
+         *级联制空cover表中的coverTypeName字段(涉及到事务)
+         */
         return ResultUtil.success();
     }
 
-    /**
-     * 分页查询封面信息
-     *
-     * @param cover
-     * @param pageNumber
-     * @param pageSize
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object pageCover(Cover cover, Integer pageNumber, Integer pageSize) {
         Example example = new Example(Cover.class);
@@ -106,16 +121,9 @@ public class CoverServiceImpl implements CoverService {
         return ResultUtil.success(page);
     }
 
-    /**
-     * 添加封面信息
-     *
-     * @param cover
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object modifyCover(Cover cover) {
-        if(cover.getName() != null && onlyUtil.CoverNameUsed(cover.getName())){
+        if (cover.getName() != null && onlyUtil.CoverNameUsed(cover.getName())) {
             return ResultUtil.error(ResultEnum.ERROR_COVERNAME_USED);
         }
         if (cover.getId() == null) {
@@ -128,13 +136,6 @@ public class CoverServiceImpl implements CoverService {
         return ResultUtil.success();
     }
 
-    /**
-     * 删除封面信息
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object deleteCover(String id) throws Exception {
         if ("all".equals(id)) {

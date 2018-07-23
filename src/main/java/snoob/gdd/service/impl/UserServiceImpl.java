@@ -120,33 +120,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object page(User user, Integer pageNumber, Integer pageSize) {
         Example example = new Example(User.class);
-//        // 设置行级锁,确保数据一致性
-//        example.setForUpdate(true);
-//        // 去重
-//        example.setDistinct(true);
-//        // 指定查询列
-//        example.selectProperties("id", "name");
-//        // 设置排序规则 .orderBy("loginTime").asc();
-        example.orderBy("createTime").asc();
-        // 动态sql
-        Example.Criteria criteria = example.createCriteria();
+//        example.setForUpdate(true); // 设置行级锁,确保数据一致性
+//        example.setDistinct(true); // 去重
+//        example.selectProperties("id", "name"); // 指定查询列
+        example.orderBy("createTime").asc(); // 设置排序规则
+        Example.Criteria criteria = example.createCriteria(); // 动态查询条件
         if (user.getName() != null) {
-            criteria.andLike("name", user.getName().trim() + "%");
+            criteria.andLike("name", user.getName().trim() + "%"); // name like 'aa'%
         }
         if (user.getSex() != null && !"0".equals(user.getSex())) {
-            criteria.andEqualTo("sex", user.getSex().trim());
+            criteria.andEqualTo("sex", user.getSex().trim()); // sex = 'aa'
         }
         if (user.getEmail() != null) {
-            criteria.andEqualTo("email", user.getEmail().trim());
+            criteria.andEqualTo("email", user.getEmail().trim()); // email = 'aa'
         }
         if (user.getPhone() != null) {
-            criteria.andEqualTo("phone", user.getPhone().trim());
+            criteria.andEqualTo("phone", user.getPhone().trim()); // phone = 'aa'
         }
         if (user.getCreateTime() != null) {
-            criteria.andGreaterThanOrEqualTo("createTime", user.getCreateTime());
+            criteria.andGreaterThanOrEqualTo("createTime", user.getCreateTime()); // createTime >= '1992-10-29 10:10:10'
         }
         if (user.getLoginTime() != null) {
-            criteria.andGreaterThanOrEqualTo("loginTime", user.getLoginTime());
+            criteria.andGreaterThanOrEqualTo("loginTime", user.getLoginTime()); // loginTime >= '1992-10-29 10:10:10'
         }
         // 开启分页模式
         PageHelper.startPage(pageNumber, pageSize);

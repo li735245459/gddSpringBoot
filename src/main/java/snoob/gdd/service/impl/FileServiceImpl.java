@@ -45,16 +45,8 @@ public class FileServiceImpl implements FileService {
     private HSSFFont font = null;
     HSSFDataFormat format = null;
 
-    /**
-     * 导出用户信息
-     *
-     * @param response
-     * @param user
-     * @thhssfRows Exception
-     */
     @Override
     public void exportUser(HttpServletResponse response, User user) throws Exception {
-//        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         // 查询数据
         Example example = new Example(User.class);
         example.orderBy("createTime").asc();
@@ -217,12 +209,6 @@ public class FileServiceImpl implements FileService {
         workBook.close();
     }
 
-    /**
-     * 导入用户信息
-     *
-     * @param file
-     * @return
-     */
     @Override
     public Object importUser(MultipartFile file) throws Exception {
         if (!file.isEmpty()) {
@@ -285,14 +271,6 @@ public class FileServiceImpl implements FileService {
         return ResultUtil.error(ResultEnum.ERROR_IMPORT_FILE_NULL);
     }
 
-    /**
-     * 上传封面信息
-     *
-     * @param files
-     * @param cover
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object importCover(
             MultipartFile[] files, Cover cover) throws Exception {
@@ -307,11 +285,13 @@ public class FileServiceImpl implements FileService {
             if (!fileType.contains("jpeg")) {
                 return ResultUtil.error(ResultEnum.ERROR_COVER_FORMAT_ILLEGAL);
             }
+
             /*保存封面到项目目录*/
             /*C:\Users\Administrator\AppData\Local\Temp\tomcat-docbase.5111887347846722637.8080\\h5.jpg*/
             //String realPath = request.getSession().getServletContext().getRealPath("/"); // 项目在容器中实际发布运行的根路径
             //String path = realPath + File.separator + fileName;
             //file.transferTo(new File(path));
+
             /*保存到七牛云*/
             String fileUrl = QNYUtil.upFileByBytes(file);
             /*添加到数据库*/

@@ -22,12 +22,12 @@ import java.io.UnsupportedEncodingException;
 public class QNYUtil {
     private static final String accessKey = "whTEdjKpXHLpLh77WrC_tLybFNKsP6tJnWPhgqP-"; // 七牛云账号的access key
     private static final String secretKey = "2755x1fBt7_7q-ssvQEA280Oc6JbMHxRUQPyX0I6"; // 七牛云账号的secret key
-    private static final String bucket = "gdd-img"; // 七牛云账号的存储空间名称
-    private static final String domain = "http://pc1nqgunf.bkt.clouddn.com/"; // 七牛云账号的存储空间名称的域名
+    private static final String bucket = "gdd-assets"; // 七牛云账号的存储空间名称
+    private static final String domain = "http://pc9o5rve4.bkt.clouddn.com/"; // 七牛云账号的存储空间名称的域名
     private static Configuration cfg;
 
     static {
-        cfg = new Configuration(Zone.zone0()); // Zone.zone0()为华东机房
+        cfg = new Configuration(Zone.zone2()); // Zone.zone2()为华南机房
     }
 
     /**
@@ -46,10 +46,7 @@ public class QNYUtil {
             String upToken = auth.uploadToken(bucket);
             try {
                 Response qny_response = uploadManager.put(uploadBytes, key, upToken);
-                //解析上传成功的结果
-                DefaultPutRet putRet = new Gson().fromJson(qny_response.bodyString(), DefaultPutRet.class);
-                // putRet.key); // 文件名
-                // putRet.hash);// 文件名hash值
+                DefaultPutRet putRet = new Gson().fromJson(qny_response.bodyString(), DefaultPutRet.class); //解析上传成功的结果
                 return domain + putRet.key;
             } catch (QiniuException ex) {
                 throw new GlobalCustomException(ResultEnum.ERROR_QNY_UPFILE);

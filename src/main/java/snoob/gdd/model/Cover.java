@@ -30,8 +30,8 @@ public class Cover {
     /**
      * 是否激活,0屏蔽,1激活
      */
-    @Column(name = "isActive")
-    private Integer isactive;
+    @Column(name = "is_active")
+    private Integer isActive;
 
     /**
      * 名称
@@ -110,19 +110,19 @@ public class Cover {
     /**
      * 获取是否激活,0屏蔽,1激活
      *
-     * @return isActive - 是否激活,0屏蔽,1激活
+     * @return is_active - 是否激活,0屏蔽,1激活
      */
-    public Integer getIsactive() {
-        return isactive;
+    public Integer getIsActive() {
+        return isActive;
     }
 
     /**
      * 设置是否激活,0屏蔽,1激活
      *
-     * @param isactive 是否激活,0屏蔽,1激活
+     * @param isActive 是否激活,0屏蔽,1激活
      */
-    public void setIsactive(Integer isactive) {
-        this.isactive = isactive;
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     /**

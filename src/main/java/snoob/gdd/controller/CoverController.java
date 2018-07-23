@@ -1,11 +1,9 @@
 package snoob.gdd.controller;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import snoob.gdd.model.Cover;
 import snoob.gdd.model.CoverType;
 import snoob.gdd.service.CoverService;
-import snoob.gdd.util.ResultUtil;
 
 import javax.annotation.Resource;
 

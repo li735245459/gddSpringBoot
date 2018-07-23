@@ -13,17 +13,15 @@
 
 
 -- 导出 gdd 的数据库结构
-DROP DATABASE IF EXISTS `gdd`;
 CREATE DATABASE IF NOT EXISTS `gdd` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `gdd`;
 
 -- 导出  表 gdd.cover 结构
-DROP TABLE IF EXISTS `cover`;
 CREATE TABLE IF NOT EXISTS `cover` (
   `id` varchar(36) NOT NULL COMMENT '编号,uuid',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `cover_type_name` varchar(36) NOT NULL COMMENT '封面类型名称',
-  `isActive` int(1) NOT NULL DEFAULT '0' COMMENT '是否激活,0屏蔽,1激活',
+  `is_active` int(1) NOT NULL DEFAULT '0' COMMENT '是否激活,0屏蔽,1激活',
   `name` varchar(20) NOT NULL COMMENT '名称',
   `src` varchar(500) NOT NULL COMMENT '下载地址',
   `introduce` varchar(50) DEFAULT NULL COMMENT '说明',
@@ -31,13 +29,15 @@ CREATE TABLE IF NOT EXISTS `cover` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='封面信息';
 
--- 正在导出表  gdd.cover 的数据：~0 rows (大约)
+-- 正在导出表  gdd.cover 的数据：~2 rows (大约)
 DELETE FROM `cover`;
 /*!40000 ALTER TABLE `cover` DISABLE KEYS */;
+INSERT INTO `cover` (`id`, `create_time`, `cover_type_name`, `is_active`, `name`, `src`, `introduce`, `href`) VALUES
+	('ae968877-1255-45e2-a101-0957a32878e7', '2018-07-22 20:27:47', '轮播图', 0, 'h6.jpg', 'http://pc9o5rve4.bkt.clouddn.com/Fgoh5ZrlTeDFDu_RaXUVXNqBtXA5', NULL, NULL),
+	('d7be52d7-de83-408c-b652-8395ba783099', '2018-07-22 20:27:47', '轮播图', 0, 'h5.jpg', 'http://pc9o5rve4.bkt.clouddn.com/FtIDT_2XKBh-sCqT31cC7JMooXhc', NULL, NULL);
 /*!40000 ALTER TABLE `cover` ENABLE KEYS */;
 
 -- 导出  表 gdd.cover_type 结构
-DROP TABLE IF EXISTS `cover_type`;
 CREATE TABLE IF NOT EXISTS `cover_type` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -63,7 +63,6 @@ INSERT INTO `cover_type` (`id`, `create_time`, `parent_id`, `name`, `node_level`
 /*!40000 ALTER TABLE `cover_type` ENABLE KEYS */;
 
 -- 导出  表 gdd.email_code 结构
-DROP TABLE IF EXISTS `email_code`;
 CREATE TABLE IF NOT EXISTS `email_code` (
   `id` varchar(36) NOT NULL COMMENT '编号,UUID',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发送时间',
@@ -82,7 +81,6 @@ DELETE FROM `email_code`;
 /*!40000 ALTER TABLE `email_code` ENABLE KEYS */;
 
 -- 导出  表 gdd.goods 结构
-DROP TABLE IF EXISTS `goods`;
 CREATE TABLE IF NOT EXISTS `goods` (
   `id` varchar(36) NOT NULL COMMENT '编号,uuid',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -101,7 +99,6 @@ DELETE FROM `goods`;
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 
 -- 导出  表 gdd.goods_type 结构
-DROP TABLE IF EXISTS `goods_type`;
 CREATE TABLE IF NOT EXISTS `goods_type` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -117,7 +114,6 @@ DELETE FROM `goods_type`;
 /*!40000 ALTER TABLE `goods_type` ENABLE KEYS */;
 
 -- 导出  表 gdd.log 结构
-DROP TABLE IF EXISTS `log`;
 CREATE TABLE IF NOT EXISTS `log` (
   `id` varchar(36) NOT NULL COMMENT '编号',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -129,13 +125,18 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='错误日志';
 
--- 正在导出表  gdd.log 的数据：~0 rows (大约)
+-- 正在导出表  gdd.log 的数据：~5 rows (大约)
 DELETE FROM `log`;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
+INSERT INTO `log` (`id`, `create_time`, `req_url`, `req_method`, `req_args`, `controller_method`, `msg`) VALUES
+	('19f0e17e-673c-4b98-8e05-dc53ac321604', '2018-07-19 16:59:15', 'http://localhost:8080/gdd/file/importCover', 'POST', 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@274ee41c', 'snoob.gdd.controller.FileController.importCover', 'Invalid header signature; read 0x464A1000E0FFD8FF, expected 0xE11AB1A1E011CFD0 - Your file appears not to be a valid OLE2 document'),
+	('1c820b31-d9ce-4a5e-bbf5-9d37afecfb5d', '2018-07-19 14:24:39', 'http://localhost:8080/gdd/file/importUser', 'POST', 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@51044c14', 'snoob.gdd.controller.FileController.importUser', '### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry \'lixing_java@163.com\' for key \'email\'\r\n### The error may involve snoob.gdd.mapper.UserMapper.customInsert-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into user(id, name, sex, phone,email,hobby,province,city,area,address,create_time) values                        (?,?,?,?,?,?,?,?,?,?,?)\r\n### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry \'lixing_java@163.com\' for key \'email\'\n; ]; Duplicate entry \'lixing_java@163.com\' for key \'email\'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry \'lixing_java@163.com\' for key \'email\''),
+	('2bf1ccc8-f22b-49bb-badf-714aa3e8920c', '2018-07-19 14:29:05', 'http://localhost:8080/gdd/file/importUser', 'POST', 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@20e199f7', 'snoob.gdd.controller.FileController.importUser', '### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry \'lixing_java@163.com\' for key \'email\'\r\n### The error may involve snoob.gdd.mapper.UserMapper.customInsert-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into user(id, name, sex, phone,email,hobby,province,city,area,address,create_time) values                        (?,?,?,?,?,?,?,?,?,?,?)\r\n### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry \'lixing_java@163.com\' for key \'email\'\n; ]; Duplicate entry \'lixing_java@163.com\' for key \'email\'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry \'lixing_java@163.com\' for key \'email\''),
+	('696e9bfe-3065-44f2-aa4c-e57156cf6198', '2018-07-19 14:23:08', 'http://localhost:8080/gdd/file/importUser', 'POST', 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@1b17595a', 'snoob.gdd.controller.FileController.importUser', '### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\r\n### The error may involve snoob.gdd.mapper.UserMapper.customInsert-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into user(id, name, sex, phone,email,hobby,province,city,area,address,create_time) values\r\n### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\n; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1'),
+	('8bd1b65a-6330-4af2-bebc-f4e8257249e1', '2018-07-19 14:24:13', 'http://localhost:8080/gdd/file/importUser', 'POST', 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@486e9cb6', 'snoob.gdd.controller.FileController.importUser', '### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\r\n### The error may involve snoob.gdd.mapper.UserMapper.customInsert-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into user(id, name, sex, phone,email,hobby,province,city,area,address,create_time) values\r\n### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\n; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1');
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 
 -- 导出  表 gdd.user 结构
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` varchar(36) NOT NULL COMMENT '编号,UUID字符串',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '数据生成时间',
@@ -157,11 +158,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台用户信息';
 
--- 正在导出表  gdd.user 的数据：~0 rows (大约)
+-- 正在导出表  gdd.user 的数据：~1 rows (大约)
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `create_time`, `cover`, `name`, `phone`, `email`, `password`, `introduce`, `sex`, `hobby`, `province`, `city`, `area`, `address`, `login_time`, `login_ip`) VALUES
-	('77cfd433-c255-4978-aca2-efb453558eb8', '2018-07-06 19:58:09', 'cover.jpg', '李星', '18013896707', 'lixing_java@163.com', '1750637e26c7cad8c487824ad7f6337b', '该用户很懒什么都没有留下', '男', '篮球,足球,排球,皮球', '河北省', '承德市', '围场满族蒙古族自治县', '育群胡同21号', '2018-07-18 14:02:18', '127.0.0.1');
+	('3bd53589-ee59-4079-9859-5ba4fcfc94c1', '2018-07-06 19:58:09', 'cover.jpg', '李星', '18013896707', 'lixing_java@163.com', '1750637e26c7cad8c487824ad7f6337b', NULL, '男', '篮球,足球,排球,皮球', '河北省', '承德市', '围场满族蒙古族自治县', '育群胡同21号', '2018-07-22 19:55:29', '127.0.0.1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

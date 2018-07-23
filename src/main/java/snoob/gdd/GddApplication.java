@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tk.mybatis.spring.annotation.MapperScan;
@@ -12,11 +13,15 @@ import tk.mybatis.spring.annotation.MapperScan;
  * 创建并初始化Spring应用上下文,启动Spring应用
  *
  * @SpringBootApplication被一下三个注解所修饰
- * @Configuration: 类级注释, 通过@bean注解的公共方法声明bean(与@Bean注解配合使用)
- * @EnableAutoConfiguration: 启用应用程序上下文的自动配置
- * @ComponentScan: 自动扫描指定包下的标有@Component(以及子注解@Service、@Repository、@Controller)注解的类并注册成bean
+ *  @Configuration: 类级注释, 通过@bean注解的公共方法声明bean(与@Bean注解配合使用)
+ *  @EnableAutoConfiguration: 启用应用程序上下文的自动配置
+ *  @ComponentScan: 自动扫描指定包下的标有@Component(以及子注解@Service、@Repository、@Controller)注解的类并注册成bean
+ * @EnableTransactionManagement // 启用注解事务管理
+ * @MapperScan(basePackages = "snoob.gdd.mapper") // 项目中mapper(dao)所对应的包路径
+ *
  */
 @SpringBootApplication
+@EnableTransactionManagement
 @MapperScan(basePackages = "snoob.gdd.mapper")
 public class GddApplication {
 
