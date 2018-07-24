@@ -114,8 +114,11 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public Object deleteGoodsType(String id) throws Exception {
-        List<String> ids = Arrays.asList(id.split(","));
-        goodsTypeMapper.customDelete(ids);
+        List<String> ids = Arrays.asList(id.split(",")); // 需要删除的商品分类id集合
+        Example example = new Example(GoodsType.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", ids);
+        goodsTypeMapper.deleteByExample(example);
         return ResultUtil.success();
     }
 
@@ -131,8 +134,11 @@ public class GoodsServiceImpl implements GoodsService {
         if ("all".equals(id)) {
             goodsMapper.delete(new Goods());
         } else {
-            List<String> ids = Arrays.asList(id.split(","));
-            goodsMapper.customDelete(ids);
+            List<String> ids = Arrays.asList(id.split(",")); // 需要删除的商品id集合
+            Example example = new Example(Goods.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIn("id", ids);
+            goodsMapper.deleteByExample(example);
         }
         return ResultUtil.success();
     }

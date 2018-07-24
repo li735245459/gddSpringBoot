@@ -14,10 +14,10 @@
     <result column="msg" jdbcType="VARCHAR" property="msg" />
   </resultMap>
   <!-- 批量删除 -->
-  <delete id="customDelete" parameterType="java.util.List">
-    delete from log where id in
-    <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
-      #{id}
-    </foreach>
-  </delete>
+  <!--<delete id="customDelete" parameterType="java.util.List">-->
+    <!--delete from log where id in-->
+    <!--<foreach collection="list" item="id" index="index" open="(" separator="," close=")">-->
+      <!--#{id}-->
+    <!--</foreach>-->
+  <!--</delete>-->
 </mapper>

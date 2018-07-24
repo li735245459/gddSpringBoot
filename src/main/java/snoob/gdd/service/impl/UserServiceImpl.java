@@ -191,8 +191,11 @@ public class UserServiceImpl implements UserService {
         if ("all".equals(id)) {
             userMapper.delete(new User());
         } else {
-            List<String> ids = Arrays.asList(id.split(","));
-            userMapper.customDelete(ids);
+            List<String> ids = Arrays.asList(id.split(",")); // 需要删除的用户id集合
+            Example example = new Example(User.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIn("id", ids);
+            userMapper.deleteByExample(example);
         }
         return ResultUtil.success();
     }

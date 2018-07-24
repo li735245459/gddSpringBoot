@@ -66,8 +66,11 @@ public class LogServiceImpl implements LogService {
         if ("all".equals(id)) {
             logMapper.delete(new Log());
         } else {
-            List<String> ids = Arrays.asList(id.split(","));
-            logMapper.customDelete(ids);
+            List<String> ids = Arrays.asList(id.split(",")); // 需要删除的日志id集合
+            Example example = new Example(Log.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIn("id", ids);
+            logMapper.deleteByExample(example);
         }
         return ResultUtil.success();
     }

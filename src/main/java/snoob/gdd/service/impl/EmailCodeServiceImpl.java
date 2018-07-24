@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import snoob.gdd.enums.ResultEnum;
 import snoob.gdd.mapper.EmailCodeMapper;
-import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.EmailCode;
 import snoob.gdd.model.User;
 import snoob.gdd.service.EmailCodeService;
@@ -145,8 +144,11 @@ public class EmailCodeServiceImpl implements EmailCodeService {
         if ("all".equals(id)) {
             emailCodeMapper.delete(new EmailCode());
         } else {
-            List<String> ids = Arrays.asList(id.split(","));
-            emailCodeMapper.customDelete(ids);
+            List<String> ids = Arrays.asList(id.split(",")); // 需要删除的邮件id集合
+            Example example = new Example(EmailCode.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIn("id", ids);
+            emailCodeMapper.deleteByExample(example);
         }
         return ResultUtil.success();
     }

@@ -24,12 +24,12 @@
   </resultMap>
 
     <!-- 批量删除 -->
-    <delete id="customDelete" parameterType="java.util.List">
-        delete from user where id in
-        <foreach close=")" collection="list" index="index" item="id" open="(" separator=",">
-            #{id}
-        </foreach>
-    </delete>
+    <!--<delete id="customDelete" parameterType="java.util.List">-->
+        <!--delete from user where id in-->
+        <!--<foreach close=")" collection="list" index="index" item="id" open="(" separator=",">-->
+            <!--#{id}-->
+        <!--</foreach>-->
+    <!--</delete>-->
 
     <!-- 批量添加 -->
     <insert id="customInsert" parameterType="java.util.List">
