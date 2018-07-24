@@ -26,32 +26,13 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     /**
-     * 编辑、添加商品类型信息
-     *
-     * @param goodsType
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public Object modifyGoodsType(GoodsType goodsType) {
-        if (goodsType.getId() == null) {
-            /*添加*/
-            goodsTypeMapper.insertSelective(goodsType);
-        } else {
-            /*编辑*/
-            goodsTypeMapper.updateByPrimaryKeySelective(goodsType);
-        }
-        return ResultUtil.success();
-    }
-
-    /**
-     * 分页查询商品类型信息
+     * 查询商品分类
      *
      * @return
      * @throws Exception
      */
     @Override
-    public Object selectGoodsType() {
+    public Object selectGoodsType() throws Exception {
         Example example = new Example(CoverType.class);
         // 根据nodeLevel降序排列(用于创建tree格式数据)
         // 根据createTime升序(用于排列节点和子节点的顺序)
@@ -61,40 +42,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     /**
-     * 删除商品类型信息
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public Object deleteGoodsType(String id) throws Exception {
-        List<String> ids = Arrays.asList(id.split(","));
-        goodsTypeMapper.customDelete(ids);
-        return ResultUtil.success();
-    }
-
-    /**
-     * 修改、添加商品信息
-     *
-     * @param goods
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public Object modifyGoods(Goods goods) {
-        if (goods.getId() == null) {
-            /*添加*/
-            goodsMapper.insertSelective(goods);
-        } else {
-            /*编辑*/
-            goodsMapper.updateByPrimaryKeySelective(goods);
-        }
-        return ResultUtil.success();
-    }
-
-    /**
-     * 分页查询商品信息
+     * 分页查询商品
      *
      * @param goods
      * @param pageNumber
@@ -103,7 +51,7 @@ public class GoodsServiceImpl implements GoodsService {
      * @throws Exception
      */
     @Override
-    public Object pageGoods(Goods goods, Integer pageNumber, Integer pageSize) {
+    public Object pageGoods(Goods goods, Integer pageNumber, Integer pageSize) throws Exception {
         Example example = new Example(Goods.class);
         example.orderBy("createTime").asc();
         // 动态sql
@@ -120,7 +68,59 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     /**
-     * 删除商品信息
+     * 添加、编辑商品分类
+     *
+     * @param goodsType
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object modifyGoodsType(GoodsType goodsType) throws Exception {
+        if (goodsType.getId() == null) {
+            /*添加*/
+            goodsTypeMapper.insertSelective(goodsType);
+        } else {
+            /*编辑*/
+            goodsTypeMapper.updateByPrimaryKeySelective(goodsType);
+        }
+        return ResultUtil.success();
+    }
+
+    /**
+     * 编辑、添加商品
+     *
+     * @param goods
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object modifyGoods(Goods goods) throws Exception {
+        if (goods.getId() == null) {
+            /*添加*/
+            goodsMapper.insertSelective(goods);
+        } else {
+            /*编辑*/
+            goodsMapper.updateByPrimaryKeySelective(goods);
+        }
+        return ResultUtil.success();
+    }
+
+    /**
+     * 根据id字符串（多个id以,分割,all为删除所有）批量删除商品分类
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object deleteGoodsType(String id) throws Exception {
+        List<String> ids = Arrays.asList(id.split(","));
+        goodsTypeMapper.customDelete(ids);
+        return ResultUtil.success();
+    }
+
+    /**
+     * 根据id字符串（多个id以,分割,all为删除所有）批量删除商品
      *
      * @param id
      * @return
@@ -129,15 +129,11 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Object deleteGoods(String id) throws Exception {
         if ("all".equals(id)) {
-            /*删除所有*/
             goodsMapper.delete(new Goods());
         } else {
-            /*删除所选(批量)*/
             List<String> ids = Arrays.asList(id.split(","));
             goodsMapper.customDelete(ids);
         }
         return ResultUtil.success();
     }
-
-
 }

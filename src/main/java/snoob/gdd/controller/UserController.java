@@ -66,30 +66,6 @@ public class UserController {
     }
 
     /**
-     * 检查jwt是否有效
-     *
-     * @param jwt
-     * @return
-     * @throws Exception
-     */
-    @GetMapping("/checkJwt/{jwt}")
-    public Object checkJwt(
-            @PathVariable(value = "jwt") String jwt) throws Exception {
-        return userService.checkJWT(jwt);
-    }
-
-    /**
-     * 门户网站首页
-     *
-     * @return
-     */
-    @GetMapping("/home")
-    public Object home(HttpServletRequest request) throws Exception {
-        return userService.home(request.getAttribute("userId").toString());
-    }
-
-
-    /**
      * 分页查询
      *
      * @param user

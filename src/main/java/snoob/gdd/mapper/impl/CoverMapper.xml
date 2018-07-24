@@ -8,7 +8,7 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="cover_type_name" jdbcType="VARCHAR" property="coverTypeName" />
-    <result column="is_active" jdbcType="INTEGER" property="isActive" />
+    <result column="is_active" jdbcType="VARCHAR" property="isActive" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="src" jdbcType="VARCHAR" property="src" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />

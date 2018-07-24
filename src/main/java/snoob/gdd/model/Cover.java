@@ -28,10 +28,10 @@ public class Cover {
     private String coverTypeName;
 
     /**
-     * 是否激活,0屏蔽,1激活
+     * 默认为屏蔽
      */
     @Column(name = "is_active")
-    private Integer isActive;
+    private String isActive;
 
     /**
      * 名称
@@ -108,21 +108,21 @@ public class Cover {
     }
 
     /**
-     * 获取是否激活,0屏蔽,1激活
+     * 获取默认为屏蔽
      *
-     * @return is_active - 是否激活,0屏蔽,1激活
+     * @return is_active - 默认为屏蔽
      */
-    public Integer getIsActive() {
+    public String getIsActive() {
         return isActive;
     }
 
     /**
-     * 设置是否激活,0屏蔽,1激活
+     * 设置默认为屏蔽
      *
-     * @param isActive 是否激活,0屏蔽,1激活
+     * @param isActive 默认为屏蔽
      */
-    public void setIsActive(Integer isActive) {
-        this.isActive = isActive;
+    public void setIsActive(String isActive) {
+        this.isActive = isActive == null ? null : isActive.trim();
     }
 
     /**

@@ -21,15 +21,16 @@ public class LogServiceImpl implements LogService {
     private LogMapper logMapper;
 
     /**
-     * 分页查询
+     * 分页查询日志
      *
      * @param log
      * @param pageNumber
      * @param pageSize
      * @return
+     * @throws Exception
      */
     @Override
-    public Object page(Log log, Integer pageNumber, Integer pageSize) {
+    public Object page(Log log, Integer pageNumber, Integer pageSize) throws Exception {
         Example example = new Example(User.class);
         example.orderBy("createTime").desc();
         // 开启分页模式
@@ -45,18 +46,16 @@ public class LogServiceImpl implements LogService {
      *
      * @param log
      * @return
+     * @throws Exception
      */
     @Override
-    public Object insert(Log log) {
+    public Object insert(Log log) throws Exception {
         logMapper.insertSelective(log);
         return ResultUtil.success();
     }
 
     /**
-     * 删除
-     * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1" 表示单一删除
-     * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1,3b2ebfa1-ed59-4091-a800-aef6e867f1a2" 表示批量删除
-     * id = "all" 表示清空
+     * 根据id字符串（多个id以,分割,all为删除所有）批量删除日志
      *
      * @param id
      * @return
@@ -65,10 +64,8 @@ public class LogServiceImpl implements LogService {
     @Override
     public Object delete(String id) throws Exception {
         if ("all".equals(id)) {
-            /*删除所有*/
             logMapper.delete(new Log());
         } else {
-            /*删除所选(批量)*/
             List<String> ids = Arrays.asList(id.split(","));
             logMapper.customDelete(ids);
         }

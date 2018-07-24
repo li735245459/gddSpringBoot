@@ -7,7 +7,6 @@ import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
-import com.qiniu.storage.model.BatchStatus;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,7 +38,7 @@ public class QNYUtil {
      */
     public static String upFileByBytes(MultipartFile file) throws Exception {
         UploadManager uploadManager = new UploadManager(cfg);
-        String key = null; //默认不指定key以文件内容的hash值作为文件名,否则以key的值为文件名
+        String key = null; // 默认不指定key以文件内容的hash值作为文件名,否则以key的值为文件名
         try {
             byte[] uploadBytes = file.getBytes();
             Auth auth = Auth.create(accessKey, secretKey);
@@ -57,32 +56,16 @@ public class QNYUtil {
     }
 
     /**
-     * 删除文件
+     * 批量删除文件(单次批量请求的文件数量不得超过1000)
      *
-     * @param key(文件名)
+     * @param keyList
      */
-    public static void deleteFile(String key) {
+    public static void deleteFiles(String[] keyList) {
         Auth auth = Auth.create(accessKey, secretKey);
         BucketManager bucketManager = new BucketManager(auth, cfg);
         try {
-            bucketManager.delete(bucket, key);
-        } catch (QiniuException ex) {
-            throw new GlobalCustomException(ResultEnum.ERROR_QNY_DELETEFILE);
-        }
-    }
-
-    /**
-     * 批量删除文件
-     *
-     * @param keys(文件名字符串数组)
-     */
-    public static void deleteFiles(String[] keys) {
-        Auth auth = Auth.create(accessKey, secretKey);
-        BucketManager bucketManager = new BucketManager(auth, cfg);
-        try {
-            //单次批量请求的文件数量不得超过1000
             BucketManager.BatchOperations batchOperations = new BucketManager.BatchOperations();
-            batchOperations.addDeleteOp(bucket, keys);
+            batchOperations.addDeleteOp(bucket, keyList );
             bucketManager.batch(batchOperations);
         } catch (QiniuException ex) {
             throw new GlobalCustomException(ResultEnum.ERROR_QNY_DELETEFILE);

@@ -10,7 +10,6 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.Cover;
 import snoob.gdd.model.User;
 import snoob.gdd.service.FileService;
-import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.QNYUtil;
 import snoob.gdd.util.ResultUtil;
 import snoob.gdd.util.StrUtil;
@@ -31,9 +30,6 @@ public class FileServiceImpl implements FileService {
     @Resource
     private CoverServiceImpl coverService;
 
-    @Resource
-    private OnlyUtil onlyUtil;
-
     private HSSFWorkbook workBook = null;
     private HSSFSheet hssfSheet = null;
     private HSSFRow hssfRow = null;
@@ -45,6 +41,13 @@ public class FileServiceImpl implements FileService {
     private HSSFFont font = null;
     HSSFDataFormat format = null;
 
+    /**
+     * 导出用户信息: 根据条件查询用户信息并以Excel的形式导出到桌面
+     *
+     * @param response
+     * @param user
+     * @throws Exception
+     */
     @Override
     public void exportUser(HttpServletResponse response, User user) throws Exception {
         // 查询数据
@@ -209,6 +212,13 @@ public class FileServiceImpl implements FileService {
         workBook.close();
     }
 
+    /**
+     * 导入用户信息: 读取Excel文件并解析导入到数据库
+     *
+     * @param file
+     * @return
+     * @throws Exception
+     */
     @Override
     public Object importUser(MultipartFile file) throws Exception {
         if (!file.isEmpty()) {
@@ -271,30 +281,38 @@ public class FileServiceImpl implements FileService {
         return ResultUtil.error(ResultEnum.ERROR_IMPORT_FILE_NULL);
     }
 
+    /**
+     * 批量上传图片到七牛云并将返回的图片地址存入数据库
+     *
+     * @param files
+     * @param cover
+     * @return
+     * @throws Exception
+     */
     @Override
-    public Object importCover(
-            MultipartFile[] files, Cover cover) throws Exception {
+    public Object importCover(MultipartFile[] files, Cover cover) throws Exception {
         for (MultipartFile file : files) {
-            /*封面名称判断*/
-            String fileName = file.getOriginalFilename();// h6.jpg
-            if (onlyUtil.CoverNameUsed(fileName)) {
+            //封面名称去重
+            String fileName = file.getOriginalFilename();// xxx.png
+            fileName = fileName.substring(0, fileName.lastIndexOf(".")); // xxx
+            if (coverService.CheckCoverName(fileName)) {
                 return ResultUtil.error(ResultEnum.ERROR_COVERNAME_USED);
             }
-            /*封面格式判断*/
+            //封面格式校验
             String fileType = file.getContentType();// image/jpeg
             if (!fileType.contains("jpeg")) {
                 return ResultUtil.error(ResultEnum.ERROR_COVER_FORMAT_ILLEGAL);
             }
 
-            /*保存封面到项目目录*/
+            //保存封面到项目目录
             /*C:\Users\Administrator\AppData\Local\Temp\tomcat-docbase.5111887347846722637.8080\\h5.jpg*/
             //String realPath = request.getSession().getServletContext().getRealPath("/"); // 项目在容器中实际发布运行的根路径
             //String path = realPath + File.separator + fileName;
             //file.transferTo(new File(path));
 
-            /*保存到七牛云*/
+            //保存图片到七牛云
             String fileUrl = QNYUtil.upFileByBytes(file);
-            /*添加到数据库*/
+            /*添加七牛云回调图片链接到数据库*/
             cover.setId(null);
             cover.setName(fileName);
             cover.setSrc(fileUrl);

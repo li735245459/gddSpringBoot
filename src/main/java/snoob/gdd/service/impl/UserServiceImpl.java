@@ -8,7 +8,6 @@ import snoob.gdd.mapper.UserMapper;
 import snoob.gdd.model.User;
 import snoob.gdd.service.UserService;
 import snoob.gdd.util.JwtUtil;
-import snoob.gdd.util.OnlyUtil;
 import snoob.gdd.util.ResultUtil;
 import tk.mybatis.mapper.entity.Example;
 
@@ -21,66 +20,59 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
-    @Resource
-    private OnlyUtil onlyUtil;
 
     /**
-     * 添加、编辑
+     * 检查邮箱是否合法
      *
-     * @param user
+     * @param email
      * @return
+     * @throws Exception
      */
     @Override
-    public Object modify(User user) {
-        if (user.getPhone() != null && onlyUtil.phoneUsed(user.getPhone())) {
-            return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
-        }
-        if (user.getEmail() != null && onlyUtil.emailUsed(user.getEmail())) {
-            return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
-        }
-        if (user.getId() == null) {
-            /*添加*/
-            userMapper.insertSelective(user);
-        } else {
-            /*编辑*/
-            userMapper.updateByPrimaryKeySelective(user);
-        }
-        return ResultUtil.success();
-    }
-
-    /**
-     * 通过email修改密码
-     *
-     * @param user
-     * @return
-     */
-    @Override
-    public Object modifyPassword(User user) {
+    public Boolean checkEmail(String email) throws Exception {
         User item = new User();
-        item.setEmail(user.getEmail());
-        item = userMapper.selectOne(item);
-        if (item == null) {
-            return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
+        item.setEmail(email);
+        List<User> items = userMapper.select(item);
+        if (items.isEmpty()) {
+            return false; // 不存在,合法
+        } else {
+            return true; // 存在,不合法
         }
-        user.setId(item.getId());
-        user.setEmail(null);
-        userMapper.updateByPrimaryKeySelective(user);
-        return ResultUtil.success();
     }
 
     /**
-     * 登录
+     * 检查手机号码是否合法
+     *
+     * @param phone
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Boolean checkPhone(String phone) throws Exception {
+        User item = new User();
+        item.setPhone(phone);
+        List<User> items = userMapper.select(item);
+        if (items.isEmpty()) {
+            return false; // 不存在,合法
+        } else {
+            return true; // 存在,不合法
+        }
+    }
+
+    /**
+     * 用户登陆
      *
      * @param user
      * @return
+     * @throws Exception
      */
     @Override
-    public Object login(User user) {
+    public Object login(User user) throws Exception {
         String ip = user.getLoginIp();
         user.setLoginIp(null);
         User item = userMapper.selectOne(user);
+        // 用户名或者密码错误
         if (item == null) {
-            // 用户名或者密码错误
             return ResultUtil.error(ResultEnum.ERROR_EMAIL_OR_PASSWORD);
         }
         // 登陆成功
@@ -98,27 +90,17 @@ public class UserServiceImpl implements UserService {
         return ResultUtil.success(data);
     }
 
-    @Override
-    public Object checkJWT(String jwt) {
-        return JwtUtil.checkJWT(jwt);
-    }
-
-    @Override
-    public Object home(String userId) {
-        List<User> users = userMapper.select(new User());
-        return ResultUtil.success(users.get(0));
-    }
-
     /**
-     * 分页查询
+     * 分页查询用户
      *
      * @param user
      * @param pageNumber
      * @param pageSize
      * @return
+     * @throws Exception
      */
     @Override
-    public Object page(User user, Integer pageNumber, Integer pageSize) {
+    public Object page(User user, Integer pageNumber, Integer pageSize) throws Exception {
         Example example = new Example(User.class);
 //        example.setForUpdate(true); // 设置行级锁,确保数据一致性
 //        example.setDistinct(true); // 去重
@@ -152,10 +134,53 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 删除
-     * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1" 表示单一删除
-     * id = "3b2ebfa1-ed59-4091-a800-aef6e867f1a1,3b2ebfa1-ed59-4091-a800-aef6e867f1a2" 表示批量删除
-     * id = "all" 表示清空
+     * 添加、修改用户
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object modify(User user) throws Exception {
+        if (user.getPhone() != null && checkPhone(user.getPhone())) {
+            return ResultUtil.error(ResultEnum.ERROR_PHONE_USED);
+        }
+        if (user.getEmail() != null && checkEmail(user.getEmail())) {
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_USED);
+        }
+        if (user.getId() == null) {
+            /*添加*/
+            userMapper.insertSelective(user);
+        } else {
+            /*编辑*/
+            userMapper.updateByPrimaryKeySelective(user);
+        }
+        return ResultUtil.success();
+    }
+
+    /**
+     * 根据邮箱修改密码
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object modifyPassword(User user) throws Exception {
+        User item = new User();
+        item.setEmail(user.getEmail());
+        item = userMapper.selectOne(item);
+        if (item == null) {
+            return ResultUtil.error(ResultEnum.ERROR_EMAIL_ILLEGAL);
+        }
+        user.setId(item.getId());
+        user.setEmail(null);
+        userMapper.updateByPrimaryKeySelective(user);
+        return ResultUtil.success();
+    }
+
+    /**
+     * 根据id字符串（多个id以,分割,all为删除所有）批量删除用户
      *
      * @param id
      * @return
@@ -164,10 +189,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object delete(String id) throws Exception {
         if ("all".equals(id)) {
-            /*删除所有*/
             userMapper.delete(new User());
         } else {
-            /*删除所选(批量)*/
             List<String> ids = Arrays.asList(id.split(","));
             userMapper.customDelete(ids);
         }
