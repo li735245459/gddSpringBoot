@@ -14,12 +14,4 @@
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="href" jdbcType="VARCHAR" property="href" />
   </resultMap>
-
-  <!-- 批量删除 -->
-  <!--<delete id="customDelete" parameterType="java.util.List">-->
-    <!--delete from cover where id in-->
-    <!--<foreach close=")" collection="list" index="index" item="id" open="(" separator=",">-->
-      <!--#{id}-->
-    <!--</foreach>-->
-  <!--</delete>-->
 </mapper>

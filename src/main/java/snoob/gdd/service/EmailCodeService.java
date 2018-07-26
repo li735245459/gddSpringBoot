@@ -8,6 +8,7 @@ import snoob.gdd.model.EmailCode;
 public interface EmailCodeService {
     /**
      * 发送html格式邮件
+     *
      * @param type
      * @param receiver
      * @return
@@ -17,6 +18,7 @@ public interface EmailCodeService {
 
     /**
      * 检查邮箱验证码是否匹配
+     *
      * @param type
      * @param email
      * @param code
@@ -27,6 +29,7 @@ public interface EmailCodeService {
 
     /**
      * 分页查询邮件
+     *
      * @param emailCode
      * @param pageNumber
      * @param pageSize
@@ -37,6 +40,7 @@ public interface EmailCodeService {
 
     /**
      * 根据id字符串（多个id以,分割,all为删除所有）批量删除邮件
+     *
      * @param id
      * @return
      * @throws Exception

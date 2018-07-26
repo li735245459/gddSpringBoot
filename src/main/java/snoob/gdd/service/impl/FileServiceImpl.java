@@ -292,27 +292,27 @@ public class FileServiceImpl implements FileService {
     @Override
     public Object importCover(MultipartFile[] files, Cover cover) throws Exception {
         for (MultipartFile file : files) {
-            //封面名称去重
+            // 封面名称去重
             String fileName = file.getOriginalFilename();// xxx.png
             fileName = fileName.substring(0, fileName.lastIndexOf(".")); // xxx
             if (coverService.CheckCoverName(fileName)) {
                 return ResultUtil.error(ResultEnum.ERROR_COVERNAME_USED);
             }
-            //封面格式校验
+            // 封面格式校验
             String fileType = file.getContentType();// image/jpeg
             if (!fileType.contains("jpeg")) {
                 return ResultUtil.error(ResultEnum.ERROR_COVER_FORMAT_ILLEGAL);
             }
 
-            //保存封面到项目目录
+            // 保存封面到项目目录
             /*C:\Users\Administrator\AppData\Local\Temp\tomcat-docbase.5111887347846722637.8080\\h5.jpg*/
             //String realPath = request.getSession().getServletContext().getRealPath("/"); // 项目在容器中实际发布运行的根路径
             //String path = realPath + File.separator + fileName;
             //file.transferTo(new File(path));
 
-            //保存图片到七牛云
+            // 保存图片到七牛云
             String fileUrl = QNYUtil.upFileByBytes(file);
-            /*添加七牛云回调图片链接到数据库*/
+            // 添加七牛云回调图片链接到数据库
             cover.setId(null);
             cover.setName(fileName);
             cover.setSrc(fileUrl);

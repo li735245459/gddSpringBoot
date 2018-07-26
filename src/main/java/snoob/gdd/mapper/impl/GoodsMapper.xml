@@ -14,12 +14,4 @@
     <result column="promotion_price" jdbcType="DOUBLE" property="promotionPrice" />
     <result column="isActive" jdbcType="INTEGER" property="isactive" />
   </resultMap>
-
-  <!-- 批量删除 -->
-  <!--<delete id="customDelete" parameterType="java.util.List">-->
-    <!--delete from goods where id in-->
-    <!--<foreach close=")" collection="list" index="index" item="id" open="(" separator=",">-->
-      <!--#{id}-->
-    <!--</foreach>-->
-  <!--</delete>-->
 </mapper>

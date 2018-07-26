@@ -3,11 +3,14 @@ package snoob.gdd;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tk.mybatis.spring.annotation.MapperScan;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * 创建并初始化Spring应用上下文,启动Spring应用
@@ -41,13 +44,26 @@ public class GddApplication {
              */
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // 匹配所有URL
+                registry.addMapping("/**") // 拦截所有URL
                         .allowedOrigins(crossOrigin) // 允许http://127.0.0.1:4200发起跨域请求
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // 允许跨域请求的方法
                         .allowedHeaders("*"); // 允许跨域请求包含content-type
             }
         };
     }
+
+    /**
+     * 文件上传配置
+     * @return
+     */
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("5120KB"); // 单个文件最大5M
+        factory.setMaxRequestSize("5120KB"); // 所有上传文件最大5M
+        return factory.createMultipartConfig();
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(GddApplication.class, args);
